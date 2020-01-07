@@ -18,30 +18,20 @@ const Field = ({
     })
   }
 
-  const typeHandler = key => {
-    const pattern = /[0-9]/;
+  const typeHandler = e => {
+    const value = e.target.value;
+    const arr = value.split("");
+    let flag = true;
+    arr.forEach(char => {
+      if (!/[0-9]/.test(char)) flag = false;
+    });
+    if (flag && (!unit.max || (unit.max && unit.max >= value))) dispatchHandler(parseInt(value * unit.ratio));
+  }
 
-    // add
-    if (pattern.test(key)){
-      const addValue = (value * 10) + parseInt(key);
-      if (!unit.max || (unit.max && unit.max >= addValue)){
-        const newSum = SUM + ((addValue - value) * CHANGE);
-        dispatchHandler(newSum);
-      }
-    }
-
-    // delete
-    if (key === "Backspace" || key === "Delete"){
-      if (value < 10) dispatchHandler(SUM - (CHANGE * value));
-      else {
-        const subtracktValue = value - (Math.floor(value / 10));
-        dispatchHandler( SUM - (CHANGE * subtracktValue) );
-      }
-    }
-
-    // arrows
-    if (key === "ArrowUp") clickHandler("+");
-    if (key === "ArrowDown") clickHandler("-");
+  const keyDownHandler = e => {
+    // // arrows
+    if (e.key === "ArrowUp") clickHandler("+");
+    if (e.key === "ArrowDown") clickHandler("-");
   }
 
   const clickHandler = sign => {
@@ -54,8 +44,9 @@ const Field = ({
     <div className="Field">
       <input
         disabled={isActive ? false : true}
-        onChange={e => true}
-        onKeyDown={e => typeHandler(e.key)}
+        onChange={e => typeHandler(e)}
+        onKeyDown={e => keyDownHandler(e)}
+        type="text"
         value={value}/>
       <label>{unit.unit}</label>
       <button onClick={() => clickHandler("+")}>+</button>

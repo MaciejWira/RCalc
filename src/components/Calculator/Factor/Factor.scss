@@ -1,3 +1,8 @@
+@import '../../../styles/helpers';
+
 .Factor {
-  flex-grow: 1;
+  margin-bottom: rem(10);
+  @include bp(lg){
+    flex-grow: 1;
+  }
 }

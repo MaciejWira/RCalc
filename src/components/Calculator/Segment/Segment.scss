@@ -1,3 +1,13 @@
+@import '../../../styles/helpers';
+
+.Segment-wrapper {
+  border: solid rem(1) grey;
+  margin-bottom: rem(15);
+}
+
 .Segment {
-  display: flex;
+  padding: rem(15);
+  @include bp(lg){
+    display: flex
+  }
 }
