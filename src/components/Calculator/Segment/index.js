@@ -5,7 +5,7 @@ import Factor from "../Factor";
 
 import './Segment.scss';
 
-const Segment = ({ segment, segmentUpdater, segmentRemover }) => {
+const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
   const [ _segment, dispatch ] = useReducer(segmentReducer, segment);
 
@@ -22,10 +22,13 @@ const Segment = ({ segment, segmentUpdater, segmentRemover }) => {
 
   return(
     <div className="Segment-wrapper">
+      <h2 className="Segment__heading">Segment nr {no}</h2>
       <div className="Segment">
         {factorsMarkup}
       </div>
-      <button onClick={() => segmentRemover(_segment.id)}>Usuń</button>
+      <button
+        className="Segment__button"
+        onClick={() => segmentRemover(_segment.id)}>Usuń segment</button>
     </div>
 
   )

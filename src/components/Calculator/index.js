@@ -4,6 +4,8 @@ import Segment from "./Segment";
 import { initialSegment } from "./helpers/initialSegment";
 import { factorHandler } from './helpers/factorHandler';
 
+import './Calculator.scss';
+
 const initialId = 1;
 
 const Calculator = () => {
@@ -28,7 +30,9 @@ const Calculator = () => {
     // add sums for each factor, from all segments, to each other and inject it
     // or calculate the average based on weight
     segments.forEach(segment => {
-      const segmentWeight = segment.factors[0].sum; // assuming it's distance
+      const segmentWeight = segment.factors.filter(factor => {
+        return factor.name === 'time'
+      })[0].sum; // time is weight
       segment.factors.forEach(factor => {
         const sum = summaryFactors[factor.name].sum; // present sum
         const weight = summaryFactors[factor.name].weight; // present weight
@@ -70,9 +74,10 @@ const Calculator = () => {
     }
   }
 
-  const segmentsMarkup = segments.map(segment =>(
+  const segmentsMarkup = segments.map((segment, index) =>(
     <Segment
       key={segment.id}
+      no={index + 1}
       segmentUpdater={segmentUpdater}
       segmentRemover={segmentRemover}
       segment={segment} />
@@ -92,23 +97,28 @@ const Calculator = () => {
     }
 
     return(
-      <div key={factor.name}>
-        <div>
+      <div key={factor.name} className="Calculator__factor">
+        <div className="Calculator__factor-part">
           <span>{factor.pretty}: </span>
           {factorHandler(factor, null, factor, "summary")}
         </div>
-        {siblingsMarkup}
+        <div className="Calculator__factor-part">
+          {siblingsMarkup}
+        </div>
       </div>
-
     )
   })
 
   return(
-    <div>
+    <div className="Calculator container">
       {segmentsMarkup}
-      <button onClick={segmentAdder}>Dodaj</button>
-      <div>
-        {summary}
+      <button
+        className="a-button Calculator__button"
+        onClick={segmentAdder}>Dodaj segment</button>
+      <div className="Calculator__summary">
+        <div className="Calculator__summary-container container">
+          {summary}
+        </div>
       </div>
     </div>
   )

@@ -1,0 +1,48 @@
+@import '../../styles/helpers';
+@import '../../styles/1-atoms/a-button';
+
+.Calculator {
+  padding-top: rem(25);
+
+  &__button {
+    @include bp(lg){
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: rem(18);
+      font-weight: 700;
+      padding: rem(10) rem(15);
+    }
+  }
+
+  &__summary {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    box-shadow: 0 0 rem(15) 0 rgba($color-primary, .5);
+    font-size: rem(12);
+    font-weight: 600;
+    padding-top: rem(15);
+    padding-bottom: rem(15);
+
+  }
+
+  &__summary-container {
+    @include bp(lg){
+      display: flex;
+    }
+  }
+
+  &__factor {
+    @include bp(lg){
+      display: flex;
+      margin-right: rem(15);
+    }
+  }
+
+  &__factor-part {
+    margin-right: rem(15);
+  }
+}

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Field.scss';
 import { transform } from '../helpers/transform';
 
 const Field = ({
-  factorName, isActive, unit, value, sum, dispatch, converter, transformation
+  factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden
 }) => {
+
+  const dummySpan = React.createRef();
+
+  // for setting input width equal to content (with a help of a dummy span)
+
+  const [ inputWidth, setInputWidth ] = useState(0);
+
+  useEffect(() => {
+    if (inputWidth !== dummySpan.current.offsetWidth){
+      setInputWidth(dummySpan.current.offsetWidth)
+    }
+  })
+
 
   const step = unit.step ? unit.step : 1,
         SUM = transform(transformation, sum),
@@ -18,14 +31,16 @@ const Field = ({
     })
   }
 
-  const typeHandler = e => {
-    const value = e.target.value;
-    const arr = value.split("");
+  const onChangeHandler = e => {
+    const newValue = e.target.value === "" ? "0" : e.target.value;
+    const arr = newValue.split("");
     let flag = true;
     arr.forEach(char => {
       if (!/[0-9]/.test(char)) flag = false;
     });
-    if (flag && (!unit.max || (unit.max && unit.max >= value))) dispatchHandler(parseInt(value * unit.ratio));
+    if (flag && (!unit.max || (unit.max && unit.max >= newValue))){
+      dispatchHandler(SUM + ( ( parseInt(newValue) - value ) * CHANGE ))
+    };
   }
 
   const keyDownHandler = e => {
@@ -35,22 +50,44 @@ const Field = ({
   }
 
   const clickHandler = sign => {
-    const isMax = unit.max ? value < unit.max : true;
+    const isMax = unit.biggest ? value < unit.max : true;
     if (isActive && sign === '+' && isMax) dispatchHandler(SUM + CHANGE);
     else if (isActive && sign === '-' && sum > 0) dispatchHandler(SUM - CHANGE);
   }
 
+  const activeClass = isActive ? "" : " Field--disactive",
+        hiddenClass = isHidden ? " Field--hidden" : "";
+
   return(
-    <div className="Field">
-      <input
-        disabled={isActive ? false : true}
-        onChange={e => typeHandler(e)}
-        onKeyDown={e => keyDownHandler(e)}
-        type="text"
-        value={value}/>
-      <label>{unit.unit}</label>
-      <button onClick={() => clickHandler("+")}>+</button>
-      <button onClick={() => clickHandler("-")}>-</button>
+    <div className={"Field" + activeClass + hiddenClass}>
+      <div className="Field__wrapper">
+
+        <div className="Field__buttons">
+          <button
+            className="Field__button Field__button--plus"
+            onClick={() => clickHandler("+")}>+</button>
+          <button
+            className="Field__button Field__button--minus"
+            onClick={() => clickHandler("-")}>-</button>
+        </div>
+
+        <div className="Field__main">
+          <input
+            className="Field__input"
+            style={{width: `${inputWidth}px`}}
+            disabled={isActive ? false : true}
+            onChange={e => onChangeHandler(e)}
+            onKeyDown={e => keyDownHandler(e)}
+            type="text"
+            value={value}/>
+          <span
+            ref={dummySpan}
+            className="Field__input Field__input--dummy">{value}</span>
+          <span className="Field__unit">{unit.unit}</span>
+        </div>
+
+
+      </div>
     </div>
   )
 };

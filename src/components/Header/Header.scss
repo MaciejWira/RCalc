@@ -1,0 +1,24 @@
+@import '../../styles/helpers';
+@import '../../styles/vars';
+
+.Header {
+  padding-top: rem(15);
+  padding-bottom: rem(15);
+  background-color: $color-subprimary;
+  box-shadow: 0 0 rem(15) 0 rgba(black, .6);
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  right: 0;
+  left: 0;
+  min-height: $page-top;
+  box-sizing: border-box;
+
+  &__logo {
+    font-size: rem(16);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+
+}

@@ -13,12 +13,13 @@ export const initialSegment = {
           unit: "km",
           biggest: true,
           ratio: 1000,
-          max: 99999
+          max: 999
         },
         {
           name: "meters",
           unit: "m",
           ratio: 1,
+          max: 999
         }
       ],
       sum: 0
@@ -32,18 +33,20 @@ export const initialSegment = {
           name: "hours",
           unit: "h",
           biggest: true,
-          max: 9999,
+          max: 99,
           ratio: 3600,
         },
         {
           name: "minutes",
           unit: "min",
           ratio: 60,
+          max: 59
         },
         {
           name: "seconds",
           unit: "s",
           ratio: 1,
+          max: 59
         }
       ],
       sum: 0
@@ -58,12 +61,13 @@ export const initialSegment = {
           unit: "km/h",
           biggest: true,
           ratio: 1000,
-          max: 999999999
+          max: 99
         },
         {
           name: "meters-per-hour",
           unit: "m/h",
           ratio: 1,
+          max: 999
         }
       ],
       sum: 0,
@@ -79,12 +83,13 @@ export const initialSegment = {
               unit: "min/km",
               biggest: true,
               ratio: 60,
-              max: 99999
+              max: 9999
             },
             {
               name: "seconds-per-kilometers",
               unit: "sek/km",
               ratio: 1,
+              max: 59
             }
           ],
           converter: 1000,
