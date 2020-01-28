@@ -35,6 +35,13 @@
     font-weight: 800;
     transition: width .05s;
     overflow-x: visible;
+    box-sizing: border-box;
+    @include bp(lg){
+      font-size: rem(40);
+    }
+    @include bp(xl){
+      font-size: rem(44);
+    }
 
     &:focus {
       outline: none;
@@ -46,8 +53,6 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      padding-left: 0;
-      padding-right: 0;
       position: absolute;
       display: inline-block;
       width: auto;
@@ -73,6 +78,11 @@
     border: solid rem(4) $color-subprimary;
     font-size: rem(20);
     font-weight: 700;
+    @include bp(xl){
+      width: rem(36);
+      height: rem(36);
+      font-size: rem(24);
+    }
     &:focus {
       outline: none;
     }
@@ -98,10 +108,14 @@
      padding-right: rem(3);
      font-size: rem(28);
      font-weight: 800;
+     @include bp(xl){
+       font-size: rem(32);
+     }
    }
 
    &__unit {
      font-size: rem(12);
+
    }
 
    &__buttons {

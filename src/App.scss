@@ -14,5 +14,6 @@ body {
   color: white;
   min-height: 100vh;
   padding-top: $page-top;
-  padding-bottom: rem(150);
+  transition: padding-bottom .3s;
+  // padding-bottom: rem(175);
 }

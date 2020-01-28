@@ -12,13 +12,26 @@ const Field = ({
   // for setting input width equal to content (with a help of a dummy span)
 
   const [ inputWidth, setInputWidth ] = useState(0);
+  const [ windowLoaded, setWindowLoaded ] = useState(false);
+
+  const resize = () => {
+    if (inputWidth !== dummySpan.current.clientWidth){
+      setInputWidth(dummySpan.current.clientWidth);
+    }
+  }
+
+  // resize on window load and then for every render
+
+  useEffect(resize, [ windowLoaded ]);
+  useEffect(resize);
+
+  // setting initial width after css styles are loaded
 
   useEffect(() => {
-    if (inputWidth !== dummySpan.current.offsetWidth){
-      setInputWidth(dummySpan.current.offsetWidth)
-    }
-  })
-
+    window.addEventListener('load', () => {
+      setWindowLoaded(true)
+    })
+  }, [])
 
   const step = unit.step ? unit.step : 1,
         SUM = transform(transformation, sum),
