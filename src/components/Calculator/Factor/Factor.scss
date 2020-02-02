@@ -3,9 +3,8 @@
 
 .Factor {
   position: relative;
-  margin-bottom: rem(10);
   text-align: center;
-  margin-bottom: rem(15);
+  margin-bottom: rem(45);
   @include bp(lg){
     margin-right: rem(25);
     margin-left: rem(25);
@@ -22,12 +21,14 @@
 
   &__heading {
     margin-top: 0;
-    // margin-bottom: rem(10);
     text-align: left;
     font-size: rem(12);
     text-transform: uppercase;
     font-weight: 400;
     padding-right: rem(15);
+    @include bp(lg){
+      font-size: rem(14);
+    }
   }
 
   &__buttons {
@@ -42,6 +43,9 @@
     font-size: rem(12);
     font-weight: 700;
     padding: rem(5);
+    @include bp(lg){
+      font-size: rem(14);
+    }
 
     &:focus {
       outline: none;
@@ -96,6 +100,10 @@
     &__fields {
       justify-content: flex-start;
       flex-wrap: nowrap;
+    }
+
+    &__standards {
+      display: none;
     }
 
   }

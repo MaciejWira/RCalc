@@ -1,0 +1,29 @@
+@import '../../styles/helpers';
+@import '../../styles/vars';
+
+.Modal {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: $zi-modal;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(black, .7);
+  padding: rem(25);
+  transition: opacity .2s, visibility .2s;
+
+  &--opened {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    background-color: $color-subprimary;
+    padding: rem(15);
+  }
+}

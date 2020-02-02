@@ -37,10 +37,10 @@
     overflow-x: visible;
     box-sizing: border-box;
     @include bp(lg){
-      font-size: rem(40);
+      font-size: rem(44);
     }
     @include bp(xl){
-      font-size: rem(44);
+      font-size: rem(48);
     }
 
     &:focus {

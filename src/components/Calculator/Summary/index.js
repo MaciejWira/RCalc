@@ -110,7 +110,7 @@ const Summary = ({ segments }) => {
       className={"Summary" + (summaryOpened ? " Summary--opened" : "")}>
       <div className="Summary__container container">
         <div className="Summary__main">
-          <p className="Summary__segments">Ilość segmentów: {segments.length}</p>
+          <p className="Summary__segments">Ilość odcinów: {segments.length}</p>
           {summary}
         </div>
         <div className="Summary__more">

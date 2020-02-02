@@ -47,7 +47,7 @@ const Calculator = () => {
       {segmentsMarkup}
       <button
         className="a-button Calculator__button"
-        onClick={segmentAdder}>Dodaj segment</button>
+        onClick={segmentAdder}>Dodaj odcinek</button>
       <Summary segments={segments}/>
     </div>
   )

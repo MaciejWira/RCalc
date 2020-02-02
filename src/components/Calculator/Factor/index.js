@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 
+import Standards from '../Standards';
 import { factorHandler } from '../helpers/factorHandler';
 import './Factor.scss';
 
@@ -23,9 +24,16 @@ const Factor = ({ factor, dispatch }) => {
           <div className="Factor__fields">
             {fields}
           </div>
+
         </Fragment>
       )
     });
+
+    const standards = !factor.standards ? null : (
+      <Standards
+        dispatch={dispatch}
+        factor={factor}/>
+    )
 
     const hideHandler = () => {
       if (factor.active) setIsHidden(prev => !prev);
@@ -54,6 +62,9 @@ const Factor = ({ factor, dispatch }) => {
           {fields}
         </div>
         {altFields}
+        <div className="Factor__standards">
+          {standards}
+        </div>
       </div>
     )
 };

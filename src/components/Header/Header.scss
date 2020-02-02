@@ -7,7 +7,7 @@
   background-color: $color-subprimary;
   box-shadow: 0 0 rem(15) 0 rgba(black, .6);
   position: fixed;
-  z-index: 101;
+  z-index: $zi-header;
   top: 0;
   right: 0;
   left: 0;

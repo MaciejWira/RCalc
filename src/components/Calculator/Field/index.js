@@ -71,6 +71,16 @@ const Field = ({
   const activeClass = isActive ? "" : " Field--disactive",
         hiddenClass = isHidden ? " Field--hidden" : "";
 
+  // add zeros in front of displayed value
+
+  const missingZeros = unit.max ? unit.max.toString().length - value.toString().length : 0;
+  let adder = "";
+  if (missingZeros > 0){
+    for (let i = 0; i < missingZeros; i++) adder += "0";
+  };
+
+  const valueDisplayed = unit.biggest ? value : adder + value;
+
   return(
     <div className={"Field" + activeClass + hiddenClass}>
       <div className="Field__wrapper">
@@ -92,10 +102,10 @@ const Field = ({
             onChange={e => onChangeHandler(e)}
             onKeyDown={e => keyDownHandler(e)}
             type="text"
-            value={value}/>
+            value={valueDisplayed}/>
           <span
             ref={dummySpan}
-            className="Field__input Field__input--dummy">{value}</span>
+            className="Field__input Field__input--dummy">{valueDisplayed}</span>
           <span className="Field__unit">{unit.unit}</span>
         </div>
 

@@ -22,7 +22,13 @@ export const initialSegment = {
           max: 999
         }
       ],
-      sum: 0
+      sum: 0,
+      standards: [
+        { name: "Maraton", value: 42195 },
+        { name: "1/2 Maratonu", value: 21097 },
+        { name: "1/4 Maratonu", value: 10549 },
+        { name: "1/8 Maratonu", value: 5274 },
+      ]
     },
     {
       name: "time",
