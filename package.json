@@ -1,6 +1,7 @@
 {
   "name": "calc",
   "version": "0.1.0",
+  "homepage": "http://wiraz198.webd.pl/calc/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

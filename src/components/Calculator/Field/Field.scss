@@ -1,3 +1,126 @@
-.Field {
+@import '../../../styles/helpers';
+@import '../../../styles/vars';
 
+.Field {
+  position: relative;
+  // flex-grow: 1;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: rem(10);
+  padding-right: rem(15);
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__main {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__input {
+    text-align: left;
+    height: rem(36);
+    width: 100%;
+    padding-left: rem(15);
+    padding-right: rem(7);
+    margin: 0;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: rem(36);
+    font-weight: 800;
+    transition: width .05s;
+    overflow-x: visible;
+    box-sizing: border-box;
+    @include bp(lg){
+      font-size: rem(44);
+    }
+    @include bp(xl){
+      font-size: rem(48);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    // dummy span for calculating input width
+
+    &--dummy {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      position: absolute;
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+  &__unit {
+    font-size: rem(14);
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: rem(30);
+    width: rem(30);
+    height: rem(30);
+    line-height: 1;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-color: transparent;
+    color: white;
+    border: solid rem(4) $color-subprimary;
+    font-size: rem(20);
+    font-weight: 700;
+    @include bp(xl){
+      width: rem(36);
+      height: rem(36);
+      font-size: rem(24);
+    }
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      background-color: white;
+      color: black
+    }
+
+    &--plus {
+      margin-bottom: rem(5);
+    }
+  }
+
+}
+
+.Field--disactive, .Field--hidden {
+
+ .Field {
+
+   &__input {
+     height: auto;
+     padding-left: 0;
+     padding-right: rem(3);
+     font-size: rem(28);
+     font-weight: 800;
+     @include bp(xl){
+       font-size: rem(32);
+     }
+   }
+
+   &__unit {
+     font-size: rem(12);
+
+   }
+
+   &__buttons {
+     display: none;
+   }
+
+ }
 }

@@ -1,0 +1,32 @@
+@import '../vars';
+
+.a-button {
+  background-color: $color-primary;
+  border: none;
+  color: white;
+  padding: rem(10);
+  width: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+  @include bp(sm){
+    width: auto;
+  }
+
+  &:active {
+    background-color: $color-subprimary-d;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 rem(15) 0 rgba(black, .5);
+  }
+
+  &--sub {
+    background-color: $color-subprimary;
+  }
+
+  &--dark {
+    background-color: $color-subprimary-d;
+  }
+}
