@@ -1,3 +1,14 @@
+## App for calculating your run
+
+Features:</br>
+- live preview of distance / time / speed or tempo</br>
+  - use deactivation buttons for factor change - one of factors needs to be static</br>
+- add segments and combine full result</br>
+
+TODOs:</br>
+- many ideas ;)</br>
+- eg. result saving, calendar, maybe map integration?</br>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
