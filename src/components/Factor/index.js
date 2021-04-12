@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 
-import Standards from '../Standards';
-import { factorHandler } from '../helpers/factorHandler';
+import Standards from '@components/Standards';
+import { factorHandler } from '@components/helpers/factorHandler';
 import './Factor.scss';
 
-import {ReactComponent as Chevron} from '../../../img/icons/chevron-down.svg';
+import {ReactComponent as Chevron} from '@img/icons/chevron-down.svg';
 
 const Factor = ({ factor, dispatch }) => {
 

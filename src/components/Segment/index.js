@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 
 import { segmentReducer } from "./segmentReducer";
-import Factor from "../Factor";
+import Factor from "@components/Factor";
 
 import './Segment.scss';
 

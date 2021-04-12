@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { initialSegment } from "../helpers/initialSegment";
-import { factorHandler } from '../helpers/factorHandler';
+import { initialSegment } from "@components/helpers/initialSegment";
+import { factorHandler } from '@components/helpers/factorHandler';
 
-import {ReactComponent as Plus} from '../../../img/icons/plus.svg';
-import {ReactComponent as Minus} from '../../../img/icons/minus.svg';
+import {ReactComponent as Plus} from '@img/icons/plus.svg';
+import {ReactComponent as Minus} from '@img/icons/minus.svg';
 
 import './Summary.scss';
 

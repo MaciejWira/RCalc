@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './Field.scss';
-import { transform } from '../helpers/transform';
+import { transform } from '@components/helpers/transform';
 
 const Field = ({
   factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden

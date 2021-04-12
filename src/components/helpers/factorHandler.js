@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Field from '../Field';
+import Field from '@components/Field';
 import { transform } from './transform';
 
 // Helping function for distribution of factor values

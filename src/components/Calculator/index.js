@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import Segment from "./Segment";
-import Summary from "./Summary";
-import { initialSegment } from "./helpers/initialSegment";
-import { factorHandler } from './helpers/factorHandler';
+import Segment from "@components/Segment";
+import Summary from "@components/Summary";
+import { initialSegment } from "@components/helpers/initialSegment";
 
 import './Calculator.scss';
 
