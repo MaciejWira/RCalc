@@ -1,30 +1,36 @@
 import React, { Fragment, useState } from 'react';
 
 import Standards from '@components/Standards';
-import { factorHandler } from '@components/helpers/factorHandler';
 import './Factor.scss';
 
-import {ReactComponent as Chevron} from '@img/icons/chevron-down.svg';
+import { ReactComponent as Chevron } from '@img/icons/chevron-down.svg';
+import Fields from './../Fields/index';
 
 const Factor = ({ factor, dispatch }) => {
 
     const [isHidden, setIsHidden] = useState(false);
-
-    const fields = factorHandler(factor, dispatch, factor, "fields", isHidden);
+    
+    const hideHandler = () => {
+      if (factor.active) setIsHidden(false);
+    }
+    
+    const activeClass = factor.active ? "" : " Factor--disactive",
+          hiddenClass = isHidden ? " Factor--hidden" : "";
 
     const altFields = !factor.siblings ? null : factor.siblings.map(sibling => {
-
-      const fields = factorHandler(sibling, dispatch, factor, "fields", isHidden);
-
       return(
         <Fragment key={sibling.name}>
           <div className="Factor__header">
             <h3 className="Factor__heading">{sibling.pretty || sibling.name}</h3>
           </div>
           <div className="Factor__fields">
-            {fields}
+            <Fields 
+              factor={sibling}
+              mainFactor={factor}
+              dispatch={dispatch}
+              isHidden={isHidden}
+            />
           </div>
-
         </Fragment>
       )
     });
@@ -34,13 +40,6 @@ const Factor = ({ factor, dispatch }) => {
         dispatch={dispatch}
         factor={factor}/>
     )
-
-    const hideHandler = () => {
-      if (factor.active) setIsHidden(prev => !prev);
-    }
-
-    const activeClass = factor.active ? "" : " Factor--disactive",
-          hiddenClass = isHidden ? " Factor--hidden" : "";
 
     return(
       <div className={"Factor" + activeClass + hiddenClass}>
@@ -59,7 +58,11 @@ const Factor = ({ factor, dispatch }) => {
           </div>
         </div>
         <div className="Factor__fields">
-          {fields}
+          <Fields 
+            factor={factor}
+            dispatch={dispatch}
+            isHidden={isHidden}
+          />
         </div>
         {altFields}
         <div className="Factor__standards">

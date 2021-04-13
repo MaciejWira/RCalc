@@ -1,7 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { segmentReducer } from "./segmentReducer";
+import React from 'react';
 import Factor from "@components/Factor";
+import { useSegment } from '@components/Segment/useSegment';
 import { segment } from '@translations';
 import './Segment.scss';
 
@@ -9,18 +8,14 @@ const { heading } = segment;
 
 const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
-  const [ _segment, dispatch ] = useReducer(segmentReducer, segment);
-  const lang = useSelector(state => state.lang);
-
-  useEffect(() => {
-    segmentUpdater(_segment);
-  }, [_segment]);
+  const { _segment, dispatch, lang } = useSegment(segment, segmentUpdater);
 
   const factorsMarkup = _segment.factors.map(factor => (
     <Factor
       key={factor.name}
       dispatch={dispatch}
-      factor={factor}/>
+      factor={factor}
+    />
   ))
 
   return(

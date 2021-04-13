@@ -1,44 +1,22 @@
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 import Segment from "@components/Segment";
 import Summary from "@components/Summary";
-import { initialSegment } from "@components/helpers/initialSegment";
 
 import './Calculator.scss';
-
-const initialId = 1;
+import { useCalculator } from '@components/Calculator/useCalculator';
 
 const Calculator = () => {
 
-  const [ segments, setSegments ] = useState([ {...initialSegment, id: initialId } ]);
-  const [ presentId, setPresentId ] = useState(initialId);
-
-  const segmentUpdater = segment => {
-    const updatedSegments = [...segments].map(s => {
-      if (s.id === segment.id) return segment;
-      else return s;
-    });
-    setSegments(updatedSegments);
-  };
-
-  const segmentAdder = () => {
-    setSegments(prev => [...prev, {...initialSegment, id: presentId + 1 }]);
-    setPresentId(prev => prev + 1);
-  }
-
-  const segmentRemover = id => {
-    if (segments.length > 1){
-      setSegments(prev => [...prev].filter(segment => segment.id !== id))
-    }
-  }
+  const { segments, segmentUpdater, segmentAdder, segmentRemover } = useCalculator();
 
   const segmentsMarkup = segments.map((segment, index) =>(
     <Segment
       key={segment.id}
+      segment={segment}
       no={index + 1}
       segmentUpdater={segmentUpdater}
       segmentRemover={segmentRemover}
-      segment={segment} />
+      />
   ));
 
   return(
