@@ -1,13 +1,16 @@
 import React, { useReducer, useEffect } from 'react';
-
+import { useSelector } from 'react-redux';
 import { segmentReducer } from "./segmentReducer";
 import Factor from "@components/Factor";
-
+import { segment } from '@translations';
 import './Segment.scss';
+
+const { heading } = segment;
 
 const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
   const [ _segment, dispatch ] = useReducer(segmentReducer, segment);
+  const lang = useSelector(state => state.lang);
 
   useEffect(() => {
     segmentUpdater(_segment);
@@ -22,7 +25,7 @@ const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
   return(
     <div className="Segment-wrapper">
-      <h2 className="Segment__heading">Odcinek nr {no}</h2>
+      <h2 className="Segment__heading">{heading[lang]} {no}</h2>
       <div className="Segment">
         {factorsMarkup}
       </div>
