@@ -1,7 +1,7 @@
 import React from 'react';
-import Factor from "@components/Factor";
-import { useSegment } from '@components/Segment/useSegment';
+import Factor from "@organisms/Factor";
 import { segment } from '@translations';
+import { useSegment } from './useSegment';
 import './Segment.scss';
 
 const { heading } = segment;

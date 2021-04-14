@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './Modal.scss';
 
-const Modal = ({ children, opened }) => {
+const Modal = ({ children, opened = false }) => {
 
   return(
     <div className={["Modal", opened ? "Modal--opened" : null].join(" ")}>
@@ -10,7 +10,8 @@ const Modal = ({ children, opened }) => {
         {children}
       </div>
     </div>
-  )
+  );
+
 };
 
 export default Modal;

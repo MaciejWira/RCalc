@@ -4,7 +4,7 @@ import {ReactComponent as Plus} from '@img/icons/plus.svg';
 import {ReactComponent as Minus} from '@img/icons/minus.svg';
 
 import './Summary.scss';
-import SummarySegment from '@components/SummarySegment';
+import SummarySegment from './SummarySegment';
 import { useSummary } from './useSummary';
 
 const Summary = ({ segments }) => {

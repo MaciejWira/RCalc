@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
 
-import Standards from '@components/Standards';
+import Standards from '@organisms/Standards';
 import './Factor.scss';
 
 import { ReactComponent as Chevron } from '@img/icons/chevron-down.svg';
-import Fields from './../Fields/index';
+import Fields from '@organisms/Fields';
 
 const Factor = ({ factor, dispatch }) => {
 
@@ -66,7 +66,14 @@ const Factor = ({ factor, dispatch }) => {
         </div>
         {altFields}
         <div className="Factor__standards">
-          {standards}
+          <div className="Standards__button-wrapper">
+            <button
+              // onClick={() => setOpenedModal(true)}
+              className="Standards__init">
+              Standardowe wartości
+            </button>
+          </div>
+          {/* {standards} */}
         </div>
       </div>
     )

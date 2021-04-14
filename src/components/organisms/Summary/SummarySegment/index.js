@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCalc } from '@components/Fields/useCalc';
+import { useCalc } from '@organisms/Fields/useCalc';
 
 const SummarySegment = ({ factor, mainFactor = factor }) => {
 

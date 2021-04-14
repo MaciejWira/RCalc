@@ -1,9 +1,9 @@
 import React from 'react';
-import Segment from "@components/Segment";
-import Summary from "@components/Summary";
+import Segment from "@organisms/Segment";
+import Summary from "@organisms/Summary";
 
 import './Calculator.scss';
-import { useCalculator } from '@components/Calculator/useCalculator';
+import { useCalculator } from './useCalculator';
 
 const Calculator = () => {
 

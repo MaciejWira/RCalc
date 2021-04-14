@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCalc } from './useCalc';
-import Field from '@components/Field';
+import Field from '@organisms/Field';
 
 const Fields = ({ factor, mainFactor = factor, dispatch, isHidden }) => {
 

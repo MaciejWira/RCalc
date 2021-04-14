@@ -1,23 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { lang } from './reducers/langReducer';
 
-const INITIAL_STATE = {
-    lang: 'en'
-};
-
-const rootReducer = ( state = INITIAL_STATE, action ) => {
-
-    switch (action.type) {
-        case 'LANG':
-            return {
-                ...state, 
-                lang: action.payload
-            }
-    
-        default:
-            return state;
-    }
-
-}
+const rootReducer = combineReducers({
+    lang
+})
 
 const store = createStore(rootReducer);
 

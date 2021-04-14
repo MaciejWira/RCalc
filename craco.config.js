@@ -13,6 +13,11 @@ module.exports = {
     webpack: {
         alias: {
             '@components': path.resolve(__dirname, 'src/components/'),
+            '@atoms': path.resolve(__dirname, 'src/components/atoms'),
+            '@molecules': path.resolve(__dirname, 'src/components/molecules'),
+            '@organisms': path.resolve(__dirname, 'src/components/organisms'),
+            '@templates': path.resolve(__dirname, 'src/components/templates'),
+            '@pages': path.resolve(__dirname, 'src/components/pages'),
             '@helpers': path.resolve(__dirname, 'src/helpers/'),
             '@fonts': path.resolve(__dirname, 'src/assets/fonts/'),
             '@hooks': path.resolve(__dirname, 'src/hooks/'),
