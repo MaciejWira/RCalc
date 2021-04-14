@@ -23,7 +23,7 @@ export const useSummary = segments => {
         const el = summaryRef.current;
         setTimeout(() => {
           setSummaryHeight(el.offsetHeight);
-          document.querySelector('body').style.paddingBottom = el.offsetHeight + 25 + 'px';
+          // document.querySelector('body').style.paddingBottom = el.offsetHeight + 25 + 'px';
         }, 500)
       }
     }, [ summaryHeight, windowWidth, segments, summaryOpened ])
