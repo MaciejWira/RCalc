@@ -1,3 +1,7 @@
+export const mainTheme = {
+    rem: pixels => (pixels / 16) + 'rem'
+}
+
 export const darkTheme = {
     colorSubprimary: '#44318d',
     colorSubprimaryLight: '#8165a6',

@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 
 import '@styles/global.scss';
 import Modal from '@organisms/Modal';
-import { darkTheme } from './styles/themes';
+import { darkTheme, mainTheme } from './styles/themes';
 
 const StyledApp = styled.div`
   background-image: linear-gradient(to top, ${props => props.theme.colorSubprimaryDark}, black);
@@ -13,11 +13,11 @@ const StyledApp = styled.div`
   min-height: 100vh;
   height: 100%;
   padding-top: ${props => props.theme.pageTop};
-  padding-bottom: 100px;
+  padding-bottom: ${props => props.theme.rem(100)};
 `;
 
 const App = () => (
-  <ThemeProvider theme={darkTheme}>
+  <ThemeProvider theme={{ ...mainTheme, ...darkTheme }}>
     <StyledApp>
       <Header />
       <Calculator />
