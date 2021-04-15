@@ -1,27 +1,20 @@
 import React from 'react';
-import Segments from '@organisms/Segments/index';
-import Summary from "@organisms/Summary";
-import Button from '@atoms/Button';
 
 import { useCalculator } from './useCalculator';
-import { StyledCalculator } from './styled';
+import CalculatorComponent from './CalculatorComponent';
 
 const Calculator = () => {
 
   const { segments, segmentUpdater, segmentAdder, segmentRemover } = useCalculator();
 
   return(
-    <StyledCalculator>
-      <Segments 
-        segments={segments}
-        segmentUpdater={segmentUpdater}
-        segmentRemover={segmentRemover}
-      />
-      <Button onClick={segmentAdder}>
-        Dodaj odcinek
-      </Button>
-      <Summary segments={segments}/>
-    </StyledCalculator>
+    <CalculatorComponent 
+      segments={segments}
+      segmentUpdater={segmentUpdater}
+      buttonHandler={segmentAdder}
+      buttonText='Dodaj odcinek'
+      segmentRemover={segmentRemover}
+    />
   )
 
 };
