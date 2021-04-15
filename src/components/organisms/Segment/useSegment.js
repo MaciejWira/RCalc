@@ -1,5 +1,5 @@
 import { useReducer, useEffect } from 'react';
-import { segmentReducer } from './segmentReducer';
+import { segmentReducer } from './helpers/segmentReducer';
 import { useSelector } from 'react-redux';
 
 export const useSegment = (segment, segmentUpdater) => {
