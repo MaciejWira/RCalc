@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-    background-color: red;
+    background-color: ${props => props.theme.colorSubprimary};
     border: none;
     color: white;
     padding: ${props => props.theme.rem(10)};

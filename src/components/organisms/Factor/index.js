@@ -1,81 +1,77 @@
-import React, { Fragment, useState } from 'react';
-
-import Standards from '@organisms/Standards';
-import './Factor.scss';
-
-import { ReactComponent as Chevron } from '@img/icons/chevron-down.svg';
+import React, { Fragment } from 'react';
+import FactorHeader from '@molecules/FactorHeader';
+import styled from 'styled-components';
 import Fields from '@organisms/Fields';
+import Button from '@atoms/Button';
+
+const StyledFactor = styled.div`
+    position: relative;
+    text-align: center;
+    margin-bottom: ${props => props.theme.rem(45)};
+`;
+
+const FieldsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+const ButtonWrapper = styled.div`
+    padding-top: ${props => props.theme.rem(10)};
+    display: flex;
+    justify-content: flex-start;
+`;
+
+const StandardsButton = styled(Button)`
+  background-color: ${props => props.theme.colorPrimary};
+  width: auto;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: ${props => props.theme.rem(12)};
+  font-weight: 700;
+  padding: ${props => props.theme.rem(5)};
+`
 
 const Factor = ({ factor, dispatch }) => {
 
-    const [isHidden, setIsHidden] = useState(false);
-    
-    const hideHandler = () => {
-      if (factor.active) setIsHidden(false);
-    }
-    
-    const activeClass = factor.active ? "" : " Factor--disactive",
-          hiddenClass = isHidden ? " Factor--hidden" : "";
-
-    const altFields = !factor.siblings ? null : factor.siblings.map(sibling => {
-      return(
-        <Fragment key={sibling.name}>
-          <div className="Factor__header">
-            <h3 className="Factor__heading">{sibling.pretty || sibling.name}</h3>
-          </div>
-          <div className="Factor__fields">
-            <Fields 
-              factor={sibling}
-              mainFactor={factor}
-              dispatch={dispatch}
-              isHidden={isHidden}
-            />
-          </div>
-        </Fragment>
-      )
-    });
-
-    const standards = !factor.standards ? null : (
-      <Standards
-        dispatch={dispatch}
-        factor={factor}/>
-    )
-
+  const altFields = !factor.siblings ? null : factor.siblings.map(sibling => {
     return(
-      <div className={"Factor" + activeClass + hiddenClass}>
-        <div className="Factor__header">
-          <h3 className="Factor__heading">{factor.pretty || factor.name}</h3>
-          <div className="Factor__buttons">
-            <button
-              className="Factor__button"
-              style={factor.active ? null : {display: "none"}}
-              onClick={() => dispatch({ type: 'toggleActive', payload: factor.name })}>Dezaktywuj</button>
-            <button
-              className="Factor__button Factor__button--fold"
-              onClick={hideHandler}>
-              <Chevron />
-            </button>
-          </div>
-        </div>
-        <div className="Factor__fields">
-          <Fields 
-            factor={factor}
-            dispatch={dispatch}
-            isHidden={isHidden}
-          />
-        </div>
-        {altFields}
-        <div className="Factor__standards">
-          <div className="Standards__button-wrapper">
-            <button
-              // onClick={() => setOpenedModal(true)}
-              className="Standards__init">
-              Standardowe wartości
-            </button>
-          </div>
-          {/* {standards} */}
-        </div>
-      </div>
+      <Fragment key={sibling.name}>
+        <FactorHeader heading={sibling.pretty || sibling.name} />
+        <FieldsContainer>
+            <Fields
+                factor={sibling}
+                mainFactor={factor}
+                dispatch={dispatch}
+            />
+        </FieldsContainer>
+      </Fragment>
+    )
+  });
+
+  return(
+      <StyledFactor>
+          <FactorHeader
+              heading={factor.pretty || factor.name}
+              buttonText='Dezaktywuj'
+              buttonHandler={() => dispatch({ type: 'toggleActive', payload: factor.name })}
+              buttonStyle={factor.active ? null : {display: "none"}}
+              />
+          <FieldsContainer>
+              <Fields 
+                  factor={factor}
+                  dispatch={dispatch}
+                  />
+          </FieldsContainer>
+          { altFields }
+          <ButtonWrapper>
+              <StandardsButton
+                  // onClick={() => setOpenedModal(true)}
+                  >
+                  Standardowe wartości
+              </StandardsButton>
+          </ButtonWrapper>
+      </StyledFactor>
     )
 };
 

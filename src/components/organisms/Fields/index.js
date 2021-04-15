@@ -2,7 +2,7 @@ import React from 'react';
 import { useCalc } from './useCalc';
 import Field from '@organisms/Field';
 
-const Fields = ({ factor, mainFactor = factor, dispatch, isHidden }) => {
+const Fields = ({ factor, mainFactor = factor, dispatch }) => {
 
     const { converter, valueHandler } = useCalc(factor, mainFactor);
 
@@ -11,7 +11,6 @@ const Fields = ({ factor, mainFactor = factor, dispatch, isHidden }) => {
             key={unit.name}
             factorName={mainFactor.name}
             isActive={mainFactor.active}
-            isHidden={isHidden}
             sum={mainFactor.sum}
             converter={converter}
             transformation={factor.transform || ""}

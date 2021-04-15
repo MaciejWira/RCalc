@@ -25,12 +25,16 @@ export const updater = segment => actionPayload => caseFactor => {
 
     let calculableHelper = 0; // set calculable property if more than two factors are bigger than 0
 
-    const updatedFactors = segment.factors.map( factor => {
-      // update clicked factor
+    // first update clicked factor
+    const updatedCaseFactorFactors = segment.factors.map( factor => {
       if ( factor.name === caseFactor ) return { ...factor, sum: actionPayload };
-      // update (calculate) disactive factor
-      else if (!factor.active){
-        return {...factor, sum: updatedDisactive( factor, segment.factors ) }
+      else return factor;
+    });
+
+    // based on above update not active factor
+    const updatedFactors = updatedCaseFactorFactors.map( factor => {
+      if (!factor.active){
+        return {...factor, sum: updatedDisactive( factor, updatedCaseFactorFactors ) }
       } else return factor;
     });
 
