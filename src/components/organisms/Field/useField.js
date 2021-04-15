@@ -1,35 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { transform } from '@helpers/transform';
 
 export const useField = ({
     factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden
 }) => {
-    
-  const dummySpan = React.createRef();
-
-  // for setting input width equal to content (with a help of a dummy span)
-
-  const [ inputWidth, setInputWidth ] = useState(0);
-  const [ windowLoaded, setWindowLoaded ] = useState(false);
-
-  const resize = () => {
-    if (inputWidth !== dummySpan.current.clientWidth){
-      setInputWidth(dummySpan.current.clientWidth);
-    }
-  }
-
-  // resize on window load and then for every render
-
-  useEffect(resize, [ windowLoaded ]);
-  useEffect(resize);
-
-  // setting initial width after css styles are loaded
-
-  useEffect(() => {
-    window.addEventListener('load', () => {
-      setWindowLoaded(true)
-    })
-  }, [])
 
   const step = unit.step ? unit.step : 1,
         SUM = transform(transformation, sum),
@@ -55,18 +28,15 @@ export const useField = ({
   }
 
   const keyDownHandler = e => {
-    if (e.key === "ArrowUp") clickHandler("+");
-    if (e.key === "ArrowDown") clickHandler("-");
+    if (e.key === "ArrowUp") valueHandler("+");
+    if (e.key === "ArrowDown") valueHandler("-");
   }
 
-  const clickHandler = sign => {
-    const isMax = unit.biggest ? value < unit.max : true;
-    if (isActive && sign === '+' && isMax) dispatchHandler(SUM + CHANGE);
+  const valueHandler = sign => {
+    const isMax = unit.biggest ? value >= unit.max : false;
+    if (isActive && sign === '+' && !isMax) dispatchHandler(SUM + CHANGE);
     else if (isActive && sign === '-' && sum > 0) dispatchHandler(SUM - CHANGE);
   }
-
-  const activeClass = isActive ? "" : " Field--disactive",
-        hiddenClass = isHidden ? " Field--hidden" : "";
 
   // add zeros in front of displayed value
 
@@ -79,14 +49,10 @@ export const useField = ({
   const valueDisplayed = unit.biggest ? value : adder + value;
 
   return {
-    inputWidth,
-    dummySpan,
     onChangeHandler,
     keyDownHandler,
-    activeClass,
-    hiddenClass,
     valueDisplayed,
-    clickHandler
+    valueHandler
   }
 
 }
