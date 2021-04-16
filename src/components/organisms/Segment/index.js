@@ -1,9 +1,19 @@
 import React from 'react';
-import { segment } from '@translations';
 import { useSegment } from './useSegment';
 import SegmentComponent from './SegmentComponent';
+import LocalizedStrings from 'react-localization';
 
-const { heading } = segment;
+let strings = new LocalizedStrings({
+
+  en: {
+    heading: 'Segment no'
+  },
+
+  pl: {
+    heading: 'Segment nr'
+  }
+
+});
 
 const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
@@ -11,7 +21,7 @@ const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
   return(
     <SegmentComponent
-      heading={`${heading[lang]} ${no}`} 
+      heading={`${strings.heading} ${no}`} 
       factors={_segment.factors} 
       dispatch={dispatch} 
       buttonHandler={() => segmentRemover(_segment.id)}

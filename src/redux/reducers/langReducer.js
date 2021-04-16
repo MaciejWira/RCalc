@@ -1,1 +1,0 @@
-export const lang = ( state = 'en', action ) => action.payload || state;
