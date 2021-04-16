@@ -9,7 +9,7 @@ export const darkTheme = {
     colorSubprimaryDark: '#2a1b3c',
     colorGrey: '#a3b3b6',
 
-    fontPrimary: 'Montserrat',
+    fontPrimary: 'Arial',
 
     pageTop: '45px',
 
