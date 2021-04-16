@@ -5,14 +5,14 @@ import CalculatorComponent from './CalculatorComponent';
 
 const Calculator = () => {
 
-  const { segments, segmentUpdater, segmentAdder, segmentRemover } = useCalculator();
+  const { segments, segmentUpdater, segmentAdder, segmentRemover, t } = useCalculator();
 
   return(
     <CalculatorComponent 
       segments={segments}
       segmentUpdater={segmentUpdater}
       buttonHandler={segmentAdder}
-      buttonText='Dodaj odcinek'
+      buttonText={t.addSegment}
       segmentRemover={segmentRemover}
     />
   )

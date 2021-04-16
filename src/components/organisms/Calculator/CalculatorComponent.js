@@ -25,7 +25,7 @@ const CalculatorComponent = ({
             <Button onClick={buttonHandler}>
                 {buttonText}
             </Button>
-        <Summary segments={segments}/>
+        {/* <Summary segments={segments}/> */}
     </StyledCalculator>
 );
 

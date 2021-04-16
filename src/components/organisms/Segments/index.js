@@ -14,9 +14,7 @@ const Segments = ({ segments, segmentUpdater, segmentRemover }) => {
     ));
 
     return(
-        <>
-            {segmentsMarkup}
-        </>
+        <>{segmentsMarkup}</>
     );
 
 }

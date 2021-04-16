@@ -4,10 +4,11 @@ import Fields from '@organisms/Fields';
 import { useTranslations } from '@translations/useTranslations';
 import { FieldsContainer, StyledFactor, ButtonWrapper, StandardsButton } from './styled';
 import { translations } from '@helpers/initialSegment';
+import { content } from './content';
 
 const Factor = ({ factor, dispatch }) => {
 
-  const { t } = useTranslations(translations);
+  const { t } = useTranslations( translations, content );
 
   const altFields = !factor.siblings ? null : factor.siblings.map(sibling => {
 
@@ -29,7 +30,7 @@ const Factor = ({ factor, dispatch }) => {
       <StyledFactor>
           <FactorHeader
               heading={t[factor.name]}
-              buttonText='Dezaktywuj'
+              buttonText={t.deactivate}
               buttonHandler={() => dispatch({ type: 'toggleActive', payload: factor.name })}
               buttonStyle={factor.active ? null : {display: "none"}}
               />
@@ -44,7 +45,7 @@ const Factor = ({ factor, dispatch }) => {
               <StandardsButton
                   // onClick={() => setOpenedModal(true)}
                   >
-                  Standardowe wartości
+                  {t.standardVal}
               </StandardsButton>
           </ButtonWrapper>
       </StyledFactor>

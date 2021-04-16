@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { initialSegment } from "@helpers/initialSegment";
+import { useTranslations } from '@translations/useTranslations';
+import { content } from './content';
 const initialId = 1;
 
 export const useCalculator = () => {
 
     const [ segments, setSegments ] = useState([ {...initialSegment, id: initialId } ]);
     const [ presentId, setPresentId ] = useState(initialId); // custom id managment
+    const { t } = useTranslations(content)
   
     // update segments on single segment change
     const segmentUpdater = segment => {
@@ -29,6 +32,6 @@ export const useCalculator = () => {
       }
     }
 
-    return { segments, segmentUpdater, segmentAdder, segmentRemover }
+    return { segments, segmentUpdater, segmentAdder, segmentRemover, t }
 
 }
