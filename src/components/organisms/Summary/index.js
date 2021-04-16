@@ -8,7 +8,7 @@ import { useSummary } from './useSummary';
 
 const Summary = ({ segments }) => {
 
-  const { summarySegment, summaryHandler, summaryRef, summaryOpened } = useSummary(segments)
+  const { summarySegment, summaryHandler, summaryRef, summaryOpened, t } = useSummary(segments)
 
   const summary = summarySegment.factors.map(factor => {
 
@@ -17,7 +17,7 @@ const Summary = ({ segments }) => {
     if (factor.siblings){
       siblingsMarkup = factor.siblings.map(sibling => (
         <div key={sibling.name}>
-          <span>{sibling.pretty}: </span>
+          <span>{t[sibling.name]}: </span>
           <SummarySegment 
             factor={sibling}
             mainFactor={factor}
@@ -29,7 +29,7 @@ const Summary = ({ segments }) => {
     return(
       <div key={factor.name} className="Calculator__factor">
         <div className="Calculator__factor-part">
-          <span>{factor.pretty}: </span>
+          <span>{t[factor.name]}: </span>
           <SummarySegment factor={factor} />
         </div>
         <div className="Calculator__factor-part">

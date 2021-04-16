@@ -5,7 +5,10 @@ export const initialSegment = {
   factors: [
     {
       name: "distance",
-      pretty: "Dystans",
+      pretty: {
+        en: "Distance",
+        pl: "Dystans"
+      },
       active: true,
       units: [
         {
@@ -32,7 +35,10 @@ export const initialSegment = {
     },
     {
       name: "time",
-      pretty: "Czas",
+      pretty: {
+        en: "Time",
+        pl: "Czas",
+      },
       active: true,
       units: [
         {
@@ -59,7 +65,10 @@ export const initialSegment = {
     },
     {
       name: "speed",
-      pretty: "Prędkość",
+      pretty: {
+        en: "Speed",
+        pl: "Prędkość",
+      },
       active: false,
       units: [
         {
@@ -82,7 +91,10 @@ export const initialSegment = {
       siblings: [
         {
           name: "tempo",
-          pretty: "Tempo",
+          pretty: {
+            en: "Tempo",
+            pl: "Tempo",
+          },
           units: [
             {
               name: "minutes-per-kilometers",
@@ -105,3 +117,27 @@ export const initialSegment = {
     }
   ]
 }
+
+export const translations = {
+  en: {},
+  pl: {}
+};
+
+initialSegment.factors.forEach( factor => {
+
+  for ( let key in factor.pretty ){
+    if ( !translations[key] ) translations[key] = {};
+    translations[key][factor.name] = factor.pretty[key]
+  }
+
+  if ( factor.siblings ){
+    factor.siblings.forEach( sibling => {
+
+      for ( let key in sibling.pretty ){
+        if ( !translations[key] ) translations[key] = {};
+        translations[key][sibling.name] = sibling.pretty[key]
+      }
+    
+    });
+  }
+});

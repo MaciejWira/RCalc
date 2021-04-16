@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { initialSegment } from "@helpers/initialSegment";
+import { useTranslations } from '@translations/useTranslations';
+import { translations } from '@helpers/initialSegment';
 
 export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
     const [ summaryOpened , setSummaryOpened ] = useState(false);
+    const { t } = useTranslations(translations);
   
     const [ windowWidth, setWindowWidth ] = useState(0);
     const [ summaryHeight, setSummaryHeight ] = useState(0);
@@ -72,6 +75,6 @@ export const useSummary = segments => {
       setSummaryOpened(prev => !prev);
     }
 
-    return { summarySegment, summaryHandler, summaryRef, summaryOpened };
+    return { summarySegment, summaryHandler, summaryRef, summaryOpened, t };
 
 }
