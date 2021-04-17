@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Container from '@layouts/Container/index';
 
 export const StyledHeader = styled.header`
   padding-top: ${props => props.theme.rem(15)};
@@ -12,4 +13,9 @@ export const StyledHeader = styled.header`
   left: 0;
   min-height: ${props => props.theme.pageTop};
   box-sizing: border-box;
+`;
+
+export const HeaderContainer = styled(Container)`
+  display: flex;
+  justify-content: space-between;
 `;

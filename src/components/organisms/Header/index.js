@@ -1,9 +1,9 @@
 import React from 'react';
-import Container from '@layouts/Container/index';
 import { H1 } from '@atoms/H1';
-import { StyledHeader } from './styled';
+import { HeaderContainer, StyledHeader } from './styled';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
+import LangSwitcher from '../../molecules/LangSwitcher/index';
 
 const Header = () => {
 
@@ -11,9 +11,10 @@ const Header = () => {
 
   return(
     <StyledHeader>
-      <Container>
+      <HeaderContainer>
         <H1>{t.heading}</H1>
-      </Container>
+        <LangSwitcher />
+      </HeaderContainer>
     </StyledHeader>
   )
 
