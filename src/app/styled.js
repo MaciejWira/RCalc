@@ -1,8 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const StyledApp = styled.div`
-  background-image: linear-gradient(to top, ${props => props.theme.colorSubprimaryDark}, black);
-  color: white;
+  background-color: ${props => props.theme.colorBack};
   min-height: 100vh;
   height: 100%;
   padding-top: ${props => props.theme.pageTop};
@@ -17,14 +16,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-family: ${props => props.theme.fontPrimary}
+        font-family: ${props => props.theme.fontPrimary};
+        color: ${props => props.theme.colorFront}
     }
-
-    // @font-face {
-    //     font-family: 'Arial';
-    //     font-style: normal;
-    //     font-weight: 400;
-    //     src: local('Arial')
-    // }
 
 `;

@@ -43,7 +43,7 @@ export const Input = styled.input`
   padding-right: ${props => props.theme.rem(7)};
   margin: 0;
   background-color: transparent;
-  color: white;
+  color ${props => props.theme.colorFront};
   border: none;
   font-size: ${props => props.theme.rem(36)};
   font-weight: 800;

@@ -19,7 +19,7 @@ const LangSwitcher = () => {
 
     const buttons = languages.map( lang => (
         <Button 
-            type='round'
+            key={lang.slug}
             onClick={() => langHandler(lang.slug)}>
             {lang.slug}
         </Button>

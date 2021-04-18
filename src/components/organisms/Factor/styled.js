@@ -22,7 +22,6 @@ export const StandardsButton = styled(Button)`
   background-color: ${props => props.theme.colorPrimary};
   width: auto;
   border: none;
-  color: white;
   text-transform: uppercase;
   font-size: ${props => props.theme.rem(12)};
   font-weight: 700;
