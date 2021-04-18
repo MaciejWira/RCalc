@@ -22,3 +22,8 @@ export const darkTheme = {
     colorFront: colorLight,
     colorBack: colorDark
 }
+
+export const lightTheme = {
+    colorFront: colorDark,
+    colorBack: colorLight
+}

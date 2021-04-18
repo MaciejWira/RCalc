@@ -1,3 +1,4 @@
 export const initialState = {
-    lang: 'en'
+    lang: 'en',
+    theme: 'dark'
 };
