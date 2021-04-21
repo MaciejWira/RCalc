@@ -1,8 +1,11 @@
 import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
+import { useEffect, useState } from 'react';
 
 export const useField = ({
     factorName, isActive, unit, value, sum, dispatch, converter, transformation
 }) => {
+
+  const [ valInterval, setValInterval ] = useState(null);
 
   const step = unit.step ? unit.step : 1,
         CHANGE = (unit.ratio * step / converter);
@@ -18,6 +21,27 @@ export const useField = ({
       }
     })
   };
+
+  const endInterval = () => {
+    if ( valInterval ){
+      clearInterval(valInterval);
+      setValInterval(null);
+    }
+  }
+
+  const startInterval = changeVal => {
+    if ( valInterval ) return;
+    dispatchHandler( changeVal, UPDATE_BY_CHANGE );
+
+    const interval = setInterval(() => {
+      dispatchHandler( changeVal, UPDATE_BY_CHANGE );
+    }, 500);
+
+    setValInterval(interval);
+  }
+
+  // interval clean up
+  useEffect(() => endInterval, []);
 
   const changeHandler = char => {
     const isMax = unit.biggest ? value >= unit.max : false;
@@ -44,8 +68,10 @@ export const useField = ({
 
   const mouseDownHandler = char => {
     if ( !changeHandler(char) ) return;
-    dispatchHandler( changeHandler(char), UPDATE_BY_CHANGE );
+    startInterval( changeHandler(char) );
   };
+
+  const mouseUpHandler = endInterval;
 
   // add zeros in front of displayed value
 
@@ -61,7 +87,8 @@ export const useField = ({
     onChangeHandler,
     keyDownHandler,
     valueDisplayed,
-    mouseDownHandler
+    mouseDownHandler,
+    mouseUpHandler
   }
 
 }

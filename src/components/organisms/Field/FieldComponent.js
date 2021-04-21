@@ -6,6 +6,7 @@ const FieldComponent = ({
     keyDownHandler,
     valueDisplayed,
     mouseDownHandler,
+    mouseUpHandler,
     unit,
     isActive,
 }) => (
@@ -16,10 +17,13 @@ const FieldComponent = ({
           <StyledButton 
             type="round" 
             onMouseDown={() => mouseDownHandler("+")}
+            onMouseUp={mouseUpHandler}
             >+</StyledButton>
           <StyledButton 
             type="round" 
-            onMouseDown={() => mouseDownHandler("-")}>-</StyledButton>
+            onMouseDown={() => mouseDownHandler("-")}
+            onMouseUp={mouseUpHandler}
+            >-</StyledButton>
         </Buttons>
 
         <Main>
