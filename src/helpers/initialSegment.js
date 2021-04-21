@@ -105,7 +105,7 @@ export const initialSegment = {
             },
             {
               name: "seconds-per-kilometers",
-              unit: "sek/km",
+              unit: "s/km",
               ratio: 1,
               max: 59
             }

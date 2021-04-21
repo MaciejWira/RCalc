@@ -1,5 +1,7 @@
 
 import { getProp } from '@helpers/getProp';
+import { transform } from '@helpers/transform';
+import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
 // function for updating values of a disactive factor in a segment
 
 const updatedDisactive = (factor, factors) => {
@@ -21,14 +23,26 @@ const updatedDisactive = (factor, factors) => {
     }
   }
 
-export const updater = segment => actionPayload => caseFactor => {
+export const updater = segment => action  => {
 
-    let calculableHelper = 0; // set calculable property if more than two factors are bigger than 0
+  const { type, payload: { transformation, value, factorName } } = action;
+  let calculableHelper = 0; // set calculable property if more than two factors are bigger than 0
+  const t = transform( transformation );
+  
+  // first update clicked factor
+  const updatedCaseFactorFactors = segment.factors.map( factor => {
+    
+      let updatedSum;
+      if ( type === UPDATE_FULL_SUM ) updatedSum = t(value);
+      else if ( type === UPDATE_BY_CHANGE ) updatedSum = t( t(factor.sum) + value );
+    
+      if ( factor.name === factorName ) return { 
+        ...factor, 
+        sum: updatedSum < 0 ? 0 : updatedSum
+      };
 
-    // first update clicked factor
-    const updatedCaseFactorFactors = segment.factors.map( factor => {
-      if ( factor.name === caseFactor ) return { ...factor, sum: actionPayload };
       else return factor;
+
     });
 
     // based on above update not active factor

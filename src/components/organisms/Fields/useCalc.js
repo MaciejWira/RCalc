@@ -2,7 +2,7 @@ import { transform } from '@helpers/transform';
 
 export const useCalc = (factor, mainFactor) => {
 
-    let sum = factor.transform ? transform(factor.transform, mainFactor.sum) : mainFactor.sum;
+    let sum = transform(factor.transform)(mainFactor.sum);
     const converter = factor.converter ? factor.converter : 1;
     sum = Math.round(sum * converter);
 

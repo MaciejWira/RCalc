@@ -1,26 +1,24 @@
 import { updater } from './updater';
 
-export const segmentReducer = (segment, action) => {
+export const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE';
+export const UPDATE_BY_CHANGE = 'UPDATE_BY_CHANGE';
+export const UPDATE_FULL_SUM = 'UPDATE_FULL_SUM';
 
-  const standardUpdater = updater(segment)(action.payload);
+export const segmentReducer = (segment, action) => {
 
   switch (action.type) {
 
-    case 'toggleActive':
+    case TOGGLE_ACTIVE:
       const updatedAcitve = segment.factors.map(factor => ({
         ...factor,
         active: action.payload === factor.name ? false : true
       }))
       return {...segment, factors: updatedAcitve}
 
-    case 'distance':
-      return standardUpdater('distance');
-
-    case 'time':
-      return standardUpdater('time');
-
-    case 'speed':
-      return standardUpdater('speed');
+    // fall through
+    case UPDATE_BY_CHANGE:
+    case UPDATE_FULL_SUM:
+      return updater(segment)(action);
 
     default:
       return segment;

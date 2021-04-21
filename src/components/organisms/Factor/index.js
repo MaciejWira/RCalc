@@ -6,6 +6,7 @@ import { FieldsContainer, StyledFactor, ButtonWrapper } from './styled';
 import { translations } from '@helpers/initialSegment';
 import { content } from './content';
 import Button from '@atoms/Button';
+import { TOGGLE_ACTIVE } from '@organisms/Segment/helpers/segmentReducer';
 
 const Factor = ({ factor, dispatch }) => {
 
@@ -32,7 +33,7 @@ const Factor = ({ factor, dispatch }) => {
           <FactorHeader
               heading={t[factor.name]}
               buttonText={t.deactivate}
-              buttonHandler={() => dispatch({ type: 'toggleActive', payload: factor.name })}
+              buttonHandler={() => dispatch({ type: TOGGLE_ACTIVE, payload: factor.name })}
               buttonStyle={factor.active ? null : {display: "none"}}
               />
           <FieldsContainer>

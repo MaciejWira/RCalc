@@ -9,7 +9,6 @@ const SegmentComponent = ({
     dispatch, 
     buttonHandler,
     buttonText,
-    id
 }) => (
     <StyledSegment>
       <SegmentHeader>

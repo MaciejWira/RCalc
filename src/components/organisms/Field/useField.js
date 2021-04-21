@@ -1,22 +1,29 @@
-import { transform } from '@helpers/transform';
-import { useState } from 'react';
+import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
 
 export const useField = ({
     factorName, isActive, unit, value, sum, dispatch, converter, transformation
 }) => {
 
-  const [ valueInterval, setValueInteral ] = useState(null);
-
   const step = unit.step ? unit.step : 1,
-        SUM = transform(transformation, sum),
         CHANGE = (unit.ratio * step / converter);
 
-  const dispatchHandler = newSum => {
+  const dispatchHandler = (value, type = UPDATE_FULL_SUM) => {
+    if ( value === undefined ) return;
     dispatch({
-      type: factorName,
-      payload: newSum < 0 ? 0 : transform(transformation, newSum)
+      type,
+      payload: {
+        value,
+        factorName,
+        transformation
+      }
     })
-  }
+  };
+
+  const changeHandler = char => {
+    const isMax = unit.biggest ? value >= unit.max : false;
+    if (isActive && char === '+' && !isMax) return CHANGE;
+    else if (isActive && char === '-' && sum > 0) return -CHANGE;
+  };
 
   const onChangeHandler = e => {
     const newValue = e.target.value === "" ? "0" : e.target.value;
@@ -26,33 +33,18 @@ export const useField = ({
       if (!/[0-9]/.test(char)) flag = false;
     });
     if (flag && (!unit.max || (unit.max && unit.max >= newValue))){
-      dispatchHandler(SUM + ( ( parseInt(newValue) - value ) * CHANGE ))
+      dispatchHandler(sum + ( ( parseInt(newValue) - value ) * CHANGE ))
     };
   }
 
   const keyDownHandler = e => {
-    if (e.key === "ArrowUp") valueHandler("+");
-    if (e.key === "ArrowDown") valueHandler("-");
+    if (e.key === "ArrowUp" && changeHandler("+") ) dispatchHandler( changeHandler("+"), UPDATE_BY_CHANGE );
+    if (e.key === "ArrowDown" && changeHandler("-") ) dispatchHandler( changeHandler("-"), UPDATE_BY_CHANGE );
   }
 
-  const valueHandler = char => {
-    console.log('click');
-    const isMax = unit.biggest ? value >= unit.max : false;
-    if (isActive && char === '+' && !isMax) dispatchHandler(SUM + CHANGE);
-    else if (isActive && char === '-' && sum > 0) dispatchHandler(SUM - CHANGE);
-  };
-
   const mouseDownHandler = char => {
-    // if ( !valueInterval ){
-    //   console.log('init');
-    //   const interval = setInterval(() => {
-    //     valueHandler(char);
-    //   }, 500);
-    //   setValueInteral(interval);
-    // } else {
-    //   console.log('nope');
-    // }
-    valueHandler(char);
+    if ( !changeHandler(char) ) return;
+    dispatchHandler( changeHandler(char), UPDATE_BY_CHANGE );
   };
 
   // add zeros in front of displayed value
@@ -69,7 +61,6 @@ export const useField = ({
     onChangeHandler,
     keyDownHandler,
     valueDisplayed,
-    valueHandler,
     mouseDownHandler
   }
 
