@@ -1,8 +1,7 @@
 import React from 'react';
-import { HeaderContainer, StyledHeader } from './styled';
-import LangSwitcher from '../../molecules/LangSwitcher/index';
+import { HeaderContainer, StyledHeader, Utils, StyledThemeSwitcher } from './styled';
+import LangSwitcher from '@molecules/LangSwitcher/index';
 import Logo from '@molecules/Logo/index';
-import ThemeSwitcher from '../../molecules/ThemeSwitcher/index';
 
 const Header = () => {
 
@@ -10,8 +9,10 @@ const Header = () => {
     <StyledHeader>
       <HeaderContainer>
         <Logo />
-        <ThemeSwitcher />
-        <LangSwitcher />
+        <Utils>
+          <StyledThemeSwitcher />
+          {/* <LangSwitcher /> */}
+        </Utils>
       </HeaderContainer>
     </StyledHeader>
   )

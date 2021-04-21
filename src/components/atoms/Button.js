@@ -1,51 +1,80 @@
 import React from 'react';
 import styled from 'styled-components';
+import { rem } from '@styles/functions';
+import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryDark } from '@styles/vars';
+import { rgba } from 'polished';
 
-const StyledButton = styled.button`
+const Button = ({ children, ...others }) => (
+        <button {...others}>
+            {children}
+        </button>
+    )
+
+const StyledButton = styled(Button)`
+    font-size: ${rem(13)};
+    cursor: pointer;
     color: ${props => props.theme.colorFront};
     background-color: ${props => props.theme.colorBack};
     font-family: ${props => props.theme.fontPrimary};
     display: inline-flex;
     width: auto;
     border: none;
-    border-radius: ${props => props.theme.rem(10)};
-    box-shadow: ${props => props.theme.rem(5)} ${props => props.theme.rem(5)} ${props => props.theme.rem(5)} 0 rgba(0,0,0,.8), 
-                ${props => props.theme.rem(2)} ${props => props.theme.rem(2)} ${props => props.theme.rem(2)} 0 rgba(256,256,256,.2) inset;
-`;
-
-const ClassicButton = styled(StyledButton)`
-    padding: ${props => props.theme.rem(10)};
-    font-weight: 600;
-    white-space: nowrap;
-`;
-
-const RoundButton = styled(StyledButton)`
     justify-content: center;
     align-items: center;
-    min-width: ${props => props.theme.rem(30)};
-    width: ${props => props.theme.rem(30)};
-    height: ${props => props.theme.rem(30)};
     line-height: 1;
-    border-radius: 50%;
-    background-color: transparent;
-    font-size: ${props => props.theme.rem(20)};
-    font-weight: 700;
+    padding: ${rem(3)};
+    border-radius: ${rem(10)};
+    transition: ${transitionPrimary}, box-shadow ${transitionSpeed};
+    box-shadow: ${props => props.theme.boxShadowPrimary}, 
+                ${props => props.theme.boxShadowInsetPrimary};
+
+    :hover {
+        background-color: ${colorPrimary};
+        color: ${colorLight};
+    }
+
+    ${ props => {
+
+        let additionalStyles = '';
+
+        if ( props.type?.indexOf('round') >= 0 ){
+            additionalStyles += `
+                min-width: ${buttonSizePrimary};
+                width: ${buttonSizePrimary};
+                height: ${buttonSizePrimary};
+                border-radius: 50%;
+            `
+        }
+
+        if ( props.type?.indexOf('padded') >= 0 ){
+            additionalStyles += `
+                padding: ${rem(10)};
+            `
+        }
+
+        if ( props.type?.indexOf('color-primary') >= 0 ){
+            additionalStyles += `
+                background-color: ${colorPrimary};
+                color: ${colorLight};
+                :hover {
+                    background-color: ${colorPrimaryDark}
+                }
+            `
+        }
+
+        return additionalStyles;
+        
+    }}
+
+    :focus {
+        outline: none;
+        box-shadow: 0 0 ${rem(15)} 0 ${rgba( colorPrimary, .9)}
+    }
+
+    :active {
+        box-shadow: 0 0 ${rem(15)} 0 black inset;
+    }
+
 `;
 
-const types = {
-    classic: ClassicButton,
-    round: RoundButton,
-}
-
-const Button = ({ children, type = 'classic', ...others }) => {
-
-    const ButtonComponent = types[type];
-
-    return(
-        <ButtonComponent {...others}>
-            {children}
-        </ButtonComponent>
-    )
-};
-
-export default Button;
+export default StyledButton;

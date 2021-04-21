@@ -4,9 +4,10 @@ import Summary from "@organisms/Summary";
 import Button from '@atoms/Button';
 import Container from '@layouts/Container';
 import styled from 'styled-components';
+import { rem } from '@styles/functions';
 
 const StyledCalculator = styled(Container)`
-  padding-top: ${props => props.theme.rem(25)};
+  padding-top: ${rem(25)};
 `;
 
 const CalculatorComponent = ({ 
@@ -22,7 +23,9 @@ const CalculatorComponent = ({
             segmentUpdater={segmentUpdater}
             segmentRemover={segmentRemover}
             />
-            <Button onClick={buttonHandler}>
+            <Button
+                type='padded'
+                onClick={buttonHandler}>
                 {buttonText}
             </Button>
         {/* <Summary segments={segments}/> */}

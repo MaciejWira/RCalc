@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyledSegment } from './helpers/styled';
-import { H2 } from '@atoms/H2';
+import { StyledSegment, SegmentHeader, SegmentHeading } from './helpers/styled';
 import Button from '@atoms/Button';
 import Factors from '@organisms/Factors';
 
@@ -9,17 +8,22 @@ const SegmentComponent = ({
     factors, 
     dispatch, 
     buttonHandler,
-    buttonText 
+    buttonText,
+    id
 }) => (
     <StyledSegment>
-      <H2>{heading}</H2>
+      <SegmentHeader>
+        <SegmentHeading>{heading}</SegmentHeading>
+        <Button
+            type='padded color-primary'
+            onClick={buttonHandler}>
+            {buttonText}
+          </Button>
+      </SegmentHeader>
       <Factors 
         factors={factors}
         dispatch={dispatch}
       />
-      <Button onClick={buttonHandler}>
-        {buttonText}
-      </Button>
     </StyledSegment>
   )
 

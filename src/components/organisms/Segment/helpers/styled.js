@@ -1,7 +1,20 @@
 import styled from 'styled-components';
+import { rem } from '@styles/functions';
+import { H2 } from '@atoms/H2';
 
 export const StyledSegment = styled.div`
-    margin-bottom: ${props => props.theme.rem(35)};
-    padding: ${props => props.theme.rem(20)} ${props => props.theme.rem(25)};
-    border-radius: ${props => props.theme.rem(15)};
+    margin-bottom: ${rem(35)};
+    border-radius: ${rem(15)};
+`;
+
+export const SegmentHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: ${rem(20)}
+`;
+
+export const SegmentHeading = styled(H2)`
+    margin-bottom: 0;
+    margin-right: ${rem(15)}
 `

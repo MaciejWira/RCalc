@@ -11,6 +11,7 @@ const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
       heading={`${t.heading} ${no}`} 
       factors={_segment.factors} 
       dispatch={dispatch} 
+      id={segment.id}
       buttonHandler={() => segmentRemover(_segment.id)}
       buttonText={t.removeSegment}
     />

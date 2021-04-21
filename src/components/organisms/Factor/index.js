@@ -2,9 +2,10 @@ import React, { Fragment } from 'react';
 import FactorHeader from '@molecules/FactorHeader';
 import Fields from '@organisms/Fields';
 import { useTranslations } from '@translations/useTranslations';
-import { FieldsContainer, StyledFactor, ButtonWrapper, StandardsButton } from './styled';
+import { FieldsContainer, StyledFactor, ButtonWrapper } from './styled';
 import { translations } from '@helpers/initialSegment';
 import { content } from './content';
+import Button from '@atoms/Button';
 
 const Factor = ({ factor, dispatch }) => {
 
@@ -42,11 +43,12 @@ const Factor = ({ factor, dispatch }) => {
           </FieldsContainer>
           { altFields }
           <ButtonWrapper>
-              <StandardsButton
+              <Button
+                  type='padded'
                   // onClick={() => setOpenedModal(true)}
                   >
                   {t.standardVal}
-              </StandardsButton>
+              </Button>
           </ButtonWrapper>
       </StyledFactor>
     )

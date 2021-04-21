@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { rem } from '@styles/functions';
 
 const Container = styled.div`
-    max-width: ${props => props.theme.rem(1200)};
-    padding-left: ${props => props.theme.rem(25)};
-    padding-right: ${props => props.theme.rem(25)};
+    max-width: ${rem(1200)};
+    padding-left: ${rem(25)};
+    padding-right: ${rem(25)};
     margin-left: auto;
     margin-right: auto;
 `;

@@ -8,7 +8,8 @@ export const rootReducer = (state, action) => {
             return { ...state, lang: action.payload };
 
         case SET_THEME:
-            return { ...state, theme: state.theme === 'dark' ? 'light' : 'dark' };
+            const theme = action.payload ? action.payload : ( state.theme === 'dark' ? 'light' : 'dark' );
+            return { ...state, theme };
 
         default:
             return state;

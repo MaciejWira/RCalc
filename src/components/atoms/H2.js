@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { rem } from '@styles/functions';
 
 export const H2 = styled.h2`
-    margin-bottom: ${props => props.theme.rem(20)};
-    font-size: ${props => props.theme.rem(24)};
+    color: ${props => props.theme.colorFront};
+    margin-bottom: ${rem(18)};
+    font-size: ${rem(24)};
     display: flex;
     align-items: center;
     white-space: nowrap;

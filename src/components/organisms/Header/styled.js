@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import Container from '@layouts/Container/index';
+import { rem } from '@styles/functions';
+import ThemeSwitcher from '@molecules/ThemeSwitcher/index';
+import { ziHeader } from '@styles/vars';
 
 export const StyledHeader = styled.header`
-  padding-top: ${props => props.theme.rem(15)};
-  padding-bottom: ${props => props.theme.rem(15)};
+  padding-top: ${rem(15)};
+  padding-bottom: ${rem(15)};
   background-color: ${props => props.theme.colorBack};
-  box-shadow: 0 0 ${props => props.theme.rem(45)} 0 black;
+  background-color: ;
+  box-shadow: 0 0 ${rem(55)} 0 ${props => props.theme.shadowPrimary};
   position: fixed;
-  z-index: ${props => props.theme.ziHeader};
+  z-index: ${ziHeader};
   top: 0;
   right: 0;
   left: 0;
@@ -16,7 +20,19 @@ export const StyledHeader = styled.header`
 `;
 
 export const HeaderContainer = styled(Container)`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const Utils = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const StyledThemeSwitcher = styled(ThemeSwitcher)`
+  margin-right: ${rem(15)};
 `;

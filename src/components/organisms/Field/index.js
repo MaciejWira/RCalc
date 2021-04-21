@@ -10,7 +10,8 @@ const Field = ({
     onChangeHandler,
     keyDownHandler,
     valueDisplayed,
-    valueHandler
+    valueHandler,
+    mouseDownHandler
   } = useField({
     factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden
   });
@@ -20,6 +21,7 @@ const Field = ({
       onChangeHandler={onChangeHandler}
       keyDownHandler={keyDownHandler}
       valueDisplayed={valueDisplayed}
+      mouseDownHandler={mouseDownHandler}
       valueHandler={valueHandler}
       unit={unit}
       isActive={isActive}

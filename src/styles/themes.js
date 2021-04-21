@@ -1,29 +1,38 @@
-const colorDark = '#1b1a1a';
-const colorLight = '#fff8ef';
+import { rem } from './functions';
+import { lighten, rgba } from 'polished';
+import { 
+    colorPrimary, 
+    colorLight, 
+    colorDark, 
+    shadowPrimaryDark,
+    shadowPrimaryLight
+ } from './vars';
 
 export const mainTheme = {
-    colorPrimary: '#d93f87',
-    colorSubprimary: '#44318d',
-    colorSubprimaryLight: '#8165a6',
-    colorSubprimaryDark: '#2a1b3c',
-    colorGrey: '#a3b3b6',
-
-    pageTop: '45px',
-
-    ziHeader: 101,
-    ziModal: 102,
-
+    colorPrimary,
     fontPrimary: 'Montserrat',
-
-    rem: pixels => (pixels / 16) + 'rem'
 }
 
 export const darkTheme = {
     colorFront: colorLight,
-    colorBack: colorDark
+    colorBack: colorDark,
+    colorBackLight: lighten(.02,colorDark),
+    shadowPrimary: shadowPrimaryDark,
+    overlayPrimary: `${rgba( 'grey', .3)}, ${rgba( 'grey', .1)}`,
+
+    boxShadowPrimary: `${rem(2)} ${rem(2)} ${rem(8)} 0 ${shadowPrimaryDark}`,
+    boxShadowSubPrimary: `${rem(-2)} ${rem(-2)} ${rem(5)} 0 rgba(256,256,256,.1)`,
+    boxShadowInsetPrimary: `${rem(3)} ${rem(2)} ${rem(3)} 0 rgba(256,256,256,.1) inset`
 }
 
 export const lightTheme = {
     colorFront: colorDark,
-    colorBack: colorLight
+    colorBack: colorLight,
+    colorBackLight: lighten(.02,colorLight),
+    shadowPrimary: shadowPrimaryLight,
+    overlayPrimary: `${rgba( 'white', .6)}, ${rgba( 'white', .2)}`,
+
+    boxShadowPrimary: `${rem(2)} ${rem(2)} ${rem(8)} 0 ${shadowPrimaryLight}`,
+    boxShadowSubPrimary: `${rem(-3)} ${rem(-3)} ${rem(15)} 0 rgba(256,256,256,.5)`,
+    boxShadowInsetPrimary: `${rem(3)} ${rem(2)} ${rem(5)} 0 rgba(256,256,256,.8) inset`
 }
