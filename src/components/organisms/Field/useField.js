@@ -50,8 +50,8 @@ export const useField = ({
   useEffect(() => endInterval, []);
 
   const changeHandler = char => {
-    const isMax = unit.biggest ? value >= unit.max : false;
-    if (isActive && char === '+' && !isMax) return CHANGE;
+    // const isMax = unit.biggest ? value >= unit.max : false;
+    if (isActive && char === '+') return CHANGE;
     else if (isActive && char === '-' && sum > 0) return -CHANGE;
   };
 

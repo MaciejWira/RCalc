@@ -1,8 +1,10 @@
+import { initialSegment } from '@helpers/initialSegment';
 import { updater } from './updater';
 
 export const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE';
 export const UPDATE_BY_CHANGE = 'UPDATE_BY_CHANGE';
 export const UPDATE_FULL_SUM = 'UPDATE_FULL_SUM';
+export const RESET = 'RESET';
 
 export const segmentReducer = (segment, action) => {
 
@@ -19,6 +21,9 @@ export const segmentReducer = (segment, action) => {
     case UPDATE_BY_CHANGE:
     case UPDATE_FULL_SUM:
       return updater(segment)(action);
+
+    case RESET:
+      return { ...initialSegment, id: segment.id };
 
     default:
       return segment;

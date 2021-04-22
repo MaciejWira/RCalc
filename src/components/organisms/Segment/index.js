@@ -12,8 +12,10 @@ const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
       factors={_segment.factors} 
       dispatch={dispatch} 
       id={segment.id}
-      buttonHandler={() => segmentRemover(_segment.id)}
-      buttonText={t.removeSegment}
+      removeHandler={() => segmentRemover(_segment.id)}
+      removeText={t.removeSegment}
+      resetHandler={() => segmentRemover(_segment.id)}
+      resetText={t.reset}
     />
   )
 };

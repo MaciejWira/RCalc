@@ -35,6 +35,16 @@ export const updater = segment => action  => {
       let updatedSum;
       if ( type === UPDATE_FULL_SUM ) updatedSum = t(value);
       else if ( type === UPDATE_BY_CHANGE ) updatedSum = t( t(factor.sum) + value );
+
+      if ( updatedSum > factor.limit && updatedSum > factor.sum) return factor;
+
+      if ( factor.siblings?.length ){
+        let breakFlag = false;
+        factor.siblings.forEach(sibling => {
+          if ( t(updatedSum) > sibling.limit ) breakFlag = true;
+        });
+        if ( breakFlag ) return factor;
+      }
     
       if ( factor.name === factorName ) return { 
         ...factor, 

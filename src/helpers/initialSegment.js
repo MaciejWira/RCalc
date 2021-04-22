@@ -10,13 +10,12 @@ export const initialSegment = {
         pl: "Dystans"
       },
       active: true,
+      limit: 1000 * 1000 - 1,
       units: [
         {
           name: "kilometers",
           unit: "km",
-          biggest: true,
           ratio: 1000,
-          max: 999
         },
         {
           name: "meters",
@@ -40,12 +39,11 @@ export const initialSegment = {
         pl: "Czas",
       },
       active: true,
+      limit: 1000 * 3600 - 1,
       units: [
         {
           name: "hours",
           unit: "h",
-          biggest: true,
-          max: 99,
           ratio: 3600,
         },
         {
@@ -70,13 +68,12 @@ export const initialSegment = {
         pl: "Prędkość",
       },
       active: false,
+      limit: 1000 * 1000 - 1,
       units: [
         {
           name: "kilometers-per-hour",
           unit: "km/h",
-          biggest: true,
           ratio: 1000,
-          max: 99
         },
         {
           name: "meters-per-hour",
@@ -95,13 +92,12 @@ export const initialSegment = {
             en: "Tempo",
             pl: "Tempo",
           },
+          limit: 1000 * 60 - 1,
           units: [
             {
               name: "minutes-per-kilometers",
               unit: "min/km",
-              biggest: true,
               ratio: 60,
-              max: 9999
             },
             {
               name: "seconds-per-kilometers",
