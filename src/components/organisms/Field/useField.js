@@ -1,5 +1,6 @@
 import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
 import { useEffect, useState } from 'react';
+import { dynamicInterval } from '@helpers/dynamicInterval';
 
 export const useField = ({
     factorName, isActive, unit, value, sum, dispatch, converter, transformation
@@ -33,11 +34,16 @@ export const useField = ({
     if ( valInterval ) return;
     dispatchHandler( changeVal, UPDATE_BY_CHANGE );
 
-    const interval = setInterval(() => {
-      dispatchHandler( changeVal, UPDATE_BY_CHANGE );
-    }, 500);
+    dynamicInterval({
+      core: () => dispatchHandler( changeVal, UPDATE_BY_CHANGE ),
+      callback: _interval => {
+        endInterval();
+        setValInterval(_interval);
+      },
+     },
+     [ 2, 100 ], [ 6, 50 ]
+    );
 
-    setValInterval(interval);
   }
 
   // interval clean up
