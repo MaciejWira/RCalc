@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
-import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryDark } from '@styles/vars';
+import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';
 import { rgba } from 'polished';
 
 const Button = ({ children, ...others }) => (
@@ -57,7 +57,7 @@ const StyledButton = styled(Button)`
                 background-color: ${colorPrimary};
                 color: ${colorLight};
                 :hover {
-                    background-color: ${colorPrimaryDark}
+                    background-color: ${colorPrimaryLight}
                 }
             `
         }

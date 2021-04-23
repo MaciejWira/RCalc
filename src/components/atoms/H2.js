@@ -5,7 +5,4 @@ export const H2 = styled.h2`
     color: ${props => props.theme.colorFront};
     margin-bottom: ${rem(18)};
     font-size: ${rem(24)};
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
 `;

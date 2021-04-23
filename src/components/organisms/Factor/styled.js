@@ -4,7 +4,7 @@ import { rem } from '@styles/functions';
 export const StyledFactor = styled.div`
     position: relative;
     text-align: center;
-    margin-bottom: ${rem(45)};
+    padding-bottom: ${rem(15)};
 `;
 
 export const FieldsContainer = styled.div`

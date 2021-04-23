@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '@atoms/Button';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
-import { buttonSizePrimary, buttonSizePrimaryFactor, transitionPrimary, transitionSpeed, colorPrimaryDark } from '@styles/vars';
+import { buttonSizePrimary, buttonSizePrimaryFactor, transitionPrimary, transitionSpeed, colorPrimaryLight } from '@styles/vars';
 
 const StyledToggler = styled.div`
     position: relative;
@@ -11,10 +11,10 @@ const StyledToggler = styled.div`
     height: ${props => props.size ? rem( props.size ) : buttonSizePrimary};
     border-radius: ${props => props.size ? rem( props.size ) : buttonSizePrimary};
     background-color: ${props => props.theme.colorPrimary};
-    box-shadow: ${rem(2)} ${rem(2)} ${rem(5)} 0 rgba(0,0,0,.5) inset;
+    box-shadow: ${rem(2)} ${rem(2)} ${rem(5)} 0 rgba(0,0,0,.25) inset;
 
     :hover {
-        background-color: ${colorPrimaryDark};
+        background-color: ${colorPrimaryLight};
     }
 `;
 

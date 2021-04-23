@@ -1,11 +1,12 @@
-import { rgba, darken } from 'polished';
+import { rgba, darken, lighten, saturate } from 'polished';
 import { rem } from './functions';
 
 export const colorDark = '#303030';
 // export const colorLight = '#fff8ef';
 export const colorLight = '#dcdcdc';
 export const colorPrimary = '#d93f87';
-export const colorPrimaryDark = darken( .2, colorPrimary );
+export const colorPrimaryDark = saturate( .15, darken( .1, colorPrimary ) );
+export const colorPrimaryLight = saturate( .15, lighten( .1, colorPrimary ));
 
 export const buttonSize = 30;
 export const transitionSpeed = '.3s';
