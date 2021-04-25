@@ -15,12 +15,12 @@ const FieldComponent = ({
 
         <Buttons isActive={isActive}>
           <StyledButton 
-            type="round" 
+            type="round font-big" 
             onMouseDown={() => mouseDownHandler("+")}
             onMouseUp={mouseUpHandler}
             >+</StyledButton>
           <StyledButton 
-            type="round" 
+            type="round font-big" 
             onMouseDown={() => mouseDownHandler("-")}
             onMouseUp={mouseUpHandler}
             >-</StyledButton>

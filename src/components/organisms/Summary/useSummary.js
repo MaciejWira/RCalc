@@ -1,35 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initialSegment } from "@helpers/initialSegment";
 import { useTranslations } from '@translations/useTranslations';
-import { translations } from '@helpers/initialSegment';
+import { content } from './content';
+
 
 export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
     const [ summaryOpened , setSummaryOpened ] = useState(false);
-    const { t } = useTranslations(translations);
-  
-    const [ windowWidth, setWindowWidth ] = useState(0);
-    const [ summaryHeight, setSummaryHeight ] = useState(0);
-  
-    const summaryRef = React.createRef();
-  
-    useEffect(() => {
-      window.addEventListener('resize', () => {
-        if (windowWidth !== window.innerWidth) setWindowWidth(window.innerWidth);
-      });
-      setSummaryHeight(summaryRef.current.offsetHeight);
-    },[]);
-  
-    useEffect(() => {
-      if (summaryHeight !== summaryRef.current.offsetHeight){
-        const el = summaryRef.current;
-        setTimeout(() => {
-          setSummaryHeight(el.offsetHeight);
-          // document.querySelector('body').style.paddingBottom = el.offsetHeight + 25 + 'px';
-        }, 500)
-      }
-    }, [ summaryHeight, windowWidth, segments, summaryOpened ])
+    const { t } = useTranslations( content );
   
     useEffect(() => {
   
@@ -75,6 +54,6 @@ export const useSummary = segments => {
       setSummaryOpened(prev => !prev);
     }
 
-    return { summarySegment, summaryHandler, summaryRef, summaryOpened, t };
+    return { summarySegment, summaryHandler, summaryOpened, t };
 
 }

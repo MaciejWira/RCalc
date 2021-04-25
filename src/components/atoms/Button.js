@@ -62,6 +62,13 @@ const StyledButton = styled(Button)`
             `
         }
 
+        if ( props.type?.indexOf('font-big') >= 0 ){
+            additionalStyles += `
+                font-size: ${rem(28)};
+                font-weight: 300
+            `
+        }
+
         return additionalStyles;
         
     }}

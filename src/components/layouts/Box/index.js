@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
-import { lighten, rgba } from 'polished';
+import { lighten } from 'polished';
 
 const StyledBox = styled.div`
     padding: ${rem(10)} ${rem(15)};
@@ -16,10 +16,10 @@ const StyledBox = styled.div`
     }}
 `;
 
-const Box = ({ children }) => {
+const Box = ({ children, ...others }) => {
 
     return(
-        <StyledBox>{children}</StyledBox>
+        <StyledBox {...others} >{children}</StyledBox>
     );
 
 }

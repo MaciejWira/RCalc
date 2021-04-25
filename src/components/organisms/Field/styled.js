@@ -32,8 +32,6 @@ export const Buttons = styled.div`
 export const StyledButton = styled(Button)`
   margin-top: ${rem(2)};
   margin-bottom: ${rem(2)};
-  font-size: ${rem(30)};
-  font-weight: 300
 `;
 
 export const Input = styled.input`
