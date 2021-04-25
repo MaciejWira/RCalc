@@ -3,7 +3,7 @@ import { useCalc } from '@organisms/Fields/useCalc';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
 import { Paragraph, TextBold } from '@atoms/textComponents';
-import { summaryParagraph, summaryParagraphOpened } from '@organisms/Summary/styled';
+import { summaryParagraph } from '@organisms/Summary/styled';
 
 const SummaryFactor = ({ factor, mainFactor = factor, opened }) => {
 

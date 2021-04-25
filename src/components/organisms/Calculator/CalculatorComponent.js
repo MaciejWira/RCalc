@@ -23,11 +23,11 @@ const CalculatorComponent = ({
             segmentUpdater={segmentUpdater}
             segmentRemover={segmentRemover}
             />
-            <Button
-                type='padded'
-                onClick={buttonHandler}>
-                {buttonText}
-            </Button>
+        <Button
+            type='padded color-primary'
+            onClick={buttonHandler}>
+            {buttonText}
+        </Button>
         <Summary segments={segments}/>
     </StyledCalculator>
 );

@@ -16,6 +16,12 @@ export const Paragraph = styled.p`
                 font-size: ${rem(12)};
             `;
         }
+        
+        if ( props.size?.indexOf('large') >= 0 ){
+            return`
+                font-size: ${rem(18)};
+            `;
+        }
     }};
     transition: font-size ${transitionSpeed}, margin-top ${transitionSpeed};
     ${props => props.addStyle}
