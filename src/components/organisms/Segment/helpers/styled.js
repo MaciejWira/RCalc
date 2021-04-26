@@ -2,10 +2,12 @@ import styled from 'styled-components';
 import { rem } from '@styles/functions';
 import { H2 } from '@atoms/H2';
 import Button from '@atoms/Button';
+import { relative } from '@styles/mixins';
 
 export const StyledSegment = styled.div`
     margin-bottom: ${rem(35)};
     border-radius: ${rem(15)};
+    ${relative}
 `;
 
 export const SegmentHeader = styled.div`

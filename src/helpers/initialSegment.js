@@ -1,4 +1,6 @@
 // units need to be ordered from biggest to smallest
+import { mergeSimilar } from '@helpers/mergeSimilar';
+import { translator } from './translator';
 
 export const initialSegment = {
   calculable: false, // when at least two factors are bigger than 0
@@ -26,10 +28,22 @@ export const initialSegment = {
       ],
       sum: 0,
       standards: [
-        { name: "Maraton", value: 42195 },
-        { name: "1/2 Maratonu", value: 21097 },
-        { name: "1/4 Maratonu", value: 10549 },
-        { name: "1/8 Maratonu", value: 5274 },
+        { 
+          name: "marathon", 
+          pretty: {
+            en: "Marathon",
+            pl: "Maraton",
+          },
+          value: 42195 
+        },
+        { 
+          name: "half-marathon", 
+          pretty: {
+            en: "Half marathon",
+            pl: "Półmaraton",
+          },
+          value: 21097 
+        },
       ]
     },
     {
@@ -112,28 +126,35 @@ export const initialSegment = {
       ]
     }
   ]
-}
+};
 
-export const translations = {
+// initialSegment translation config
+
+const initialTranslation = {
   en: {},
   pl: {}
 };
 
-initialSegment.factors.forEach( factor => {
+// preparation of translations for react-localization object
+const factorsTranslations = initialSegment.factors.map( factor => {
 
+  // pretty names
   for ( let key in factor.pretty ){
-    if ( !translations[key] ) translations[key] = {};
-    translations[key][factor.name] = factor.pretty[key]
+    if ( !initialTranslation[key] ) initialTranslation[key] = {};
+    initialTranslation[key][factor.name] = factor.pretty[key]
+  };
+
+  const siblings = translator(factor)('siblings');
+  const standards = translator(factor)('standards');
+
+  return {
+    ...initialTranslation,
+    ...siblings,
+    ...standards
   }
 
-  if ( factor.siblings ){
-    factor.siblings.forEach( sibling => {
-
-      for ( let key in sibling.pretty ){
-        if ( !translations[key] ) translations[key] = {};
-        translations[key][sibling.name] = sibling.pretty[key]
-      }
-    
-    });
-  }
 });
+
+export const translations = factorsTranslations.reduce((prev, curr) => {
+  return mergeSimilar(prev, curr);
+}, {});

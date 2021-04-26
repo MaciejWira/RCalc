@@ -22,8 +22,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     div {
-        position: relative;
-        z-index: 1;
         transition: background-color ${transitionSpeed};
     };
 

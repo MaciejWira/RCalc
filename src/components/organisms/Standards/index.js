@@ -1,33 +1,47 @@
-import React, { useState } from 'react';
-import './Standards.scss';
+import React from 'react';
+import { useTranslations } from '@translations/useTranslations';
+import { translations } from '@helpers/initialSegment';
+import Button from '@atoms/Button';
+import { UPDATE_FULL_SUM } from '@organisms/Segment/helpers/segmentReducer';
+
+import { ButtonWrapper } from './styled';
+import { rem } from '@styles/functions';
+import { useStore } from '@store/store';
+import { SET_MODAL } from '@store/actions';
 
 const Standards = ({ factor, dispatch }) => {
 
+  const { t } = useTranslations(translations);
+  const globalDispatch = useStore().dispatch;
+
   const setStandard = standard => {
     dispatch({
-      type: factor.name,
-      payload: standard.value
+      type: UPDATE_FULL_SUM,
+      payload: {
+        factorName: factor?.name,
+        value: standard.value
+      }
+    });
+    globalDispatch({ 
+      type: SET_MODAL, 
+      payload: { opened: false }
     })
   }
 
-  const standardsMarkup = factor.standards.map((standard, index) => (
-    <button
-      key={index}
+  const buttons = factor?.standards?.map(standard => (
+    <Button
+      key={standard.name}
+      additionalStyles={`margin-bottom: ${rem(10)};`}
       onClick={() => setStandard(standard)}
-      className="Standards__button">
-      {standard.name}
-    </button>
+      type="padded">
+      {t[standard.name]}
+    </Button>
   ))
 
   return(
-    <div className="Standards__main">
-      <div className="Standards__content">
-        <h3 className="Standards__heading">{factor.pretty}:</h3>
-        <div className="Standards__buttons">
-          {standardsMarkup}
-        </div>
-      </div>
-    </div>
+    <ButtonWrapper>
+      {buttons}
+    </ButtonWrapper>
   )
 };
 

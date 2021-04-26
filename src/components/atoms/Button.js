@@ -4,7 +4,7 @@ import { rem } from '@styles/functions';
 import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';
 import { rgba } from 'polished';
 
-const Button = ({ children, ...others }) => (
+const Button = ({ children, additionalStyles, ...others }) => (
         <button {...others}>
             {children}
         </button>
@@ -31,6 +31,16 @@ const StyledButton = styled(Button)`
     :hover {
         background-color: ${colorPrimary};
         color: ${colorLight};
+    }
+
+    :focus, :focus-visible {
+        outline: none;
+        box-shadow: 0 0 ${rem(15)} 0 ${rgba( colorPrimary, .9)};
+        border: none;
+    }
+
+    :active {
+        box-shadow: 0 0 ${rem(15)} 0 black inset;
     }
 
     ${ props => {
@@ -69,18 +79,14 @@ const StyledButton = styled(Button)`
             `
         }
 
+        if ( props.additionalStyles ){
+            additionalStyles += props.additionalStyles
+        }
+
+
         return additionalStyles;
         
     }}
-
-    :focus {
-        outline: none;
-        box-shadow: 0 0 ${rem(15)} 0 ${rgba( colorPrimary, .9)}
-    }
-
-    :active {
-        box-shadow: 0 0 ${rem(15)} 0 black inset;
-    }
 
 `;
 

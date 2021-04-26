@@ -16,3 +16,8 @@ export const absolute = ( overlay = false ) => {
     `);
 
 };
+
+export const relative = `
+    position: relative;
+    z-index: 1;
+`
