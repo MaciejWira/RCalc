@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import Container from '@layouts/Container/index';
 import { rem } from '@styles/functions';
 import ThemeSwitcher from '@molecules/ThemeSwitcher/index';
-import { ziHeader } from '@styles/vars';
+import { ziHeader, transitionSpeed } from '@styles/vars';
 
 export const StyledHeader = styled.header`
   padding-top: ${rem(15)};
   padding-bottom: ${rem(15)};
   background-color: ${props => props.theme.colorBack};
-  background-color: ;
   box-shadow: 0 0 ${rem(55)} 0 ${props => props.theme.shadowPrimary};
   position: fixed;
   z-index: ${ziHeader};
@@ -17,6 +16,7 @@ export const StyledHeader = styled.header`
   left: 0;
   min-height: ${props => props.theme.pageTop};
   box-sizing: border-box;
+  transition: background-color ${transitionSpeed};
 `;
 
 export const HeaderContainer = styled(Container)`

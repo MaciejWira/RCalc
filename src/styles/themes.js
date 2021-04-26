@@ -14,6 +14,7 @@ export const mainTheme = {
 }
 
 export const darkTheme = {
+    dark: true,
     colorFront: colorLight,
     colorBack: colorDark,
     colorBackLight: lighten(.02,colorDark),

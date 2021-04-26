@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { rem } from '@styles/functions';
-import { transitionPrimary } from '@styles/vars';
-import { colorPrimary } from '@styles/vars';
+import { colorPrimary, transitionSpeed } from '@styles/vars';
 
 export const StyledApp = styled.div`
   background-color: ${props => props.theme.colorBack};
@@ -16,11 +15,20 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        transition: ${transitionPrimary};
         ::selection {
             background-color: ${colorPrimary};
             color: white
         }
+    }
+
+    div {
+        position: relative;
+        z-index: 1;
+        transition: background-color ${transitionSpeed};
+    };
+
+    h1, h2, h3, h4, h5, h6, p, input {
+        transition: color ${transitionSpeed};
     }
 
     body {

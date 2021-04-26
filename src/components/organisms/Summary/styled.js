@@ -9,6 +9,7 @@ export const SummaryContainer = styled.div`
     right: 0;
     bottom: 0;
     transition: opacity ${transitionSpeed};
+    background-color: ${props => props.theme.colorBack};
     opacity: ${props => props.opened ? '1' : '.9'}
 `;
 

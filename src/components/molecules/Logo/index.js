@@ -2,15 +2,19 @@ import React from 'react';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
 import { H1 } from '@atoms/H1';
+import styled from 'styled-components';
+import { transitionSpeed } from '@styles/vars';
 
-const Logo = () => {
+const Logo = ({ ...props }) => {
 
     const { t } = useTranslations(content);
 
     return(
-        <H1>{t.heading}</H1>
+        <H1 {...props}>{t.heading}</H1>
     );
 
 }
 
-export default Logo;
+export default styled(Logo)`
+    transition: color ${transitionSpeed};
+`;
