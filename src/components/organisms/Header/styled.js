@@ -34,5 +34,5 @@ export const Utils = styled.div`
 `;
 
 export const StyledThemeSwitcher = styled(ThemeSwitcher)`
-  margin-right: ${rem(15)};
+  margin-right: ${rem(10)};
 `;

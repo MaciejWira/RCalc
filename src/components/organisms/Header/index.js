@@ -11,7 +11,7 @@ const Header = () => {
         <Logo />
         <Utils>
           <StyledThemeSwitcher />
-          {/* <LangSwitcher /> */}
+          <LangSwitcher />
         </Utils>
       </HeaderContainer>
     </StyledHeader>
