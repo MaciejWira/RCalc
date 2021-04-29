@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Button from '@atoms/Button';
 import { rem } from '@styles/functions';
 import { ColoredBold } from '@atoms/textComponents';
+import { bp } from '@styles/functions';
 
 export const StyledField = styled.div`
   position: relative;
@@ -37,29 +38,37 @@ export const StyledButton = styled(Button)`
 export const Input = styled.input`
   color: ${props => props.theme.colorFront};
   text-align: left;
-  height: ${rem(36)};
-  width: ${props => {
-    return rem(25 * props.value.toString().length)
-  }};
   box-sizing: content-box;
-  padding-left: ${rem(15)};
-  padding-right: ${rem(5)};
   margin: 0;
   background-color: transparent;
   color ${props => props.theme.colorFront};
   border: none;
-  font-size: ${rem(36)};
   font-weight: 800;
   overflow-x: visible;
   text-align: right;
-  ${props => props.isActive ? '' : `
-    height: auto;
-    width: ${rem(20 * props.value.toString().length)};
-    padding-left: 0;
-    padding-right: ${rem(3)};
-    font-size: ${rem(28)};
-    font-weight: 800;
-  `}
+  ${props => {
+    if ( props.isActive ){
+      return`
+        height: ${rem(36)};
+        font-size: ${rem(36)};
+        width: ${rem(25 * props.value.toString().length)};
+        padding-left: ${rem(15)};
+        padding-right: ${rem(5)};
+        ${bp('lg', `
+          font-size: ${rem(42)};
+          width: ${rem(28 * props.value.toString().length)};
+        `)}
+      `;
+    } else {
+      return`
+        height: auto;
+        font-size: ${rem(28)};
+        width: ${rem(20 * props.value.toString().length)};
+        padding-left: 0;
+        padding-right: ${rem(3)};
+      `
+    }
+  }}
 
   :focus {
     outline: none;

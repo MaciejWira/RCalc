@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { rem } from '@styles/functions';
 import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';
 import { rgba } from 'polished';
+import { bp } from '@styles/functions';
 
 const Button = ({ children, additionalStyles, ...others }) => (
         <button {...others}>
@@ -27,6 +28,10 @@ const StyledButton = styled(Button)`
     transition: ${transitionPrimary}, box-shadow ${transitionSpeed};
     box-shadow: ${props => props.theme.boxShadowPrimary}, 
                 ${props => props.theme.boxShadowInsetPrimary};
+
+    ${bp('lg', `
+        font-size: ${rem(14)}
+    `)};
 
     :hover {
         background-color: ${colorPrimary};
@@ -75,7 +80,10 @@ const StyledButton = styled(Button)`
         if ( props.type?.indexOf('font-big') >= 0 ){
             additionalStyles += `
                 font-size: ${rem(28)};
-                font-weight: 300
+                font-weight: 300;
+                ${bp('lg', `
+                    font-size: ${rem(28)}
+                `)};
             `
         }
 

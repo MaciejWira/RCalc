@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
+import { bp } from '@styles/functions';
 
 export const H3 = styled.h3`
     color: ${props => props.theme.colorFront};
@@ -8,4 +9,7 @@ export const H3 = styled.h3`
     text-transform: uppercase;
     font-weight: 400;
     padding-right: ${rem(15)};
+    ${bp('lg', `
+        font-size: ${rem(18)};
+    `)}
 `;

@@ -28,6 +28,11 @@ export const Paragraph = styled.p`
         }
     }};
     transition: font-size ${transitionSpeed}, margin ${transitionSpeed};
+
+    ${bp('lg', `
+        font-size: ${rem(16)};
+    `)}
+
     ${props => props.addStyle}
 `;
 

@@ -19,7 +19,7 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   ${props => {
-    const color = props.theme.dark ? 'black' : props.theme.colorBack;
+    const color = props.theme.dark ? 'black' : 'grey';
     return `
       background-color: ${rgba(color, .75)};
     `
