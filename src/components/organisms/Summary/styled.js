@@ -6,13 +6,25 @@ import { bp } from '@styles/functions';
 import Button from '@atoms/Button';
 import { Paragraph } from '@atoms/textComponents';
 import { H2 } from '@atoms/H2';
+import { breakpoints } from '@styles/breakpoints';
 
-export const SummaryContainer = styled.div`
+export const SummaryContainer = styled.div.attrs(props => {
+
+    if ( window.innerWidth >= breakpoints.md ){
+        return {
+                    style: {
+                        transform: `translateY(${rem(props.scrollPosition)})`
+                    }
+                }
+    }
+
+})`
     opacity: ${props => props.opened ? '1' : '.9'};
     background-color: ${props => props.theme.colorBack};
     ${bp('md', `
         opacity: 1;
-    `)};
+        transition: none;
+    `)}
 `;
 
 export const SummaryContent = styled.div`

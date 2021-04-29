@@ -7,10 +7,10 @@ import { TextBold } from '@atoms/textComponents';
 
 const Summary = ({ segments }) => {
 
-  const { summarySegment, summaryHandler, summaryOpened, t } = useSummary(segments);
+  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition } = useSummary(segments);
 
   return(
-      <SummaryContainer opened={summaryOpened}>
+      <SummaryContainer scrollPosition={scrollPosition}>
         <StyledBox>
           <SummaryContent>
             <SummaryMain>

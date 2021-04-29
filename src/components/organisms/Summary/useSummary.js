@@ -8,6 +8,7 @@ export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
     const [ summaryOpened , setSummaryOpened ] = useState(false);
+    const [ scrollPosition, setScrollPosition ] = useState(0);
     const { t } = useTranslations( content );
   
     useEffect(() => {
@@ -49,11 +50,24 @@ export const useSummary = segments => {
       setSummarySegment(updatedSummarySegment);
       
     }, [segments]);
+
+    const scrollHandler = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    useEffect(() => {
+      window.addEventListener('scroll', scrollHandler);
+
+      return () => {
+        window.removeEventListener('scroll', scrollHandler)
+      };
+
+    }, []);
   
     const summaryHandler = () => {
       setSummaryOpened(prev => !prev);
     }
 
-    return { summarySegment, summaryHandler, summaryOpened, t };
+    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition };
 
 }
