@@ -1,10 +1,9 @@
 import React from 'react';
 import { useSummary } from './useSummary';
-import { SummaryContainer, SummaryContent, SummaryMain, StyledBox } from './styled';
+import { SummaryContainer, SummaryContent, SummaryMain, StyledBox, StyledButton, SummaryParagraph, SummaryHeading, ValueParagraph } from './styled';
 import { RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
-import Button from '@atoms/Button';
 import SummarySegment from '@organisms/SummarySegment/index';
-import { Paragraph, TextBold } from '@atoms/textComponents';
+import { TextBold } from '@atoms/textComponents';
 
 const Summary = ({ segments }) => {
 
@@ -15,19 +14,22 @@ const Summary = ({ segments }) => {
         <StyledBox>
           <SummaryContent>
             <SummaryMain>
-              <Paragraph
-                size={summaryOpened ? '' : 'tiny'}>
-                <TextBold>{t.segmentsAmount}:</TextBold> {segments.length}
-              </Paragraph>
+              <SummaryHeading>{t.summary}</SummaryHeading>
+              <SummaryParagraph opened={summaryOpened}>
+                <TextBold>{t.segmentsAmount}:</TextBold>&nbsp;
+                <ValueParagraph opened={summaryOpened}>
+                  {segments.length}
+                </ValueParagraph>
+              </SummaryParagraph>
               <SummarySegment
                 opened={summaryOpened}
                 summarySegment={summarySegment} />
             </SummaryMain>
-            <Button
+            <StyledButton
                 type='round font-big'
                 onClick={summaryHandler}>
                   {summaryOpened ? (<RiArrowDownSLine />) : (<RiArrowUpSLine />)}
-            </Button>
+            </StyledButton>
           </SummaryContent>
         </StyledBox>
       </SummaryContainer>

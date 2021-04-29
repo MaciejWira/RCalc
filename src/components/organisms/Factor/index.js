@@ -29,13 +29,17 @@ const Factor = ({ factor, dispatch }) => {
     })
   }
 
-
   const altFields = !factor.siblings ? null : factor.siblings.map(sibling => {
 
     return(
       <Fragment key={sibling.name}>
-        <FactorHeader heading={t[sibling.name]} isSibling={true}/>
-        <FieldsContainer>
+        <FactorHeader 
+          isActive={factor.active}
+          heading={t[sibling.name]} 
+          />
+        <FieldsContainer
+              isActive={factor.active}
+        >
             <Fields
                 factor={sibling}
                 mainFactor={factor}
@@ -48,14 +52,19 @@ const Factor = ({ factor, dispatch }) => {
 
   return(
     <Box>
-      <StyledFactor>
+      <StyledFactor
+        isActive={factor.active}
+      >
           <FactorHeader
+              isActive={factor.active}
               heading={t[factor.name]}
               buttonText={t.deactivate}
               buttonHandler={() => dispatch({ type: TOGGLE_ACTIVE, payload: factor.name })}
               buttonStyle={factor.active ? null : {display: "none"}}
               />
-          <FieldsContainer>
+          <FieldsContainer
+              isActive={factor.active}
+          >
               <Fields 
                   factor={factor}
                   dispatch={dispatch}

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import Button from '@atoms/Button';
 import { rem } from '@styles/functions';
-import { colorPrimary } from '@styles/vars';
+import { ColoredBold } from '@atoms/textComponents';
 
 export const StyledField = styled.div`
   position: relative;
   width: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: ${rem(10)};
   padding-right: ${rem(15)};
+  margin-bottom: ${rem(10)};
 `;
 
 export const Wrapper = styled.div`
@@ -66,10 +66,6 @@ export const Input = styled.input`
   }
 `;
 
-export const Span = styled.span`
-  font-size: ${rem(16)};
-  font-weight: 800;
-  color: ${props => props.theme.colorFront};
-  color: ${colorPrimary};
-  ${props => props.isActive ? '' : `font-size: ${rem(12)};`}
+export const Span = styled(ColoredBold)`
+  font-size: ${props => props.isActive ? rem(16) : rem(12)};
 `;

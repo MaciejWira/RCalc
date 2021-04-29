@@ -5,13 +5,29 @@ import { relative } from '@styles/mixins';
 export const StyledFactor = styled.div`
     position: relative;
     text-align: center;
-    padding-bottom: ${rem(15)};
     text-align: left;
+    ${props => {
+        if ( props.isActive ){
+            return`
+                padding-bottom: ${rem(15)};
+            `
+        } else {
+            return`
+                padding-bottom: ${rem(5)};
+            `
+        }
+    }}
     ${relative}
 `;
 
 export const FieldsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: ${rem(10)};
+    ${props => {
+        if ( props.isActive ){
+            return`
+                margin-bottom: ${rem(10)};
+            `
+        }
+    }}
 `;

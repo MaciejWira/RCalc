@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useCalc } from '@organisms/Fields/useCalc';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
-import { Paragraph, TextBold } from '@atoms/textComponents';
-import { summaryParagraph } from '@organisms/Summary/styled';
+import { TextBold } from '@atoms/textComponents';
+import { SummaryParagraph, ValueParagraph } from '@organisms/Summary/styled';
+import styled from 'styled-components';
+import { bp, rem } from '@styles/functions';
+import { ColoredBold } from '@atoms/textComponents';
+
+const StyledTextBold = styled(TextBold)`
+    ${bp('md', `
+        display: block;
+        margin-bottom: ${rem(2)}
+    `)}
+`;
 
 const SummaryFactor = ({ factor, mainFactor = factor, opened }) => {
 
@@ -11,16 +21,19 @@ const SummaryFactor = ({ factor, mainFactor = factor, opened }) => {
     const { t } = useTranslations(translations);
 
     const units = factor.units.map((unit, index) => (
-        <span key={unit.name}>{valueHandler(unit, index)}&nbsp;{unit.unit} </span>
+        <Fragment key={unit.name}>
+            <ValueParagraph opened={opened}>
+                {valueHandler(unit, index)}
+            </ValueParagraph>&nbsp;<ColoredBold>{unit.unit} </ColoredBold>
+        </Fragment>
     ));
 
     return(
-        <Paragraph
+        <SummaryParagraph
             key={factor.name} 
-            addStyle={summaryParagraph}
-            size={opened ? '' : 'tiny'}>
-            <TextBold>{t[factor.name]}:</TextBold> {units}
-        </Paragraph>
+            opened={opened}>
+            <StyledTextBold>{t[factor.name]}:</StyledTextBold> {units}
+        </SummaryParagraph>
     );
 
 }
