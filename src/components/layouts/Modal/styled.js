@@ -5,6 +5,7 @@ import Button from '@atoms/Button';
 import { rem } from '@styles/functions';
 import Box from '@layouts/Box/index';
 import { relative } from '@styles/mixins';
+import { bp } from '../../../styles/functions';
 
 export const ModalContainer = styled.div`
   opacity: 0;
@@ -33,7 +34,7 @@ export const ModalContainer = styled.div`
           visibility: visible;
           `
     }
-  }}
+  }};
 `;
 
 export const ModelMain = styled.div`
@@ -47,6 +48,9 @@ export const ModelContent = styled.div`
 export const ModalBox = styled(Box)`
   background-color: ${props => props.theme.colorBack};
   padding: ${rem(20)};
+  ${bp('md', `
+    padding: ${rem(25)};
+  `)}
 `;
 
 export const CloseButton = styled(Button)`

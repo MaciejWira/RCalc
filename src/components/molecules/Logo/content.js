@@ -1,9 +1,9 @@
 export const content = {
     en: {
-        heading: 'Calculator'
+        heading: 'RUNCALC'
       },
     
     pl: {
-        heading: 'Kalkulator'
+        heading: 'RUNCALC'
     }
 }

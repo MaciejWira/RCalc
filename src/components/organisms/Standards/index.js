@@ -1,10 +1,9 @@
 import React from 'react';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
-import Button from '@atoms/Button';
 import { UPDATE_FULL_SUM } from '@organisms/Segment/helpers/segmentReducer';
 
-import { ButtonWrapper } from './styled';
+import { ButtonWrapper, StyledButton } from './styled';
 import { rem } from '@styles/functions';
 import { useStore } from '@store/store';
 import { SET_MODAL } from '@store/actions';
@@ -29,13 +28,13 @@ const Standards = ({ factor, dispatch }) => {
   }
 
   const buttons = factor?.standards?.map(standard => (
-    <Button
+    <StyledButton
       key={standard.name}
       additionalStyles={`margin-bottom: ${rem(10)};`}
       onClick={() => setStandard(standard)}
       type="padded">
       {t[standard.name]}
-    </Button>
+    </StyledButton>
   ))
 
   return(

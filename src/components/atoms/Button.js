@@ -29,7 +29,7 @@ const StyledButton = styled(Button)`
     box-shadow: ${props => props.theme.boxShadowPrimary}, 
                 ${props => props.theme.boxShadowInsetPrimary};
 
-    ${bp('lg', `
+    ${bp('md', `
         font-size: ${rem(14)}
     `)};
 
