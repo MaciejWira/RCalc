@@ -35,5 +35,5 @@ export const lightTheme = {
 
     boxShadowPrimary: `${rem(2)} ${rem(2)} ${rem(8)} 0 ${shadowPrimaryLight}`,
     boxShadowSubPrimary: `${rem(-3)} ${rem(-3)} ${rem(15)} 0 rgba(256,256,256,.5)`,
-    boxShadowInsetPrimary: `${rem(3)} ${rem(2)} ${rem(5)} 0 rgba(256,256,256,.8) inset`
+    boxShadowInsetPrimary: `${rem(3)} ${rem(2)} ${rem(5)} 0 rgba(256,256,256,.4) inset`
 }

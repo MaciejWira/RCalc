@@ -4,18 +4,15 @@ import SegmentComponent from './SegmentComponent';
 
 const Segment = ({ segment, segmentUpdater, segmentRemover, no }) => {
 
-  const { _segment, dispatch, t } = useSegment(segment, segmentUpdater);
+  const { _segment, dispatch } = useSegment(segment, segmentUpdater);
 
   return(
     <SegmentComponent
-      heading={`${t.heading} ${no}`} 
+      no={no}
       factors={_segment.factors} 
       dispatch={dispatch} 
       id={segment.id}
       removeHandler={() => segmentRemover(_segment.id)}
-      removeText={t.removeSegment}
-      resetHandler={() => segmentRemover(_segment.id)}
-      resetText={t.reset}
     />
   )
 };

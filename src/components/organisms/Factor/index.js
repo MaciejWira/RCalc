@@ -3,17 +3,16 @@ import FactorHeader from '@molecules/FactorHeader';
 import Fields from '@organisms/Fields';
 import { useTranslations } from '@translations/useTranslations';
 import { FieldsContainer, StyledFactor } from './styled';
-import { translations } from '@helpers/initialSegment';
 import { content } from './content';
 import Button from '@atoms/Button';
-import { TOGGLE_ACTIVE } from '@organisms/Segment/helpers/segmentReducer';
+import { TOGGLE_ACTIVE, RESET_FACTOR } from '@organisms/Segment/helpers/segmentReducer';
 import Box from '@layouts/Box/index';
 import { useStore } from '@store/store';
 import { SET_MODAL } from '@store/actions';
 
 const Factor = ({ factor, dispatch }) => {
 
-  const { t } = useTranslations( translations, content );
+  const { t } = useTranslations( content );
   const globalDispatch = useStore().dispatch;
 
   const openStandards = () => {
@@ -57,9 +56,9 @@ const Factor = ({ factor, dispatch }) => {
       >
           <FactorHeader
               isActive={factor.active}
-              heading={t[factor.name]}
-              buttonText={t.deactivate}
-              buttonHandler={() => dispatch({ type: TOGGLE_ACTIVE, payload: factor.name })}
+              factorName={factor.name}
+              removeHandler={() => dispatch({ type: TOGGLE_ACTIVE, payload: factor.name })}
+              resetHandler={() => dispatch({ type: RESET_FACTOR, payload: factor.name })}
               buttonStyle={factor.active ? null : {display: "none"}}
               />
           <FieldsContainer

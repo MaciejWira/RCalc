@@ -98,6 +98,8 @@ export const initialSegment = {
       ],
       sum: 0,
       converter: 3600,
+      // for summary - if true, factor is averaged
+      // else it is a sum (for example distance in summary is added, not averaged)
       averaged: true,
       siblings: [
         {

@@ -4,30 +4,36 @@ import Button from '@atoms/Button';
 import Factors from '@organisms/Factors';
 import { RESET } from './helpers/segmentReducer';
 import Box from '@layouts/Box/index';
+import { useTranslations } from '@translations/useTranslations';
+import { content } from './content';
 
 const SegmentComponent = ({ 
-    heading, 
     factors, 
     dispatch, 
     removeHandler,
-    removeText,
-    resetText,
-}) => (
+    no
+}) => {
+
+  const { t } = useTranslations(content)
+
+  return(
     <Box>
       <StyledSegment>
         <SegmentHeader>
-          <SegmentHeading>{heading}</SegmentHeading>
+          <SegmentHeading>{t.heading} {no}</SegmentHeading>
           <ButtonWrapper>
-            <MarginedButton
+            <Button
                 type='padded'
                 onClick={() => dispatch({ type: RESET })}>
-                {resetText}
-              </MarginedButton>
-            <Button
-                type='padded color-primary'
-                onClick={removeHandler}>
-                {removeText}
+                {t.reset}
               </Button>
+          {no === 1 ? null : (
+            <MarginedButton
+              type='padded color-primary'
+              onClick={removeHandler}>
+              {t.removeSegment}
+            </MarginedButton>
+          )}
           </ButtonWrapper>
         </SegmentHeader>
         <Factors 
@@ -37,5 +43,6 @@ const SegmentComponent = ({
       </StyledSegment>
     </Box>
   )
+}
 
 export default SegmentComponent;

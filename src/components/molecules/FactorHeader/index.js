@@ -1,38 +1,37 @@
 import React from 'react';
 import { H3 } from '@atoms/H3';
 import Button from '@atoms/Button';
-import styled from 'styled-components';
-import { rem } from '@styles/functions';
+import { StyledFactorHeader, Buttons } from './styled';
+import { MarginedButton } from '@organisms/Segment/helpers/styled';
+import { useTranslations } from '@translations/useTranslations';
+import { content } from './content';
+import { translations } from '@helpers/initialSegment';
 
-const StyledFactorHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    ${props => {
-        if ( !props.isActive ){
-            return`
-                padding-top: ${rem(10)}
-            `
-        } else {
-            return`
-               margin-bottom: ${rem(10)};
-            `
-        }
-    }}
-`;
+const FactorHeader = ({ isActive, factorName, removeHandler, resetHandler, buttonStyle }) => {
 
-const FactorHeader = ({ isActive, heading, buttonText, buttonHandler, buttonStyle }) => (
-    <StyledFactorHeader isActive={isActive}>
-        <H3>{heading}</H3>
-        { !buttonText || !buttonHandler ? null : (
-            <Button
-                style={buttonStyle}
-                type='padded color-primary'
-                onClick={buttonHandler}>
-                {buttonText}
-            </Button>
-        )}
-    </StyledFactorHeader>
-)
+    const { t } = useTranslations( translations, content );
+
+    return(
+        <StyledFactorHeader isActive={isActive}>
+            <H3>{t[factorName]}</H3>
+            { !removeHandler ? null : (
+                <Buttons>
+                    <Button
+                        style={buttonStyle}
+                        type='padded'
+                        onClick={resetHandler}>
+                        {t.reset}
+                    </Button>
+                    <MarginedButton
+                        style={buttonStyle}
+                        type='padded color-primary'
+                        onClick={removeHandler}>
+                        {t.deactivate}
+                    </MarginedButton>
+                </Buttons>
+            )}
+        </StyledFactorHeader>
+    )
+}
 
 export default FactorHeader;

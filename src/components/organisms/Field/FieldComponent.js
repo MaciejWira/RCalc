@@ -29,7 +29,7 @@ const FieldComponent = ({
         <Main>
           <Input
             isActive={isActive}
-            disabled={isActive ? false : true}
+            disabled={!isActive}
             onChange={e => onChangeHandler(e)}
             onKeyDown={e => keyDownHandler(e)}
             type="text"

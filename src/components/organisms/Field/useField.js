@@ -8,7 +8,7 @@ export const useField = ({
 
   const [ valInterval, setValInterval ] = useState(null);
 
-  const step = unit.step ? unit.step : 1,
+  const step = unit.step || 1,
         CHANGE = (unit.ratio * step / converter);
 
   const dispatchHandler = (value, type = UPDATE_FULL_SUM) => {

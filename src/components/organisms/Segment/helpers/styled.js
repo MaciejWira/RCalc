@@ -35,5 +35,5 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const MarginedButton = styled(Button)`
-    margin-right: ${rem(7)}
+    margin-left: ${rem(7)}
 `;
