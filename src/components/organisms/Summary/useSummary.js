@@ -6,7 +6,10 @@ import { content } from './content';
 export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
-    const [ summaryOpened , setSummaryOpened ] = useState(false);
+    // 0 - totally hidden
+    // 1 - minimized
+    // 2 - large
+    const [ summaryOpened , setSummaryOpened ] = useState(0);
     const [ scrollPosition, setScrollPosition ] = useState(0);
     const { t } = useTranslations( content );
   
@@ -63,8 +66,14 @@ export const useSummary = segments => {
 
     }, []);
   
-    const summaryHandler = () => {
-      setSummaryOpened(prev => !prev);
+    const summaryHandler = direction => () => {
+      setSummaryOpened(prev => {
+        if ( direction === 'plus' ){
+          return prev === 2 ? prev : prev + 1
+        } else {
+          return prev === 0 ? prev : prev - 1
+        }
+      });
     }
 
     return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition };

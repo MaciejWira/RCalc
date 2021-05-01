@@ -22,20 +22,40 @@ export const SummaryContainer = styled.div.attrs(props => {
 })`
     opacity: ${props => props.opened ? '1' : '.9'};
     background-color: ${props => props.theme.colorBack};
+    transition: transform ${transitionSpeed};
+    ${props => {
+        if ( props.summaryOpened === 0 ){
+            return`
+                transform: translateY(calc(100% - 60px));
+            `;
+        }
+    }}
     ${bp('md', `
         background-color: transparent;
         opacity: 1;
-        transition: transform ${transitionSpeed};
+        transform: none;
     `)}
 `;
 
 export const SummaryContent = styled.div`
     display: flex;
+    justify-content: space-between;
     ${relative};
+`;
+
+export const SegmentsWrapper = styled.div`
+    opacity: ${props => props.summaryOpened === 0 ? '0' : '1'};
+    visibility: ${props => props.summaryOpened === 0 ? 'hidden' : 'visible'};
+    transition: opacity ${transitionSpeed};
+    ${bp('md', `
+        opacity: 1;
+        visibility: visible;
+    `)}
 `;
 
 export const SummaryMain = styled.div`
     width: 100%;
+    flex-grow: 1;
 `;
 
 export const ContainerBox = styled(Box)`
@@ -59,18 +79,26 @@ export const ContentBox = styled(Box)`
 `;
 
 export const SummaryHeading = styled(H2)`
-    ${relative};
-    margin-bottom: ${rem(5)};
     display: none;
     ${bp('md', `
+        ${relative};
+        margin-bottom: ${rem(5)};
         display: block;
         margin-bottom: ${rem(20)}
     `)}
 `;
 
+export const SummaryHeadingMini = styled(H2)`
+    font-size: ${rem(20)};
+    margin-bottom: ${rem(5)};
+    ${bp('md', `
+        display: none;
+    `)}
+`;
+
 export const SummaryParagraph = styled(Paragraph)`
-    font-size: ${props => props.opened ? `${rem(14)}` : `${rem(10)}`};
-    margin-bottom: ${props => props.opened ? `${rem(5)}` : `${rem(1)}`};
+    font-size: ${props => props.opened === 2 ? `${rem(14)}` : `${rem(10)}`};
+    margin-bottom: ${props => props.opened === 2 ? `${rem(5)}` : `${rem(1)}`};
     ${bp('md', `
         font-size: ${rem(14)};
         margin-bottom: ${rem(15)};
@@ -82,7 +110,7 @@ export const SummaryParagraph = styled(Paragraph)`
 
 export const ValueParagraph = styled.span`
     ${props => {
-        if ( props.opened ){
+        if ( props.opened === 2 ){
             return`
                 font-size: ${rem(16)};
 
@@ -102,8 +130,30 @@ export const ValueParagraph = styled.span`
 
 `;
 
-export const StyledButton = styled(Button)`
+export const Buttons = styled.div`
+    display: inline-flex;
+    flex-direction: column;
     ${bp('md', `
         display: none;
     `)};
+`;
+
+const StyledButton = styled(Button)`
+    margin-bottom: ${rem(7)};
+    ${bp('md', `
+        display: none;
+    `)};
+`;
+
+export const ButtonUp = styled(StyledButton)`
+    opacity: ${props => props.summaryOpened === 2 ? '0' : '1'};
+    visibility: ${props => props.summaryOpened === 2 ? 'hidden' : 'visible'};
+    display: ${props => props.summaryOpened === 2 ? 'none' : ''};
+    transition: opacity ${transitionSpeed};
+`;
+
+export const ButtonDown = styled(StyledButton)`
+    opacity: ${props => props.summaryOpened === 0 ? '0' : '1'};
+    visibility: ${props => props.summaryOpened === 0 ? 'hidden' : 'visible'};
+    transition: opacity ${transitionSpeed}
 `;
