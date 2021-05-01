@@ -22,17 +22,17 @@ const SegmentComponent = ({
         <SegmentHeader>
           <SegmentHeading>{t.heading} {no}</SegmentHeading>
           <ButtonWrapper>
-            <Button
+            <MarginedButton
                 type='padded'
                 onClick={() => dispatch({ type: RESET })}>
                 {t.reset}
-              </Button>
+              </MarginedButton>
           {no === 1 ? null : (
-            <MarginedButton
+            <Button
               type='padded color-primary'
               onClick={removeHandler}>
               {t.removeSegment}
-            </MarginedButton>
+            </Button>
           )}
           </ButtonWrapper>
         </SegmentHeader>

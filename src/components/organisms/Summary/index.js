@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSummary } from './useSummary';
-import { SummaryContainer, SummaryContent, SummaryMain, ContainerBox, StyledButton, SummaryParagraph, SummaryHeading, ValueParagraph, ContentBox } from './styled';
+import { SummaryContainer, SummaryContent, SummaryMain, ContainerBox, SummaryParagraph, SummaryHeading, ValueParagraph, ContentBox, Buttons, SummaryHeadingMini, ButtonUp, ButtonDown, SegmentsWrapper } from './styled';
 import { RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
 import SummarySegment from '@organisms/SummarySegment/index';
 import { TextBold } from '@atoms/textComponents';
@@ -10,27 +10,41 @@ const Summary = ({ segments }) => {
   const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition } = useSummary(segments);
 
   return(
-      <SummaryContainer scrollPosition={scrollPosition}>
+      <SummaryContainer
+        summaryOpened={summaryOpened}
+        scrollPosition={scrollPosition}>
         <ContainerBox>
           <SummaryHeading>{t.summary}</SummaryHeading>
           <ContentBox>
             <SummaryContent>
               <SummaryMain>
-                  <SummaryParagraph opened={summaryOpened}>
-                    <TextBold>{t.segmentsAmount}:</TextBold>&nbsp;
-                    <ValueParagraph opened={summaryOpened}>
-                      {segments.length}
-                    </ValueParagraph>
-                  </SummaryParagraph>
-                  <SummarySegment
-                    opened={summaryOpened}
-                    summarySegment={summarySegment} />
+                  <SummaryHeadingMini>{t.summary}</SummaryHeadingMini>
+                  <SegmentsWrapper summaryOpened={summaryOpened}>
+                    <SummaryParagraph opened={summaryOpened}>
+                      <TextBold>{t.segmentsAmount}:</TextBold>&nbsp;
+                      <ValueParagraph opened={summaryOpened}>
+                        {segments.length}
+                      </ValueParagraph>
+                    </SummaryParagraph>
+                    <SummarySegment
+                      opened={summaryOpened}
+                      summarySegment={summarySegment} />
+                  </SegmentsWrapper>
               </SummaryMain>
-              <StyledButton
-                  type='round font-big'
-                  onClick={summaryHandler}>
-                    {summaryOpened ? (<RiArrowDownSLine />) : (<RiArrowUpSLine />)}
-              </StyledButton>
+              <Buttons>
+                <ButtonUp 
+                    type='round font-big'
+                    summaryOpened={summaryOpened}
+                    onClick={summaryHandler('plus')}>
+                      <RiArrowUpSLine />
+                </ButtonUp>
+                <ButtonDown
+                    type='round font-big'
+                    summaryOpened={summaryOpened}
+                    onClick={summaryHandler('minus')}>
+                      <RiArrowDownSLine />
+                </ButtonDown>
+              </Buttons>
             </SummaryContent>
           </ContentBox>
         </ContainerBox>

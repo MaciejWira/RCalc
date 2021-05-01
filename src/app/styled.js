@@ -7,7 +7,7 @@ export const StyledApp = styled.div`
   min-height: 100vh;
   height: 100%;
   padding-top: ${rem(60)};
-  padding-bottom: ${rem(140)};
+  padding-bottom: ${rem(190)};
 `;
 
 export const GlobalStyle = createGlobalStyle`
