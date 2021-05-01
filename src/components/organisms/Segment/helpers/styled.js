@@ -30,10 +30,10 @@ export const SegmentHeading = styled(H2)`
 
 export const ButtonWrapper = styled.div`
     display: flex;
-    // padding-top: ${rem(10)};
-    // padding-bottom: ${rem(10)};
 `;
 
 export const MarginedButton = styled(Button)`
-    margin-left: ${rem(7)}
+    margin-right: ${rem(7)};
+    margin-top: ${rem(5)};
+    margin-bottom: ${rem(5)};
 `;

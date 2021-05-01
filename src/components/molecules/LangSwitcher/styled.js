@@ -30,7 +30,7 @@ export const StyledButton = styled(Button)`
 
             const opened = !props.$opened ? '' : `
                 transform: translateY(100%);
-                margin-top: ${rem(5)}
+                margin-top: ${rem(15)}
             `;
 
             return`

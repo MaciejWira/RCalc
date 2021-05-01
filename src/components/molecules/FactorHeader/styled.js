@@ -19,6 +19,7 @@ export const StyledFactorHeader = styled.div`
 `;
 
 export const Buttons = styled.div`
-
+    display: flex;
+    align-items: center;
 `;
 

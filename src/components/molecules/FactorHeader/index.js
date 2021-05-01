@@ -16,18 +16,18 @@ const FactorHeader = ({ isActive, factorName, removeHandler, resetHandler, butto
             <H3>{t[factorName]}</H3>
             { !removeHandler ? null : (
                 <Buttons>
-                    <Button
+                    <MarginedButton
                         style={buttonStyle}
                         type='padded'
                         onClick={resetHandler}>
                         {t.reset}
-                    </Button>
-                    <MarginedButton
+                    </MarginedButton>
+                    <Button
                         style={buttonStyle}
                         type='padded color-primary'
                         onClick={removeHandler}>
                         {t.deactivate}
-                    </MarginedButton>
+                    </Button>
                 </Buttons>
             )}
         </StyledFactorHeader>
