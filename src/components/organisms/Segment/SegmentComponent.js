@@ -14,7 +14,8 @@ const SegmentComponent = ({
     factors, 
     dispatch, 
     removeHandler,
-    no
+    changeOrder,
+    index,
 }) => {
 
   const { t } = useTranslations(content)
@@ -23,8 +24,8 @@ const SegmentComponent = ({
     <Box>
       <StyledSegment>
         <SegmentHeader>
-          <SegmentHeadingMobile>S{no}</SegmentHeadingMobile>
-          <SegmentHeading>{t.heading} {no}</SegmentHeading>
+          <SegmentHeadingMobile>S{index + 1}</SegmentHeadingMobile>
+          <SegmentHeading>{t.heading} {index + 1}</SegmentHeading>
           <ButtonWrapper>
             <Button
                 style={{ marginRight: rem(margin) }}
@@ -32,7 +33,7 @@ const SegmentComponent = ({
                 onClick={() => dispatch({ type: RESET })}>
                 {t.reset}
               </Button>
-            {no === 1 ? null : (
+            {index === 0 ? null : (
               <Button
                 type='padded color-primary'
                 onClick={removeHandler}>
@@ -43,10 +44,10 @@ const SegmentComponent = ({
                 style={{ marginLeft: rem(margin) }}
                 dir='up'
                 type='minimal font-big'
-                onClick={() => null} />
+                onClick={() => changeOrder(index, -1)} />
             <ButtonDir
                 type='minimal font-big'
-                onClick={() => null} />
+                onClick={() => changeOrder(index)} />
             <DragButton
                 type='minimal'
                 onClick={() => null}>
