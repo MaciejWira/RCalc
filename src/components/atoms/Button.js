@@ -12,7 +12,7 @@ const Button = ({ children, additionalStyles, ...others }) => (
     )
 
 const StyledButton = styled(Button)`
-    font-size: ${rem(13)};
+    font-size: ${rem(12)};
     cursor: pointer;
     color: ${props => props.theme.colorFront};
     background-color: ${props => props.theme.colorBack};
@@ -28,6 +28,10 @@ const StyledButton = styled(Button)`
     transition: ${transitionPrimary}, box-shadow ${transitionSpeed};
     box-shadow: ${props => props.theme.boxShadowPrimary}, 
                 ${props => props.theme.boxShadowInsetPrimary};
+
+    ${bp('sm', `
+        font-size: ${rem(13)}
+    `)};
 
     ${bp('md', `
         font-size: ${rem(14)}
@@ -63,7 +67,11 @@ const StyledButton = styled(Button)`
 
         if ( props.type?.indexOf('padded') >= 0 ){
             additionalStyles += `
-                padding: ${rem(10)};
+                padding: ${rem(10)} ${rem(7)};
+                ${bp('sm', `
+                    padding-right: ${rem(10)};
+                    padding-left: ${rem(10)};
+                `)};
             `
         }
 
@@ -81,9 +89,30 @@ const StyledButton = styled(Button)`
             additionalStyles += `
                 font-size: ${rem(28)};
                 font-weight: 300;
-                ${bp('lg', `
-                    font-size: ${rem(28)}
+                ${bp('sm', `
+                    font-size: ${rem(32)}
                 `)};
+            `
+        }
+
+        if ( props.type?.indexOf('minimal') >= 0 ){
+            additionalStyles += `
+                border-radius: 0;
+                box-shadow: none;
+                padding: 0;
+                background-color: transparent;
+                :hover {
+                    background-color: transparent;
+                    color: ${colorPrimary}
+                }
+                :focus, :focus-visible {
+                    box-shadow: none;
+                    color: ${colorPrimary};
+                }
+                :active {
+                    box-shadow: none;
+                    color: ${props.theme.colorFront};
+                }
             `
         }
 

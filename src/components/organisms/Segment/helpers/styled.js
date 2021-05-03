@@ -22,18 +22,37 @@ export const SegmentHeader = styled.div`
     `)}
     `;
     
-export const SegmentHeading = styled(H2)`
+export const SegmentHeadingMobile = styled(H2)`
     margin-right: ${rem(15)};
     margin-bottom: ${rem(10)};
     margin-top: ${rem(10)};
+    font-size: ${rem(32)};
+    ${bp('sm', `
+        display: none;
+    `)}
 `;
+    
+export const SegmentHeading = styled(H2)`
+    display: none;
+    ${bp('sm', `
+        display: block;
+        margin-right: ${rem(5)};
+        margin-bottom: ${rem(10)};
+        margin-top: ${rem(10)};
+    `)}
+`;
+
+export const margin = 5;
 
 export const ButtonWrapper = styled.div`
     display: flex;
+    align-items: center;
 `;
 
-export const MarginedButton = styled(Button)`
-    margin-right: ${rem(7)};
-    margin-top: ${rem(5)};
-    margin-bottom: ${rem(5)};
+export const DragButton = styled(Button)`
+    cursor: move;
+    font-size: ${rem(20)};
+    ${bp('sm',`
+        font-size: ${rem(22)};
+    `)}
 `;

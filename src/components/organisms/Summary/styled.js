@@ -3,11 +3,11 @@ import { rem } from '@styles/functions';
 import Box from '@layouts/Box/index';
 import { relative } from '@styles/mixins';
 import { bp } from '@styles/functions';
-import Button from '@atoms/Button';
 import { Paragraph } from '@atoms/textComponents';
 import { H2 } from '@atoms/H2';
 import { breakpoints } from '@styles/breakpoints';
 import { transitionSpeed } from '@styles/vars';
+import ButtonDir from '@atoms/ButtonDir';
 
 export const SummaryContainer = styled.div.attrs(props => {
 
@@ -20,6 +20,7 @@ export const SummaryContainer = styled.div.attrs(props => {
     }
 
 })`
+    pointer-events: all;
     opacity: ${props => props.opened ? '1' : '.9'};
     background-color: ${props => props.theme.colorBack};
     transition: transform ${transitionSpeed};
@@ -138,22 +139,24 @@ export const Buttons = styled.div`
     `)};
 `;
 
-const StyledButton = styled(Button)`
+const buttonMixin = `
     margin-bottom: ${rem(7)};
     ${bp('md', `
         display: none;
     `)};
 `;
 
-export const ButtonUp = styled(StyledButton)`
-    opacity: ${props => props.summaryOpened === 2 ? '0' : '1'};
-    visibility: ${props => props.summaryOpened === 2 ? 'hidden' : 'visible'};
-    display: ${props => props.summaryOpened === 2 ? 'none' : ''};
+export const ButtonUp = styled(ButtonDir)`
+    opacity: ${props => props.$summaryOpened === 2 ? '0' : '1'};
+    visibility: ${props => props.$summaryOpened === 2 ? 'hidden' : 'visible'};
+    display: ${props => props.$summaryOpened === 2 ? 'none' : ''};
     transition: opacity ${transitionSpeed};
+    ${buttonMixin};
 `;
 
-export const ButtonDown = styled(StyledButton)`
-    opacity: ${props => props.summaryOpened === 0 ? '0' : '1'};
-    visibility: ${props => props.summaryOpened === 0 ? 'hidden' : 'visible'};
+export const ButtonDown = styled(ButtonDir)`
+    opacity: ${props => props.$summaryOpened === 0 ? '0' : '1'};
+    visibility: ${props => props.$summaryOpened === 0 ? 'hidden' : 'visible'};
     transition: opacity ${transitionSpeed}
+    ${buttonMixin};
 `;

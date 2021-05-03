@@ -28,6 +28,7 @@ export const SummaryColumn = styled(Column)`
     z-index: ${ziHeader};
     padding-left: 0;
     padding-right: 0;
+    pointer-events: none;
     ${bp('md', `
         padding-left: ${rem(gutter)};
         padding-right: ${rem(gutter)};
