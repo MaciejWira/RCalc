@@ -1,55 +1,80 @@
 import { initialSegment } from '@helpers/initialSegment';
 
 let initialId = 1;
+const initialAnimation = { from: null, aim: null }; // id's of animated segments 
 
 export const types = {
   UPDATE: 'UPDATE',
   ADD: 'ADD',
   REMOVE: 'REMOVE',
   CHANGE_ORDER: 'CHANGE_ORDER',
+  RESET_ANIMATION: 'RESET_ANIMATION',
 }
 
-export const initialSegments = [ {...initialSegment, id: `id-${initialId}` } ];
+export const initialState = {
+  segments: [ {...initialSegment, id: `id-${initialId}` } ],
+  animation: initialAnimation
+};
 
-export const segmentsReducer = (segments, action) => {
+export const segmentsReducer = (state, action) => {
 
   switch( action.type ){
 
     case types.UPDATE:
-      return segments.map(s => {
+      const segmentsUpdated = state.segments.map(s => {
         if (s.id === action.payload.id) return action.payload;
         else return s;
       });
+      return { ...state, segments: segmentsUpdated }
 
     case types.ADD:
       initialId++;
-      return [ ...segments, { ...initialSegment, id: `id-${initialId + 1}` }];
+      return {
+        ...state,
+        segments: [ ...state.segments, { ...initialSegment, id: `id-${initialId + 1}` }]
+      };
 
     case types.REMOVE:
-      if (segments.length > 1){
-        return segments.filter(segment => segment.id !== action.payload)
-      } else return segments;
+      return {
+        ...state,
+        segments: state.segments.length > 1 ? state.segments.filter(segment => segment.id !== action.payload) : state.segments
+      }
 
     case types.CHANGE_ORDER:
-      const { index, direction = 1 } = action.payload;
-      if ( index === 0 && direction === -1 ) return segments;
-      if ( index === segments.length - 1 && direction === 1 ) return segments;
+      const { id, direction = 1 } = action.payload;
 
-      let aimIndex = index + direction;
+      const fromIndex = state.segments.findIndex( segment => segment.id === id);
+      if ( fromIndex === 0 && direction === -1 ) return state;
+      if ( fromIndex === state.segments.length - 1 && direction === 1 ) return state;
+
+      let aimIndex = fromIndex + direction;
       if ( aimIndex < 0 ) aimIndex = 0;
-      else if ( aimIndex > segments.length - 1 ) aimIndex = segments.length - 1;
+      else if ( aimIndex > state.segments.length - 1 ) aimIndex = state.segments.length - 1;
 
-      const chosenSegment = segments[index],
-            aimSegment = segments[aimIndex],
-            updatedSegments = [...segments];
+      const fromSegment = state.segments[fromIndex],
+            aimSegment = state.segments[aimIndex],
+            segmentsReordered = [...state.segments];
 
-      updatedSegments[index] = aimSegment;
-      updatedSegments[aimIndex] = chosenSegment;
+      segmentsReordered[fromIndex] = aimSegment;
+      segmentsReordered[aimIndex] = fromSegment;
 
-      return updatedSegments;
+      const animation = { 
+        // direction 'from' is inverted, cause animation happens after segments rerender
+        from: { id: fromSegment.id, direction: -direction }, 
+        aim: { id: aimSegment.id, direction } 
+      }
+
+      return { 
+        ...state,
+        animation,
+        segments: segmentsReordered 
+      };
+
+    case types.RESET_ANIMATION:
+      return { ...state, animation: initialAnimation };
 
     default:
-      return segments;
+      return state;
 
   }
 

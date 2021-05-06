@@ -4,7 +4,7 @@ import SegmentComponent from './SegmentComponent';
 import { actions } from '@helpers/actions';
 import { types } from './helpers/segmentReducer';
 
-const Segment = ({ segment, segmentsActions, index }) => {
+const Segment = ({ segment, segmentsActions, index, animation }) => {
 
   const { _segment, dispatch } = useSegment(segment, segmentsActions.UPDATE);
   const segmentActions = actions( types, dispatch );
@@ -16,6 +16,7 @@ const Segment = ({ segment, segmentsActions, index }) => {
       segmentActions={segmentActions}
       id={segment.id}
       segmentsActions={segmentsActions}
+      animation={animation}
     />
   )
 };

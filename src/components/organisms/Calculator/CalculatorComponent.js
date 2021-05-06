@@ -8,7 +8,7 @@ import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
 
 const CalculatorComponent = ({ 
-    segments, 
+    segmentsState, 
     segmentsActions,
 }) => {
 
@@ -19,7 +19,7 @@ const CalculatorComponent = ({
             <Row>
                 <SegmentsColumn>
                     <Segments 
-                        segments={segments}
+                        segmentsState={segmentsState}
                         segmentsActions={segmentsActions}
                         />
                     <Button
@@ -29,7 +29,7 @@ const CalculatorComponent = ({
                     </Button>
                 </SegmentsColumn>
                 <SummaryColumn>
-                    <Summary segments={segments}/>
+                    <Summary segments={segmentsState.segments}/>
                 </SummaryColumn>
             </Row>
         </StyledCalculator>

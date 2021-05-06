@@ -4,6 +4,15 @@ import { H2 } from '@atoms/H2';
 import Button from '@atoms/Button';
 import { relative } from '@styles/mixins';
 import { bp } from '@styles/functions';
+import Box from '@layouts/Box/index';
+
+export const SegmentContainer = styled.div`
+    padding-bottom: ${rem(15)}
+`;
+
+export const StyledBox = styled(Box)`
+    margin-bottom: 0;
+`;
 
 export const StyledSegment = styled.div`
     margin-bottom: ${rem(35)};
