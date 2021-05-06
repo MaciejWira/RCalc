@@ -13,8 +13,8 @@ import ButtonDir from '@atoms/ButtonDir';
 const SegmentComponent = ({ 
     factors, 
     dispatch, 
-    removeHandler,
-    changeOrder,
+    id,
+    segmentsActions,
     index,
 }) => {
 
@@ -36,7 +36,7 @@ const SegmentComponent = ({
             {index === 0 ? null : (
               <Button
                 type='padded color-primary'
-                onClick={removeHandler}>
+                onClick={() => segmentsActions.REMOVE(id)}>
                 {t.removeSegment}
               </Button>
             )}
@@ -44,10 +44,10 @@ const SegmentComponent = ({
                 style={{ marginLeft: rem(margin) }}
                 dir='up'
                 type='minimal font-big'
-                onClick={() => changeOrder(index, -1)} />
+                onClick={() => segmentsActions.CHANGE_ORDER({ index, direction: -1 })} />
             <ButtonDir
                 type='minimal font-big'
-                onClick={() => changeOrder(index)} />
+                onClick={() => segmentsActions.CHANGE_ORDER({ index })} />
             <DragButton
                 type='minimal'
                 onClick={() => null}>

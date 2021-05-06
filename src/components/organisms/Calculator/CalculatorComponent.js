@@ -9,10 +9,7 @@ import { content } from './content';
 
 const CalculatorComponent = ({ 
     segments, 
-    segmentUpdater, 
-    buttonHandler, 
-    segmentRemover,
-    changeOrder
+    segmentsActions,
 }) => {
 
     const { t } = useTranslations(content);
@@ -23,13 +20,11 @@ const CalculatorComponent = ({
                 <SegmentsColumn>
                     <Segments 
                         segments={segments}
-                        segmentUpdater={segmentUpdater}
-                        segmentRemover={segmentRemover}
-                        changeOrder={changeOrder}
+                        segmentsActions={segmentsActions}
                         />
                     <Button
                         type='padded color-primary'
-                        onClick={buttonHandler}>
+                        onClick={segmentsActions.ADD}>
                         {t.addSegment}
                     </Button>
                 </SegmentsColumn>

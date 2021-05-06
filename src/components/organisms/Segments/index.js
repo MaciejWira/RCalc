@@ -1,16 +1,14 @@
 import React from 'react';
 import Segment from '@organisms/Segment';
 
-const Segments = ({ segments, segmentUpdater, segmentRemover, changeOrder }) => {
+const Segments = ({ segments, segmentsActions }) => {
 
     const segmentsMarkup = segments.map((segment, index) => (
       <Segment
         key={segment.id}
         segment={segment}
         index={index}
-        segmentUpdater={segmentUpdater}
-        segmentRemover={segmentRemover}
-        changeOrder={changeOrder}
+        segmentsActions={segmentsActions}
         />
     ));
 

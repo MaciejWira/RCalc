@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { useCalculator } from './useCalculator';
 import CalculatorComponent from './CalculatorComponent';
+import { useReducer } from 'react';
+import { initialSegments, types, segmentsReducer } from './segmentsReducer';
+import { actions } from '@helpers/actions';
 
 const Calculator = () => {
 
-  const { segments, segmentUpdater, segmentAdder, segmentRemover, changeOrder } = useCalculator();
+  const [ segments, dispatch ] = useReducer( segmentsReducer, initialSegments );
+  const segmentsActions = actions( types, dispatch );
 
   return(
     <CalculatorComponent 
       segments={segments}
-      segmentUpdater={segmentUpdater}
-      buttonHandler={segmentAdder}
-      segmentRemover={segmentRemover}
-      changeOrder={changeOrder}
+      segmentsActions={segmentsActions}
     />
   )
 

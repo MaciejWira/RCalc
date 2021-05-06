@@ -2,9 +2,9 @@ import React from 'react';
 import { useSegment } from './useSegment';
 import SegmentComponent from './SegmentComponent';
 
-const Segment = ({ segment, segmentUpdater, segmentRemover, changeOrder, index }) => {
+const Segment = ({ segment, segmentsActions, index }) => {
 
-  const { _segment, dispatch } = useSegment(segment, segmentUpdater);
+  const { _segment, dispatch } = useSegment(segment, segmentsActions.UPDATE);
 
   return(
     <SegmentComponent
@@ -12,8 +12,7 @@ const Segment = ({ segment, segmentUpdater, segmentRemover, changeOrder, index }
       factors={_segment.factors} 
       dispatch={dispatch} 
       id={segment.id}
-      changeOrder={changeOrder}
-      removeHandler={() => segmentRemover(_segment.id)}
+      segmentsActions={segmentsActions}
     />
   )
 };
