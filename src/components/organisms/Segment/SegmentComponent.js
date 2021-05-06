@@ -2,7 +2,6 @@ import React from 'react';
 import { StyledSegment, SegmentHeader, SegmentHeading, ButtonWrapper, SegmentHeadingMobile, margin, DragButton } from './helpers/styled';
 import Button from '@atoms/Button';
 import Factors from '@organisms/Factors';
-import { RESET } from './helpers/segmentReducer';
 import Box from '@layouts/Box/index';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
@@ -12,7 +11,7 @@ import ButtonDir from '@atoms/ButtonDir';
 
 const SegmentComponent = ({ 
     factors, 
-    dispatch, 
+    segmentActions,
     id,
     segmentsActions,
     index,
@@ -30,7 +29,7 @@ const SegmentComponent = ({
             <Button
                 style={{ marginRight: rem(margin) }}
                 type='padded'
-                onClick={() => dispatch({ type: RESET })}>
+                onClick={segmentActions.RESET}>
                 {t.reset}
               </Button>
             {index === 0 ? null : (
@@ -57,7 +56,7 @@ const SegmentComponent = ({
         </SegmentHeader>
         <Factors 
           factors={factors}
-          dispatch={dispatch}
+          segmentActions={segmentActions}
         />
       </StyledSegment>
     </Box>

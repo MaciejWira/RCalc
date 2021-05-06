@@ -1,9 +1,8 @@
-import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
 import { useEffect, useState } from 'react';
 import { dynamicInterval } from '@helpers/dynamicInterval';
 
 export const useField = ({
-    factorName, isActive, unit, value, sum, dispatch, converter, transformation
+    factorName, isActive, unit, value, sum, converter, transformation, segmentActions
 }) => {
 
   const [ valInterval, setValInterval ] = useState(null);
@@ -11,17 +10,7 @@ export const useField = ({
   const step = unit.step || 1,
         CHANGE = (unit.ratio * step / converter);
 
-  const dispatchHandler = (value, type = UPDATE_FULL_SUM) => {
-    if ( value === undefined ) return;
-    dispatch({
-      type,
-      payload: {
-        value,
-        factorName,
-        transformation
-      }
-    })
-  };
+  const payload = value => ({ value, factorName, transformation });
 
   const endInterval = () => {
     if ( valInterval ){
@@ -32,10 +21,10 @@ export const useField = ({
 
   const startInterval = changeVal => {
     if ( valInterval ) return;
-    dispatchHandler( changeVal, UPDATE_BY_CHANGE );
+    segmentActions.UPDATE_BY_CHANGE(payload(changeVal))
 
     dynamicInterval({
-      core: () => dispatchHandler( changeVal, UPDATE_BY_CHANGE ),
+      core: () => segmentActions.UPDATE_BY_CHANGE(payload(changeVal)),
       callback: _interval => {
         endInterval();
         setValInterval(_interval);
@@ -63,13 +52,13 @@ export const useField = ({
       if (!/[0-9]/.test(char)) flag = false;
     });
     if (flag && (!unit.max || (unit.max && unit.max >= newValue))){
-      dispatchHandler(sum + ( ( parseInt(newValue) - value ) * CHANGE ))
+      segmentActions.UPDATE_FULL_SUM(payload( sum + ( ( parseInt(newValue) - value ) * CHANGE ) ))
     };
   }
 
   const keyDownHandler = e => {
-    if (e.key === "ArrowUp" && changeHandler("+") ) dispatchHandler( changeHandler("+"), UPDATE_BY_CHANGE );
-    if (e.key === "ArrowDown" && changeHandler("-") ) dispatchHandler( changeHandler("-"), UPDATE_BY_CHANGE );
+    if (e.key === "ArrowUp" && changeHandler("+") ) segmentActions.UPDATE_BY_CHANGE(payload(changeHandler("+")));
+    if (e.key === "ArrowDown" && changeHandler("-") ) segmentActions.UPDATE_BY_CHANGE(payload(changeHandler("-")));
   }
 
   const mouseDownHandler = char => {

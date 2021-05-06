@@ -13,10 +13,11 @@ export const rootReducer = (state, action) => {
 
         case SET_MODAL:
             const modal = { ...state.modal };
-            if ( action.payload.type !== undefined ) modal.type = action.payload.type;
+            const { type, opened, content } = action.payload;
+            if ( type !== undefined ) modal.type = type;
             // not null nor undefined
-            modal.opened = action.payload.opened ?? modal.opened;
-            if ( action.payload.content ) modal.content = action.payload.content;
+            modal.opened = opened ?? modal.opened;
+            if ( content ) modal.content = content;
             return { ...state, modal };
 
         default:

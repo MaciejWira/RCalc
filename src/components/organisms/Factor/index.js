@@ -5,12 +5,11 @@ import { useTranslations } from '@translations/useTranslations';
 import { FieldsContainer, StyledFactor } from './styled';
 import { content } from './content';
 import Button from '@atoms/Button';
-import { TOGGLE_ACTIVE, RESET_FACTOR } from '@organisms/Segment/helpers/segmentReducer';
 import Box from '@layouts/Box/index';
 import { useStore } from '@store/store';
 import { SET_MODAL } from '@store/actions';
 
-const Factor = ({ factor, dispatch }) => {
+const Factor = ({ factor, segmentActions }) => {
 
   const { t } = useTranslations( content );
   const globalDispatch = useStore().dispatch;
@@ -22,7 +21,7 @@ const Factor = ({ factor, dispatch }) => {
         type: 'standards',
         opened: true,
         content: {
-          factor, dispatch
+          factor, handler: segmentActions.UPDATE_FULL_SUM
         }
       }
     })
@@ -42,7 +41,7 @@ const Factor = ({ factor, dispatch }) => {
             <Fields
                 factor={sibling}
                 mainFactor={factor}
-                dispatch={dispatch}
+                segmentActions={segmentActions}
             />
         </FieldsContainer>
       </Fragment>
@@ -57,8 +56,8 @@ const Factor = ({ factor, dispatch }) => {
           <FactorHeader
               isActive={factor.active}
               factorName={factor.name}
-              removeHandler={() => dispatch({ type: TOGGLE_ACTIVE, payload: factor.name })}
-              resetHandler={() => dispatch({ type: RESET_FACTOR, payload: factor.name })}
+              removeHandler={() => segmentActions.TOGGLE_ACTIVE(factor.name)}
+              resetHandler={() => segmentActions.RESET_FACTOR(factor.name)}
               buttonStyle={factor.active ? null : {display: "none"}}
               />
           <FieldsContainer
@@ -66,7 +65,7 @@ const Factor = ({ factor, dispatch }) => {
           >
               <Fields 
                   factor={factor}
-                  dispatch={dispatch}
+                  segmentActions={segmentActions}
                   />
           </FieldsContainer>
           { altFields }

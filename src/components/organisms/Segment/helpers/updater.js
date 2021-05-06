@@ -1,7 +1,7 @@
 
 import { getProp } from '@helpers/getProp';
 import { transform } from '@helpers/transform';
-import { UPDATE_FULL_SUM, UPDATE_BY_CHANGE } from '@organisms/Segment/helpers/segmentReducer';
+import { types } from '@organisms/Segment/helpers/segmentReducer';
 // function for updating values of a disactive factor in a segment
 
 const updatedDisactive = (factor, factors) => {
@@ -33,8 +33,8 @@ export const updater = segment => action  => {
   const updatedCaseFactorFactors = segment.factors.map( factor => {
     
       let updatedSum;
-      if ( type === UPDATE_FULL_SUM ) updatedSum = t(value);
-      else if ( type === UPDATE_BY_CHANGE ) updatedSum = t( t(factor.sum) + value );
+      if ( type === types.UPDATE_FULL_SUM ) updatedSum = t(value);
+      else if ( type === types.UPDATE_BY_CHANGE ) updatedSum = t( t(factor.sum) + value );
 
       if ( updatedSum > factor.limit && updatedSum > factor.sum) return factor;
 
