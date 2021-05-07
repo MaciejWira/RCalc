@@ -1,47 +1,72 @@
 import React from 'react';
-import { StyledSegment, SegmentHeader, SegmentHeading, MarginedButton, ButtonWrapper } from './helpers/styled';
+import { StyledSegment, SegmentHeader, SegmentHeading, ButtonWrapper, SegmentHeadingMobile, margin, DragButton, StyledBox, SegmentContainer } from './helpers/styled';
 import Button from '@atoms/Button';
 import Factors from '@organisms/Factors';
-import { RESET } from './helpers/segmentReducer';
-import Box from '@layouts/Box/index';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
+import { rem } from '@styles/functions';
+import { RiDragMove2Fill } from 'react-icons/ri';
+import ButtonDir from '@atoms/ButtonDir';
+import SegmentAnimation from '@layouts/SegmentAnimation/index';
 
 const SegmentComponent = ({ 
     factors, 
-    dispatch, 
-    removeHandler,
-    no
+    segmentActions,
+    id,
+    segmentsActions,
+    index,
+    animation
 }) => {
 
-  const { t } = useTranslations(content)
+  const { t } = useTranslations(content);
 
   return(
-    <Box>
-      <StyledSegment>
-        <SegmentHeader>
-          <SegmentHeading>{t.heading} {no}</SegmentHeading>
-          <ButtonWrapper>
-            <MarginedButton
-                type='padded'
-                onClick={() => dispatch({ type: RESET })}>
-                {t.reset}
-              </MarginedButton>
-          {no === 1 ? null : (
-            <Button
-              type='padded color-primary'
-              onClick={removeHandler}>
-              {t.removeSegment}
-            </Button>
-          )}
-          </ButtonWrapper>
-        </SegmentHeader>
-        <Factors 
-          factors={factors}
-          dispatch={dispatch}
-        />
-      </StyledSegment>
-    </Box>
+    <SegmentAnimation 
+      animation={animation} 
+      segmentsActions={segmentsActions}>
+      <SegmentContainer>
+        <StyledBox>
+          <StyledSegment>
+            <SegmentHeader>
+              <SegmentHeadingMobile>S{index + 1}</SegmentHeadingMobile>
+              <SegmentHeading>{t.heading} {index + 1}</SegmentHeading>
+              <ButtonWrapper>
+                <Button
+                    style={{ marginRight: rem(margin) }}
+                    type='padded'
+                    onClick={segmentActions.RESET}>
+                    {t.reset}
+                  </Button>
+                {index === 0 ? null : (
+                  <Button
+                    type='padded color-primary'
+                    onClick={() => segmentsActions.REMOVE(id)}>
+                    {t.removeSegment}
+                  </Button>
+                )}
+                <ButtonDir
+                    style={{ marginLeft: rem(margin) }}
+                    dir='up'
+                    type='minimal font-big'
+                    onClick={() => segmentsActions.CHANGE_ORDER({ id, direction: -1 })} />
+                <ButtonDir
+                    type='minimal font-big'
+                    onClick={() => segmentsActions.CHANGE_ORDER({ id })} />
+                <DragButton
+                    type='minimal'
+                    onClick={() => null}>
+                      <RiDragMove2Fill />
+                </DragButton>
+              </ButtonWrapper>
+            </SegmentHeader>
+            <Factors 
+              factors={factors}
+              segmentActions={segmentActions}
+            />
+          </StyledSegment>
+        </StyledBox>
+      </SegmentContainer>
+    </SegmentAnimation>
   )
 }
 

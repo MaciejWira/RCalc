@@ -15,7 +15,7 @@ const Modal = () => {
   if ( type === 'standards' ){
     _content = (
       <ModelContent>
-        <Standards factor={content.factor} dispatch={content.dispatch}/>
+        <Standards factor={content.factor} handler={content.handler}/>
       </ModelContent>)
   };
 

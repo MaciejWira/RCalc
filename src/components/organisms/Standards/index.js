@@ -1,25 +1,21 @@
 import React from 'react';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
-import { UPDATE_FULL_SUM } from '@organisms/Segment/helpers/segmentReducer';
 
 import { ButtonWrapper, StyledButton } from './styled';
 import { rem } from '@styles/functions';
 import { useStore } from '@store/store';
 import { SET_MODAL } from '@store/actions';
 
-const Standards = ({ factor, dispatch }) => {
+const Standards = ({ factor, handler }) => {
 
   const { t } = useTranslations(translations);
   const globalDispatch = useStore().dispatch;
 
   const setStandard = standard => {
-    dispatch({
-      type: UPDATE_FULL_SUM,
-      payload: {
-        factorName: factor?.name,
-        value: standard.value
-      }
+    handler({
+      factorName: factor?.name,
+      value: standard.value
     });
     globalDispatch({ 
       type: SET_MODAL, 

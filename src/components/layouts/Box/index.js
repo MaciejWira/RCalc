@@ -11,6 +11,7 @@ const StyledBox = styled.div`
     border-radius: ${rem(10)};
     margin-bottom: ${rem(15)};
     overflow: hidden;
+    background-color: ${props => props.theme.colorBack};
     box-shadow: ${props => props.theme.boxShadowPrimary};
     ::after {
         ${absolute(true)};

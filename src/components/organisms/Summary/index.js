@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSummary } from './useSummary';
 import { SummaryContainer, SummaryContent, SummaryMain, ContainerBox, SummaryParagraph, SummaryHeading, ValueParagraph, ContentBox, Buttons, SummaryHeadingMini, ButtonUp, ButtonDown, SegmentsWrapper } from './styled';
-import { RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
 import SummarySegment from '@organisms/SummarySegment/index';
 import { TextBold } from '@atoms/textComponents';
 
@@ -33,17 +32,13 @@ const Summary = ({ segments }) => {
               </SummaryMain>
               <Buttons>
                 <ButtonUp 
-                    type='round font-big'
-                    summaryOpened={summaryOpened}
-                    onClick={summaryHandler('plus')}>
-                      <RiArrowUpSLine />
-                </ButtonUp>
-                <ButtonDown
-                    type='round font-big'
-                    summaryOpened={summaryOpened}
-                    onClick={summaryHandler('minus')}>
-                      <RiArrowDownSLine />
-                </ButtonDown>
+                    dir='up'
+                    $summaryOpened={summaryOpened}
+                    onClick={summaryHandler('plus')} />
+                <ButtonDown 
+                    dir='down'
+                    $summaryOpened={summaryOpened}
+                    onClick={summaryHandler('minus')} />
               </Buttons>
             </SummaryContent>
           </ContentBox>

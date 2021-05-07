@@ -4,6 +4,15 @@ import { H2 } from '@atoms/H2';
 import Button from '@atoms/Button';
 import { relative } from '@styles/mixins';
 import { bp } from '@styles/functions';
+import Box from '@layouts/Box/index';
+
+export const SegmentContainer = styled.div`
+    padding-bottom: ${rem(15)}
+`;
+
+export const StyledBox = styled(Box)`
+    margin-bottom: 0;
+`;
 
 export const StyledSegment = styled.div`
     margin-bottom: ${rem(35)};
@@ -22,18 +31,37 @@ export const SegmentHeader = styled.div`
     `)}
     `;
     
-export const SegmentHeading = styled(H2)`
+export const SegmentHeadingMobile = styled(H2)`
     margin-right: ${rem(15)};
     margin-bottom: ${rem(10)};
     margin-top: ${rem(10)};
+    font-size: ${rem(32)};
+    ${bp('sm', `
+        display: none;
+    `)}
 `;
+    
+export const SegmentHeading = styled(H2)`
+    display: none;
+    ${bp('sm', `
+        display: block;
+        margin-right: ${rem(5)};
+        margin-bottom: ${rem(10)};
+        margin-top: ${rem(10)};
+    `)}
+`;
+
+export const margin = 5;
 
 export const ButtonWrapper = styled.div`
     display: flex;
+    align-items: center;
 `;
 
-export const MarginedButton = styled(Button)`
-    margin-right: ${rem(7)};
-    margin-top: ${rem(5)};
-    margin-bottom: ${rem(5)};
+export const DragButton = styled(Button)`
+    cursor: move;
+    font-size: ${rem(20)};
+    ${bp('sm',`
+        font-size: ${rem(22)};
+    `)}
 `;

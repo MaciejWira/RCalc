@@ -3,7 +3,7 @@ import { useCalc } from './useCalc';
 import Field from '@organisms/Field';
 import { transform } from '@helpers/transform';
 
-const Fields = ({ factor, mainFactor = factor, dispatch }) => {
+const Fields = ({ factor, mainFactor = factor, segmentActions }) => {
 
     const { converter, valueHandler } = useCalc(factor, mainFactor);
 
@@ -22,7 +22,7 @@ const Fields = ({ factor, mainFactor = factor, dispatch }) => {
                 transformation={transformation}
                 unit={unit}
                 value={valueHandler(unit, index)}
-                dispatch={dispatch}
+                segmentActions={segmentActions}
                 />
         )
     });

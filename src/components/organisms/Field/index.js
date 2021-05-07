@@ -3,7 +3,7 @@ import { useField } from './useField';
 import FieldComponent from './FieldComponent';
 
 const Field = ({
-  factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden
+  factorName, isActive, unit, value, sum, segmentActions, converter, transformation, isHidden
 }) => {
 
   const {
@@ -13,7 +13,7 @@ const Field = ({
     mouseDownHandler,
     mouseUpHandler
   } = useField({
-    factorName, isActive, unit, value, sum, dispatch, converter, transformation, isHidden
+    factorName, isActive, unit, value, sum, segmentActions, converter, transformation, isHidden
   });
 
   return(
