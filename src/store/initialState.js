@@ -1,7 +1,7 @@
-import { LSTheme } from '@src/app/localStorage';
+import { LSTheme, LSLang } from '@src/app/localStorage';
 
 export const initialState = {
-    lang: 'en',
+    lang: localStorage.getItem(LSLang) || 'en',
     theme: localStorage.getItem(LSTheme) || 'dark',
     modal: {
         type: null,

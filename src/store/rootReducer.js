@@ -1,11 +1,12 @@
 import { SET_LANG, SET_THEME, SET_MODAL } from './actions';
-import { LSTheme } from '@src/app/localStorage';
+import { LSTheme, LSLang } from '@src/app/localStorage';
 
 export const rootReducer = (state, action) => {
 
     switch( action.type ){
 
         case SET_LANG:
+            localStorage.setItem(LSLang, action.payload);
             return { ...state, lang: action.payload };
 
         case SET_THEME:
