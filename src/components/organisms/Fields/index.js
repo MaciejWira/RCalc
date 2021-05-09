@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCalc } from './useCalc';
 import Field from '@organisms/Field';
 import { transform } from '@helpers/transform';

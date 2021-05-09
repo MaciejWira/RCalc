@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
 

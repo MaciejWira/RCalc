@@ -1,4 +1,3 @@
-import React from 'react';
 import { useStore } from '@store/store';
 import { SET_THEME } from '@store/actions';
 import Toggler from '@molecules/Toggler';
@@ -21,10 +20,11 @@ const ThemeSwitcher = ({ ...others }) => {
         <StyledSun size="60%"/>
         ) : (
         <StyledMoon size="60%"/>
-    );
+    ); 
 
     return(
         <Toggler 
+            $on={theme === 'dark'}
             content={content}
             handler={() => dispatch({ type: SET_THEME })} 
             { ...others }/>

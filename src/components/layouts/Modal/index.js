@@ -1,4 +1,3 @@
-import React from 'react';
 import { rem } from '@styles/functions';
 import { useStore } from '@store/store';
 import Standards from '@organisms/Standards/index';

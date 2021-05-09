@@ -1,4 +1,3 @@
-import React from 'react';
 import Segments from '@organisms/Segments/index';
 import Summary from "@organisms/Summary";
 import Button from '@atoms/Button';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { H3 } from '@atoms/H3';
 import Button from '@atoms/Button';
 import { StyledFactorHeader, Buttons } from './styled';

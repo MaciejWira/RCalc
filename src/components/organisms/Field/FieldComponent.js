@@ -1,4 +1,3 @@
-import React from 'react';
 import { Buttons, StyledField, Wrapper, StyledButton, Main, Input, Span } from './styled';
 
 const FieldComponent = ({

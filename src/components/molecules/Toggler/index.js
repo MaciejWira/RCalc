@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from '@atoms/Button';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
@@ -44,9 +44,9 @@ const StyledButton = styled(Button)`
 
 // handler needs to toggle between two states
 
-const Toggler = ({ handler, content, ...others }) => {
+const Toggler = ({ handler, content, $on, ...others }) => {
 
-    const [ on, setOn ] = useState(true);
+    const [ on, setOn ] = useState($on);
 
     const fullHandler = () => {
         handler();

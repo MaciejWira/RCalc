@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
 import { StyledLogo, Calc, Run } from './styled';

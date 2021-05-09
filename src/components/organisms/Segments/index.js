@@ -1,4 +1,3 @@
-import React from 'react';
 import Segment from '@organisms/Segment';
 
 const Segments = ({ segmentsState, segmentsActions }) => {

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import { Fragment, useState } from 'react';
 import FactorHeader from '@molecules/FactorHeader';
 import Fields from '@organisms/Fields';
 import { useTranslations } from '@translations/useTranslations';

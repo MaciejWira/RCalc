@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useStore } from '@store/store';
 import { SET_LANG } from '@store/actions';
 import { languages } from './languages';

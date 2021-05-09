@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSegment } from './useSegment';
 import SegmentComponent from './SegmentComponent';
 import { actions } from '@helpers/actions';

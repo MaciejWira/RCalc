@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import SummaryFactor from '@molecules/SummaryFactor';
 
 const SummarySegment = ({ summarySegment, opened }) => {

@@ -1,4 +1,5 @@
 import { SET_LANG, SET_THEME, SET_MODAL } from './actions';
+import { LSTheme } from '@src/app/localStorage';
 
 export const rootReducer = (state, action) => {
 
@@ -9,6 +10,7 @@ export const rootReducer = (state, action) => {
 
         case SET_THEME:
             const theme = action.payload ? action.payload : ( state.theme === 'dark' ? 'light' : 'dark' );
+            localStorage.setItem(LSTheme, theme);
             return { ...state, theme };
 
         case SET_MODAL:

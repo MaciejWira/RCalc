@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { useCalc } from '@organisms/Fields/useCalc';
 import { useTranslations } from '@translations/useTranslations';
 import { translations } from '@helpers/initialSegment';
