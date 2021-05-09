@@ -12,6 +12,7 @@ module.exports = {
     },
     webpack: {
         alias: {
+            '@src': path.resolve(__dirname, 'src/'),
             '@components': path.resolve(__dirname, 'src/components/'),
             '@atoms': path.resolve(__dirname, 'src/components/atoms'),
             '@molecules': path.resolve(__dirname, 'src/components/molecules'),

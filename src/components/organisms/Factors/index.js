@@ -1,4 +1,3 @@
-import React from 'react';
 import Factor from '@organisms/Factor';
 
 const Factors = ({ factors, segmentActions }) => {

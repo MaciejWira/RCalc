@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
 import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledSegment, SegmentHeader, SegmentHeading, ButtonWrapper, SegmentHeadingMobile, margin, DragButton, StyledBox, SegmentContainer } from './helpers/styled';
 import Button from '@atoms/Button';
 import Factors from '@organisms/Factors';

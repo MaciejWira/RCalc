@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSummary } from './useSummary';
 import { SummaryContainer, SummaryContent, SummaryMain, ContainerBox, SummaryParagraph, SummaryHeading, ValueParagraph, ContentBox, Buttons, SummaryHeadingMini, ButtonUp, ButtonDown, SegmentsWrapper } from './styled';
 import SummarySegment from '@organisms/SummarySegment/index';

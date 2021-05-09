@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CalculatorComponent from './CalculatorComponent';
 import { useReducer } from 'react';
 import { initialState, types, segmentsReducer } from './segmentsReducer';

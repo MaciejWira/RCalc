@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeaderContainer, StyledHeader, Utils, StyledThemeSwitcher } from './styled';
 import LangSwitcher from '@molecules/LangSwitcher/index';
 import Logo from '@molecules/Logo/index';
