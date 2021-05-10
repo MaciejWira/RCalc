@@ -1,7 +1,7 @@
 import { initialSegment } from '@helpers/initialSegment';
 
 let initialId = 1;
-const initialAnimation = { from: null, aim: null }; // id's of animated segments 
+const initialAnimation = { elementPrimary: null, elementSecondary: null }; // id's of animated segments 
 
 export const types = {
   UPDATE: 'UPDATE',
@@ -35,9 +35,22 @@ export const segmentsReducer = (state, action) => {
       };
 
     case types.REMOVE:
+      const removeId = action.payload;
+      const removedIndex = state.segments.findIndex( segment => segment.id === removeId);
+      const afterRemoved =  state.segments[removedIndex + 1] && { 
+        type: 'remove-after',
+        id: state.segments[removedIndex + 1].id
+      };
+
+      const removeAnimation = { 
+        elementPrimary: { type: 'remove', id: removeId }, 
+        elementSecondary: afterRemoved
+      }
+
       return {
         ...state,
-        segments: state.segments.length > 1 ? state.segments.filter(segment => segment.id !== action.payload) : state.segments
+        animation: removeAnimation,
+        segments: state.segments.length > 1 ? state.segments.filter(segment => segment.id !== removeId) : state.segments
       }
 
     case types.CHANGE_ORDER:
@@ -58,15 +71,15 @@ export const segmentsReducer = (state, action) => {
       segmentsReordered[fromIndex] = aimSegment;
       segmentsReordered[aimIndex] = fromSegment;
 
-      const animation = { 
-        // direction 'from' is inverted, cause animation happens after segments rerender
-        from: { id: fromSegment.id, direction: -direction }, 
-        aim: { id: aimSegment.id, direction } 
+      const changeOrderAnimation = { 
+        // direction 'elementPrimary' is inverted, cause animation happens after segments rerender
+        elementPrimary: { type: 'order', id: fromSegment.id, direction: -direction }, 
+        elementSecondary: { type: 'order', id: aimSegment.id, direction } 
       }
 
       return { 
         ...state,
-        animation,
+        animation: changeOrderAnimation,
         segments: segmentsReordered 
       };
 
