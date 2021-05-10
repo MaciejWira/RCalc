@@ -10,9 +10,10 @@ import SegmentAnimation from '@layouts/SegmentAnimation/index';
 
 const SegmentComponent = ({ 
     factors, 
-    segmentActions,
     id,
+    segmentActions,
     segmentsActions,
+    segmentsAmount,
     index,
     animation
 }) => {
@@ -36,7 +37,7 @@ const SegmentComponent = ({
                     onClick={segmentActions.RESET}>
                     {t.reset}
                   </Button>
-                {index === 0 ? null : (
+                {index === 0 && segmentsAmount === 1 ? null : (
                   <Button
                     type='padded color-primary'
                     onClick={() => segmentsActions.REMOVE(id)}>
