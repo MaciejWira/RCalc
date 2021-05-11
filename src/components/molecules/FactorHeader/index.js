@@ -3,7 +3,7 @@ import Button from '@atoms/Button';
 import { StyledFactorHeader, Buttons } from './styled';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
-import { translations } from '@helpers/initialSegment';
+import { translations } from '@config/initialSegment/translations';
 import { margin } from '@organisms/Segment/helpers/styled';
 import { rem } from '@styles/functions';
 

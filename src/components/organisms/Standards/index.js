@@ -1,5 +1,5 @@
 import { useTranslations } from '@translations/useTranslations';
-import { translations } from '@helpers/initialSegment';
+import { translations } from '@config/initialSegment/translations';
 
 import { ButtonWrapper, StyledButton } from './styled';
 import { rem } from '@styles/functions';

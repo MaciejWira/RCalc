@@ -1,6 +1,7 @@
-import { initialSegment } from '@helpers/initialSegment';
+import { initialSegment } from '@config/initialSegment';
+import { initialSegments } from './initialSegments';
 
-let initialId = 1;
+let currentId = 1;
 const initialAnimation = { elementPrimary: null, elementSecondary: null }; // id's of animated segments 
 
 export const types = {
@@ -12,7 +13,7 @@ export const types = {
 }
 
 export const initialState = {
-  segments: [ {...initialSegment, id: `id-${initialId}` } ],
+  segments: initialSegments(currentId),
   animation: initialAnimation
 };
 
@@ -28,10 +29,10 @@ export const segmentsReducer = (state, action) => {
       return { ...state, segments: segmentsUpdated }
 
     case types.ADD:
-      initialId++;
+      currentId++;
       return {
         ...state,
-        segments: [ ...state.segments, { ...initialSegment, id: `id-${initialId + 1}` }]
+        segments: [ ...state.segments, { ...initialSegment, id: `id-${currentId + 1}` }]
       };
 
     case types.REMOVE:

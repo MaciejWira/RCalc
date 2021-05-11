@@ -4,7 +4,7 @@ import { transform } from '@helpers/transform';
 import { types } from '@organisms/Segment/helpers/segmentReducer';
 // function for updating values of a disactive factor in a segment
 
-const updatedDisactive = (factor, factors) => {
+export const updatedDisactive = (factor, factors) => {
 
     const getFactorsName = getProp(factors)('name'),
           time = getFactorsName('time').sum,
@@ -30,7 +30,7 @@ export const updater = segment => action  => {
   const t = transform( transformation );
   
   // first update clicked factor
-  const updatedCaseFactorFactors = segment.factors.map( factor => {
+  const updatedCaseFactors = segment.factors.map( factor => {
     
       let updatedSum;
       if ( type === types.UPDATE_FULL_SUM ) updatedSum = t(value);
@@ -56,9 +56,9 @@ export const updater = segment => action  => {
     });
 
     // based on above update not active factor
-    const updatedFactors = updatedCaseFactorFactors.map( factor => {
+    const updatedFactors = updatedCaseFactors.map( factor => {
       if (!factor.active){
-        return {...factor, sum: updatedDisactive( factor, updatedCaseFactorFactors ) }
+        return {...factor, sum: updatedDisactive( factor, updatedCaseFactors ) }
       } else return factor;
     });
 

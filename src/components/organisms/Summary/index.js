@@ -1,22 +1,40 @@
 import { useSummary } from './useSummary';
-import { SummaryContainer, SummaryContent, SummaryMain, ContainerBox, SummaryParagraph, SummaryHeading, ValueParagraph, ContentBox, Buttons, SummaryHeadingMini, ButtonUp, ButtonDown, SegmentsWrapper } from './styled';
+import { SummaryContainer,
+  SummaryContent,
+  SummaryMain,
+  ContainerBox,
+  SummaryParagraph,
+  ValueParagraph,
+  ContentBox,
+  Buttons,
+  ButtonUp,
+  ButtonDown,
+  SegmentsWrapper } from './styled';
 import SummarySegment from '@organisms/SummarySegment/index';
 import { TextBold } from '@atoms/textComponents';
+import SummaryHeader from '@molecules/SummaryHeader/index';
 
 const Summary = ({ segments }) => {
 
-  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition } = useSummary(segments);
+  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, shareHandler } = useSummary(segments);
 
   return(
       <SummaryContainer
         summaryOpened={summaryOpened}
         scrollPosition={scrollPosition}>
         <ContainerBox>
-          <SummaryHeading>{t.summary}</SummaryHeading>
+          <SummaryHeader
+            shareHandler={shareHandler}
+            heading={t.summary}
+            />
           <ContentBox>
             <SummaryContent>
               <SummaryMain>
-                  <SummaryHeadingMini>{t.summary}</SummaryHeadingMini>
+                  <SummaryHeader
+                    mobile={true}
+                    heading={t.summary}
+                    shareHandler={shareHandler}
+                    />
                   <SegmentsWrapper summaryOpened={summaryOpened}>
                     <SummaryParagraph opened={summaryOpened}>
                       <TextBold>{t.segmentsAmount}:</TextBold>&nbsp;

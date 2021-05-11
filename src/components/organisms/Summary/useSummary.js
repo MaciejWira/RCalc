@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { initialSegment } from "@helpers/initialSegment";
+import { initialSegment } from '@config/initialSegment';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
+import { createSearch } from '@helpers/createSearch';
 
 export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
+    const [ urlSearch, setUrlSearch ] = useState(createSearch(segments));
+    
     // 0 - totally hidden
     // 1 - minimized
     // 2 - large
@@ -50,6 +53,8 @@ export const useSummary = segments => {
           updatedSummarySegment.factors[index].sum = summaryFactors[factor.name].sum
         });
         setSummarySegment(updatedSummarySegment);
+
+        setUrlSearch( createSearch(segments) );
       
     }, [segments]);
 
@@ -74,8 +79,12 @@ export const useSummary = segments => {
           return prev === 0 ? prev : prev - 1
         }
       });
+    };
+
+    const shareHandler = () => {
+      console.log(urlSearch);
     }
 
-    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition };
+    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, shareHandler };
 
 }

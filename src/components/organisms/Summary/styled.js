@@ -4,7 +4,6 @@ import Box from '@layouts/Box/index';
 import { relative } from '@styles/mixins';
 import { bp } from '@styles/functions';
 import { Paragraph } from '@atoms/textComponents';
-import { H2 } from '@atoms/H2';
 import { breakpoints } from '@styles/breakpoints';
 import { transitionSpeed } from '@styles/vars';
 import ButtonDir from '@atoms/ButtonDir';
@@ -76,24 +75,6 @@ export const ContentBox = styled(Box)`
     ${bp('md', `
         border-bottom-left-radius: ${rem(10)};
         border-bottom-right-radius: ${rem(10)};
-    `)}
-`;
-
-export const SummaryHeading = styled(H2)`
-    display: none;
-    ${bp('md', `
-        ${relative};
-        margin-bottom: ${rem(5)};
-        display: block;
-        margin-bottom: ${rem(20)}
-    `)}
-`;
-
-export const SummaryHeadingMini = styled(H2)`
-    font-size: ${rem(20)};
-    margin-bottom: ${rem(5)};
-    ${bp('md', `
-        display: none;
     `)}
 `;
 
