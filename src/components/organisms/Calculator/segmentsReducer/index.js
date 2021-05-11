@@ -13,7 +13,7 @@ export const types = {
 }
 
 export const initialState = {
-  segments: initialSegments(currentId),
+  segments: initialSegments(),
   animation: initialAnimation
 };
 

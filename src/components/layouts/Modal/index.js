@@ -4,6 +4,7 @@ import Standards from '@organisms/Standards/index';
 import { RiCloseFill } from 'react-icons/ri';
 import { SET_MODAL } from '@store/actions';
 import { ModalContainer, ModelMain, ModalBox, ModelContent, CloseButton } from './styled';
+import Share from '@molecules/Share/index';
 
 const Modal = () => {
 
@@ -16,7 +17,12 @@ const Modal = () => {
       <ModelContent>
         <Standards factor={content.factor} handler={content.handler}/>
       </ModelContent>)
-  };
+  } else if ( type === 'share' ){
+    _content = (
+      <ModelContent>
+        <Share urlSearch={content.urlSearch} />
+      </ModelContent>)
+  } 
 
   return(
     <ModalContainer opened={opened}>

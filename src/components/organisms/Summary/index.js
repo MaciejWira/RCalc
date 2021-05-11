@@ -16,7 +16,7 @@ import SummaryHeader from '@molecules/SummaryHeader/index';
 
 const Summary = ({ segments }) => {
 
-  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, shareHandler } = useSummary(segments);
+  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, urlSearch } = useSummary(segments);
 
   return(
       <SummaryContainer
@@ -24,8 +24,8 @@ const Summary = ({ segments }) => {
         scrollPosition={scrollPosition}>
         <ContainerBox>
           <SummaryHeader
-            shareHandler={shareHandler}
             heading={t.summary}
+            urlSearch={urlSearch}
             />
           <ContentBox>
             <SummaryContent>
@@ -33,7 +33,7 @@ const Summary = ({ segments }) => {
                   <SummaryHeader
                     mobile={true}
                     heading={t.summary}
-                    shareHandler={shareHandler}
+                    urlSearch={urlSearch}
                     />
                   <SegmentsWrapper summaryOpened={summaryOpened}>
                     <SummaryParagraph opened={summaryOpened}>

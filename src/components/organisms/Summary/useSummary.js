@@ -81,10 +81,6 @@ export const useSummary = segments => {
       });
     };
 
-    const shareHandler = () => {
-      console.log(urlSearch);
-    }
-
-    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, shareHandler };
+    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, urlSearch };
 
 }

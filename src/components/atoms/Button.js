@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
 import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';
-import { rgba } from 'polished';
 import { bp } from '@styles/functions';
+import { focus } from '@styles/mixins';
 
 const Button = ({ children, additionalStyles, ...others }) => (
         <button {...others}>
@@ -41,11 +41,7 @@ const StyledButton = styled(Button)`
         color: ${colorLight};
     }
 
-    :focus, :focus-visible {
-        outline: none;
-        box-shadow: 0 0 ${rem(15)} 0 ${rgba( colorPrimary, .9)};
-        border: none;
-    }
+    ${focus}
 
     :active {
         box-shadow: 0 0 ${rem(15)} 0 black inset;

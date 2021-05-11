@@ -2,7 +2,7 @@ import { initialSegment } from '@config/initialSegment';
 import { searchParser } from '@helpers/searchParser';
 import { updatedDisactive } from '@organisms/Segment/helpers/updater';
 
-export const initialSegments = currentId => {
+export const initialSegments = (currentId = 1) => {
 
     if ( !window.location.search ) return [ {...initialSegment, id: `id-${currentId}` } ];
 
@@ -40,6 +40,7 @@ export const initialSegments = currentId => {
 
                             return { 
                                 ...segment, 
+                                id: segment.id.indexOf('fp-') >= 0 ? segment.id : 'fp-' + segment.id,
                                 factors: calculableCounter > 1 ? factorsCounted : segment.factors, 
                                 calculable: calculableCounter > 1 
                             }
