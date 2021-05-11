@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useCalc } from '@organisms/Fields/useCalc';
 import { useTranslations } from '@translations/useTranslations';
-import { translations } from '@helpers/initialSegment';
+import { translations } from '@config/initialSegment/translations';
 import { TextBold } from '@atoms/textComponents';
 import { SummaryParagraph, ValueParagraph } from '@organisms/Summary/styled';
 import styled from 'styled-components';

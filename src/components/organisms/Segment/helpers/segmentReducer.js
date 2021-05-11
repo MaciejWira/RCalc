@@ -1,4 +1,4 @@
-import { initialSegment } from '@helpers/initialSegment';
+import { initialSegment } from '@config/initialSegment';
 import { updater } from './updater';
 
 export const types = {

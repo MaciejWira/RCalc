@@ -19,6 +19,7 @@ module.exports = {
             '@organisms': path.resolve(__dirname, 'src/components/organisms'),
             '@layouts': path.resolve(__dirname, 'src/components/layouts'),
             '@helpers': path.resolve(__dirname, 'src/helpers/'),
+            '@config': path.resolve(__dirname, 'src/config/'),
             '@fonts': path.resolve(__dirname, 'src/assets/fonts/'),
             '@hooks': path.resolve(__dirname, 'src/hooks/'),
             '@styles': path.resolve(__dirname, 'src/styles/'),
