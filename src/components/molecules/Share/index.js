@@ -10,6 +10,7 @@ const Share = ({ urlSearch }) => {
 
     const { t } = useTranslations(content);
     const path = window.location.origin + window.location.pathname + urlSearch;
+    const wwwPath = window.location.host + window.location.pathname + urlSearch;
 
     return ( 
         <Container>
@@ -22,7 +23,7 @@ const Share = ({ urlSearch }) => {
                 <Button
                     type='round'
                     as='a'
-                    href={`whatsapp://send?text=${urlSearch}`}
+                    href={`whatsapp://send?text=${encodeURIComponent(path)}`}
                     target="_blank"
                     >
                     <RiWhatsappLine size="80%" />
@@ -30,7 +31,7 @@ const Share = ({ urlSearch }) => {
                 <Button
                     type='round'
                     as='a'
-                    href={`https://www.facebook.com/sharer/sharer.php?u=www.${window.location.host + window.location.pathname + urlSearch}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=www.${encodeURIComponent(wwwPath)}`}
                     target="_blank"
                     >
                     <RiFacebookFill size="80%" />
@@ -38,7 +39,7 @@ const Share = ({ urlSearch }) => {
                 <Button
                     type='round'
                     as='a'
-                    href={`https://mail.google.com/mail/u/0/?tf=cm&su=${t.mailSubject}&body=${path}`}
+                    href={`https://mail.google.com/mail/u/0/?tf=cm&su=${t.mailSubject}&body=${encodeURIComponent(path)}`}
                     target="_blank"
                     >
                     <RiGoogleFill size="80%" />
