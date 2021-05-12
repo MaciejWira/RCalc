@@ -1,7 +1,6 @@
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
-import Input from '@atoms/Input';
-import { StyledParagraph } from './styled';
+import { StyledParagraph, StyledInput } from './styled';
 import { RiWhatsappLine, RiFacebookFill, RiGoogleFill } from 'react-icons/ri';
 import Button from '@atoms/Button';
 import { Container, Buttons } from './styled';
@@ -15,13 +14,14 @@ const Share = ({ urlSearch }) => {
     return ( 
         <Container>
             <StyledParagraph>{t.copyLink}:</StyledParagraph>
-            <Input
+            <StyledInput
                 readOnly
+                onFocus={e => console.log(e.target.select())}
                 value={path} />
             <StyledParagraph>{t.shareWith}:</StyledParagraph>
             <Buttons>
                 <Button
-                    type='round'
+                    type='round round-grow-sm'
                     as='a'
                     href={`whatsapp://send?text=${encodeURIComponent(path)}`}
                     target="_blank"
@@ -29,7 +29,7 @@ const Share = ({ urlSearch }) => {
                     <RiWhatsappLine size="80%" />
                 </Button>
                 <Button
-                    type='round'
+                    type='round round-grow-sm'
                     as='a'
                     href={`https://www.facebook.com/sharer/sharer.php?u=www.${encodeURIComponent(wwwPath)}`}
                     target="_blank"
@@ -37,7 +37,7 @@ const Share = ({ urlSearch }) => {
                     <RiFacebookFill size="80%" />
                 </Button>
                 <Button
-                    type='round'
+                    type='round round-grow-sm'
                     as='a'
                     href={`https://mail.google.com/mail/u/0/?tf=cm&su=${t.mailSubject}&body=${encodeURIComponent(path)}`}
                     target="_blank"

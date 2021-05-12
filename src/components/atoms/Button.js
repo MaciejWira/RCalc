@@ -3,6 +3,7 @@ import { rem } from '@styles/functions';
 import { buttonSizePrimary, transitionPrimary, transitionSpeed, colorPrimary, colorLight, colorPrimaryLight } from '@styles/vars';
 import { bp } from '@styles/functions';
 import { focus } from '@styles/mixins';
+import { buttonSize } from './../../styles/vars';
 
 const Button = ({ children, additionalStyles, ...others }) => (
         <button {...others}>
@@ -58,7 +59,17 @@ const StyledButton = styled(Button)`
                 height: ${buttonSizePrimary};
                 border-radius: 50%;
             `
-        }
+        };
+
+        if ( props.type?.indexOf('round-grow-sm') >= 0 ){
+            additionalStyles += `
+                ${bp('sm', `
+                    min-width: ${rem(buttonSize * 1.2)};
+                    width: ${rem(buttonSize * 1.2)};
+                    height: ${rem(buttonSize * 1.2)};
+                `)};
+            `
+        };
 
         if ( props.type?.indexOf('padded') >= 0 ){
             additionalStyles += `
