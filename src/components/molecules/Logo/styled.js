@@ -6,16 +6,16 @@ import { bp } from '@styles/functions';
 export const StyledLogo = styled.h1`
     font-size: ${rem(24)};
     font-weight: 900;
+    display: flex;
+    align-items: center;
     ${bp('lg', `
         font-size: ${rem(28)}
     `)}
 `;
 
-export const Run = styled.span`
+export const StyleOne = styled.span`
     color: ${colorPrimary};
-    margin-right: ${rem(1)}
 `;
 
-export const Calc = styled.span`
-    font-weight: 300;
+export const StyleTwo = styled.span`
 `;

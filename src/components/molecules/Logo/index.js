@@ -1,15 +1,13 @@
-import { useTranslations } from '@translations/useTranslations';
-import { content } from './content';
-import { StyledLogo, Calc, Run } from './styled';
+import { StyledLogo, StyleOne, StyleTwo } from './styled';
+import LogoIcon from '@molecules/LogoIcon';
 
 const Logo = () => {
 
-    const { t } = useTranslations(content);
-
     return(
         <StyledLogo>
-            <Run>RUN</Run>
-            <Calc>CALC</Calc>
+            <StyleOne>RUN</StyleOne>
+            <StyleTwo>PLAN</StyleTwo>
+            <LogoIcon />
         </StyledLogo>
     );
 
