@@ -8,6 +8,13 @@ import { gutter } from '@styles/grid';
 
 export const StyledCalculator = styled(Container)`
   padding-top: ${rem(25)};
+  margin-bottom: ${rem(40)};
+  ${bp('lg',`
+    margin-bottom: ${rem(55)};
+  `)};
+  ${bp('xl',`
+    margin-bottom: ${rem(75)};
+  `)};
 `;
 
 export const SegmentsColumn = styled(Column)`

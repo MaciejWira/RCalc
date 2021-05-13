@@ -7,6 +7,7 @@ import { mainTheme, darkTheme, lightTheme } from '@styles/themes';
 import { GlobalStyle, StyledApp } from './styled';
 import '@styles/global.scss';
 import { useStore } from '@store/store';
+import Footer from '@organisms/Footer/index';
 
 const App = () => {
   
@@ -19,6 +20,7 @@ const App = () => {
       <StyledApp>
         <Header />
         <Calculator />
+        <Footer />
       </StyledApp>
       <Modal />
     </ThemeProvider>
