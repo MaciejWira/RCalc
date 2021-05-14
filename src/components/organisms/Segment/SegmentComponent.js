@@ -52,11 +52,11 @@ const SegmentComponent = ({
                 <ButtonDir
                     type='minimal font-big'
                     onClick={() => segmentsActions.CHANGE_ORDER({ id })} />
-                <DragButton
+                {/* <DragButton
                     type='minimal'
                     onClick={() => null}>
                       <RiDragMove2Fill />
-                </DragButton>
+                </DragButton> */}
               </ButtonWrapper>
             </SegmentHeader>
             <Factors 
