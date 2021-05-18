@@ -33,7 +33,7 @@ const Factor = ({ factor, segmentActions }) => {
       <Fragment key={sibling.name}>
         <FactorHeader 
           isActive={factor.active}
-          heading={t[sibling.name]} 
+          factorName={sibling.name}
           />
         <FieldsContainer
               isActive={factor.active}
