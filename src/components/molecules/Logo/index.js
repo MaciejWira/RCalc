@@ -1,10 +1,10 @@
 import { StyledLogo, StyleOne, StyleTwo } from './styled';
 import LogoIcon from '@molecules/LogoIcon';
 
-const Logo = () => {
+const Logo = ({ scroll }) => {
 
     return(
-        <StyledLogo>
+        <StyledLogo scroll={scroll}>
             <StyleOne>RUN</StyleOne>
             <StyleTwo>PLAN</StyleTwo>
             <LogoIcon />

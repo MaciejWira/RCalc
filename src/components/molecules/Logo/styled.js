@@ -1,4 +1,4 @@
-import { colorPrimary } from '@styles/vars';
+import { colorPrimary, transitionSpeed } from '@styles/vars';
 import styled from 'styled-components';
 import { rem } from '@styles/functions';
 import { bp } from '@styles/functions';
@@ -10,7 +10,21 @@ export const StyledLogo = styled.h1`
     align-items: center;
     ${bp('lg', `
         font-size: ${rem(28)}
-    `)}
+    `)};
+
+    ${props => {
+        if ( props.scroll ?? false ){
+            console.log('hello');
+            return`
+                font-size: ${rem(18)};
+                ${bp('lg', `
+                    font-size: ${rem(20)}
+                `)};
+            `;
+        }
+    }};
+
+    transition: font-size ${transitionSpeed};
 `;
 
 export const StyleOne = styled.span`

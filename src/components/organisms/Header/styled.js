@@ -4,9 +4,9 @@ import { rem } from '@styles/functions';
 import ThemeSwitcher from '@molecules/ThemeSwitcher/index';
 import { ziHeader, transitionSpeed } from '@styles/vars';
 
+const scaleRatio = .8;
+
 export const StyledHeader = styled.header`
-  padding-top: ${rem(15)};
-  padding-bottom: ${rem(15)};
   background-color: ${props => props.theme.colorBack};
   box-shadow: 0 0 ${rem(55)} 0 ${props => props.theme.shadowPrimary};
   position: fixed;
@@ -14,9 +14,8 @@ export const StyledHeader = styled.header`
   top: 0;
   right: 0;
   left: 0;
-  min-height: ${props => props.theme.pageTop};
   box-sizing: border-box;
-  transition: background-color ${transitionSpeed};
+  transition: background-color ${transitionSpeed}, transform ${transitionSpeed};
 `;
 
 export const HeaderContainer = styled(Container)`
@@ -25,12 +24,25 @@ export const HeaderContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: ${props => {
+    if ( props.scroll > 25 ) return `${scaleRatio * 60}px`;
+    else return 60 + 'px';
+  }};
+  transition: height ${transitionSpeed};
 `;
 
 export const Utils = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  ${props => {
+    if ( props.scroll > 25 ){
+      return`
+        transform: scale(${scaleRatio})
+      `;
+    }
+  }};
+  transition: transform ${transitionSpeed};
 `;
 
 export const StyledThemeSwitcher = styled(ThemeSwitcher)`
