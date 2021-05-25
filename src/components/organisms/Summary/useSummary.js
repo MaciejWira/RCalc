@@ -8,6 +8,8 @@ export const useSummary = segments => {
 
     const [ summarySegment, setSummarySegment ] = useState({...initialSegment});
     const [ urlSearch, setUrlSearch ] = useState(createSearch(segments));
+    // only count calculable ones
+    const [ segmentsLength, setSegmentsLength ] = useState(0);
     
     // 0 - totally hidden
     // 1 - minimized
@@ -26,10 +28,14 @@ export const useSummary = segments => {
             weight: 0
           }
         });
+
+        let _segmentsLength = 0;
   
         // add sums for each factor, from all segments, to each other and inject it
         // or calculate the average based on weight
         segments.forEach(segment => {
+
+          if (segment.calculable) _segmentsLength++;
 
           segment.factors.forEach(factor => {
             if (!segment.calculable) return;
@@ -44,6 +50,8 @@ export const useSummary = segments => {
               summaryFactors[factor.name].weight += segmentWeight;
             }
           });
+
+          setSegmentsLength(_segmentsLength);
 
         });
 
@@ -81,6 +89,6 @@ export const useSummary = segments => {
       });
     };
 
-    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, urlSearch };
+    return { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, urlSearch, segmentsLength };
 
 }

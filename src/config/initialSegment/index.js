@@ -42,6 +42,14 @@ export const initialSegment = {
           },
           value: 21097 
         },
+        { 
+          name: "quarter-marathon", 
+          pretty: {
+            en: "Quarter marathon",
+            pl: "Ćwierćmaraton",
+          },
+          value: 10549 
+        },
       ]
     },
     {

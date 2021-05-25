@@ -16,7 +16,14 @@ import SummaryHeader from '@molecules/SummaryHeader/index';
 
 const Summary = ({ segments }) => {
 
-  const { summarySegment, summaryHandler, summaryOpened, t, scrollPosition, urlSearch } = useSummary(segments);
+  const { 
+    summarySegment, 
+    summaryHandler, 
+    summaryOpened, 
+    t, 
+    scrollPosition, 
+    segmentsLength,
+    urlSearch } = useSummary(segments);
 
   return(
       <SummaryContainer
@@ -39,7 +46,7 @@ const Summary = ({ segments }) => {
                     <SummaryParagraph opened={summaryOpened}>
                       <TextBold>{t.segmentsAmount}:</TextBold>&nbsp;
                       <ValueParagraph opened={summaryOpened}>
-                        {segments.length}
+                        {segmentsLength}
                       </ValueParagraph>
                     </SummaryParagraph>
                     <SummarySegment
