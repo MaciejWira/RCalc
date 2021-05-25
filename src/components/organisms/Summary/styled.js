@@ -4,21 +4,10 @@ import Box from '@layouts/Box/index';
 import { relative } from '@styles/mixins';
 import { bp } from '@styles/functions';
 import { Paragraph } from '@atoms/textComponents';
-import { breakpoints } from '@styles/breakpoints';
 import { transitionSpeed } from '@styles/vars';
 import ButtonDir from '@atoms/ButtonDir';
 
-export const SummaryContainer = styled.div.attrs(props => {
-
-    if ( window.innerWidth >= breakpoints.md ){
-        return {
-                    style: {
-                        transform: `translateY(${rem(props.scrollPosition)})`
-                    }
-                }
-    }
-
-})`
+export const SummaryContainer = styled.div`
     pointer-events: all;
     opacity: ${props => props.opened ? '1' : '.9'};
     background-color: ${props => props.theme.colorBack};
@@ -30,11 +19,16 @@ export const SummaryContainer = styled.div.attrs(props => {
             `;
         }
     }}
-    ${bp('md', `
-        background-color: transparent;
-        opacity: 1;
-        transform: none;
-    `)}
+    ${props => {
+        return`
+            ${bp('md', `
+                background-color: transparent;
+                opacity: 1;
+                transform: translateY(${rem(props.scrollPosition)});
+            `)}        
+        `;
+    }}
+
 `;
 
 export const SummaryContent = styled.div`

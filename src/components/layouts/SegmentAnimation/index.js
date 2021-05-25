@@ -14,7 +14,7 @@ const SegmentAnimation = ({ animation, opacity, children, wrapperRef, animationV
     return (
         <div
             ref={wrapperRef}
-            style={{ ...style[animation?.type], opacity, transform: 'scale(.5)', transformOrigin: 'top left' }}>
+            style={{ ...style[animation?.type], opacity }}>
             {children}
         </div>
     );
