@@ -4,7 +4,6 @@ import Factors from '@organisms/Factors';
 import { useTranslations } from '@translations/useTranslations';
 import { content } from './content';
 import { rem } from '@styles/functions';
-import { RiDragMove2Fill } from 'react-icons/ri';
 import ButtonDir from '@atoms/ButtonDir';
 import SegmentAnimation from '@layouts/SegmentAnimation/index';
 
@@ -15,14 +14,21 @@ const SegmentComponent = ({
     segmentsActions,
     segmentsAmount,
     index,
-    animation
+    animation,
+    animationVal,
+    removeHandler,
+    opacity,
+    wrapperRef
 }) => {
 
   const { t } = useTranslations(content);
 
   return(
     <SegmentAnimation 
+      opacity={opacity}
       animation={animation} 
+      animationVal={animationVal} 
+      wrapperRef={wrapperRef}
       segmentsActions={segmentsActions}>
       <SegmentContainer>
         <StyledBox>
@@ -40,7 +46,7 @@ const SegmentComponent = ({
                 {index === 0 && segmentsAmount === 1 ? null : (
                   <Button
                     type='padded color-primary'
-                    onClick={() => segmentsActions.REMOVE(id)}>
+                    onClick={() => removeHandler(true)}>
                     {t.removeSegment}
                   </Button>
                 )}

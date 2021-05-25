@@ -14,11 +14,10 @@ export const StyledLogo = styled.h1`
 
     ${props => {
         if ( props.scroll ?? false ){
-            console.log('hello');
             return`
-                font-size: ${rem(18)};
+                font-size: ${rem(20)};
                 ${bp('lg', `
-                    font-size: ${rem(20)}
+                    font-size: ${rem(22)}
                 `)};
             `;
         }
