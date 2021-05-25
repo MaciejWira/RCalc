@@ -22,17 +22,22 @@ export const useSegment = (segment, segmentsActions, animation, wrapperRef) => {
       }
     }, [ removeOn, opacity ]);
 
-    const animationFoo = (step = STEP) => {
+    const animationFoo = (step = STEP, limit = 0, direction = 'down') => {
       let _step = animationRef.current - step;
-      animationRef.current = _step < 0 ? 0 : _step;
+      animationRef.current = (_step < limit && direction === 'down') || (_step > limit && direction === 'up') ? limit : _step;
       setAnimationVal(animationRef.current);
-      if ( animationRef.current > 0 ) requestAnimationFrame(() => animationFoo(step));
+      if ( direction === 'down' && animationRef.current > limit ){
+        requestAnimationFrame(() => animationFoo(step, limit, direction));
+      }
+      else if ( direction === 'up' && animationRef.current < limit ){
+        requestAnimationFrame(() => animationFoo(step, limit, direction));
+      }
       else segmentsActions.RESET_ANIMATION();
     }
 
     useEffect(() => {
       if ( animation?.type === 'order' ){
-          animationRef.current = 100; // 100%
+          animationRef.current = 100; // transform 100%
           setAnimationVal(100);
           requestAnimationFrame(() => animationFoo(STEP));
       }
@@ -41,6 +46,11 @@ export const useSegment = (segment, segmentsActions, animation, wrapperRef) => {
           animationRef.current = h;
           setAnimationVal(h);
           requestAnimationFrame(() => animationFoo( Math.floor( (h / 100) * STEP ) ));
+      }
+      else if ( animation?.type === 'add' ){
+          animationRef.current = 0; // opacity 0
+          setAnimationVal(0);
+          requestAnimationFrame(() => animationFoo(-(STEP / 100), 1, 'up'));
       };
     }, [ animation ]);
 

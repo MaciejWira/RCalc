@@ -8,13 +8,14 @@ const SegmentAnimation = ({ animation, opacity, children, wrapperRef, animationV
     const style = {
         'order': { transform: `translateY(${animationVal * ( animation?.direction || 0 )}%)` },
         'remove-after': { marginTop: height + 'px' },
+        'add': { opacity: animationVal }
     };
 
     // opacity is for before remove animation
     return (
         <div
             ref={wrapperRef}
-            style={{ ...style[animation?.type], opacity }}>
+            style={{ opacity, ...style[animation?.type] }}>
             {children}
         </div>
     );
